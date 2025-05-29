@@ -36,25 +36,25 @@
                 </li>
             </a>
             <a>
-                <li>
+                <li class="hardSkillsMenu">
                     <i class="ri-settings-3-fill"></i>
                     Hard Skills
                 </li>
             </a>
             <a>
-                <li>
+                <li class="softSkillsMenu">
                     <i class="ri-settings-3-fill"></i>
                     Soft Skills
                 </li>
             </a>
             <a>
-                <li>
+                <li class="workExperiencesMenu">
                     <i class="ri-macbook-fill"></i>
                     Work Experiences
                 </li>
             </a>
             <a>
-                <li>
+                <li class="projectShowcaseMenu">
                     <i class="ri-book-shelf-fill"></i>
                     Project Showcases
                 </li>

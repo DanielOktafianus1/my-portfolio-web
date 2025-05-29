@@ -21,6 +21,6 @@ class HireMeController extends Controller
         Mail::to('danieloktafianus90@gmail.com')
             ->send(new HireMe($validated['email'], $validated['subject'], $validated['message']));
 
-        return redirect()->back();
+        return redirect()->back()->withInput();
     }
 }

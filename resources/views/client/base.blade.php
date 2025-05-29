@@ -59,10 +59,10 @@
 
                         <ul class="subCategorySkills">
                             <li>
-                                <a href="">Hard Skills</a>
+                                <a class="hardSkillsMenu">Hard Skills</a>
                             </li>
                             <li>
-                                <a href="">Soft Skills</a>
+                                <a class="softSkillsMenu">Soft Skills</a>
                             </li>
                         </ul>
                     </li>
@@ -74,10 +74,10 @@
 
                         <ul class="subCategoryExperiences">
                             <li>
-                                <a href="" style="color: white">Work Experiences</a>
+                                <a class="workExperiencesMenu" style="color: white">Work Experiences</a>
                             </li>
                             <li>
-                                <a href="" style="color: white">Project Showcases</a>
+                                <a class="projectShowcaseMenu" style="color: white">Project Showcases</a>
                             </li>
                         </ul>
                     </li>
@@ -124,10 +124,10 @@
 
                     <ul class="subCategorySkillsMobile" id="subCategorySkillsMobile">
                         <li>
-                            <a href="">Hard Skills</a>
+                            <a class="hardSkillsMenu">Hard Skills</a>
                         </li>
                         <li>
-                            <a href="">Soft Skills</a>
+                            <a class="softSkillsMenu">Soft Skills</a>
                         </li>
                     </ul>
                 </li>
@@ -142,10 +142,10 @@
 
                     <ul class="subCategoryExperiencesMobile" id="subCategoryExperiencesMobile">
                         <li>
-                            <a href="">Work Experiences</a>
+                            <a class="workExperiencesMenu">Work Experiences</a>
                         </li>
                         <li>
-                            <a href="">Project Showcases</a>
+                            <a class="projectShowcaseMenu">Project Showcases</a>
                         </li>
                     </ul>
                 </li>
@@ -208,7 +208,11 @@
                                 </div>
 
                                 <div>
-                                    <div class="g-recaptcha mb-5" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}">
+                                    @error('g-recaptcha-response')
+                                        <span class="errorReCaptcha">{{ $message }}</span>
+                                    @enderror
+                                    <div class="g-recaptcha mb-5 recaptchaContainer"
+                                        data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}">
                                     </div>
                                 </div>
 
@@ -352,9 +356,6 @@
         })
 
         // Menu click
-
-        // About Me
-
         document.addEventListener('DOMContentLoaded', () => {
             const underlines = document.querySelectorAll('.underline');
             const aboutMe = document.getElementById('aboutMe');
@@ -373,7 +374,7 @@
                         activeMenuIndex = index;
                         sections[index].scrollIntoView({
                             behavior: 'smooth',
-                            block: 'center'
+                            block: 'nearest'
                         })
                     }
                 });
@@ -413,6 +414,156 @@
             });
 
             sections.forEach(section => observer.observe(section))
+        })
+
+        // // Sub Menu click
+        const skills = document.getElementById('skills');
+
+        // Hard Skills
+        document.querySelectorAll('.hardSkillsMenu').forEach((event, index) => {
+            event.addEventListener('click', () => {
+                skills.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                })
+
+                document.querySelectorAll('.hardSkillsContainer').forEach(function(eventSoftSkills) {
+                    eventSoftSkills.style.display = 'block';
+
+                });
+                document.querySelectorAll('.softSkillsContainer').forEach(function(eventSoftSkills) {
+                    eventSoftSkills.style.display = 'none';
+                });
+
+                borderBottom.forEach(function(e, index) {
+                    if (index === 0) {
+                        e.classList.add('active');
+                    } else {
+                        e.classList.remove('active');
+                    }
+                });
+
+                document.querySelectorAll('.hardSkillDesc').forEach(function(skillDesc, i) {
+                    if (i === 0) {
+                        const isActive = skillDesc.classList.contains('active')
+
+                        if (!isActive) {
+                            skillDesc.classList.add('active');
+                            skillDesc.style.maxHeight = skillDesc.scrollHeight + 'px';
+                        }
+
+                        document.querySelectorAll('.hardSkillTitle i').forEach(function(icon,
+                            index) {
+                            if (index === i) {
+
+                                const rotateIcon = icon.classList.contains('active');
+
+                                if (!rotateIcon) {
+                                    icon.classList.add('active');
+                                }
+                            } else {
+                                icon.classList.remove('active');
+                            }
+                        })
+                    } else {
+                        skillDesc.classList.remove('active')
+                        skillDesc.style.maxHeight = null;
+                    }
+                });
+            })
+        })
+
+        // Soft Skills
+        document.querySelectorAll('.softSkillsMenu').forEach((event, index) => {
+            event.addEventListener('click', () => {
+                skills.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                })
+
+                document.querySelectorAll('.softSkillsContainer').forEach(function(eventSoftSkills) {
+                    eventSoftSkills.style.display = 'block';
+
+                });
+
+                document.querySelectorAll('.hardSkillsContainer').forEach(function(eventHardSkills) {
+                    eventHardSkills.style.display = 'none';
+                });
+
+                borderBottom.forEach(function(e, index) {
+                    if (index === 1) {
+                        e.classList.add('active');
+                    } else {
+                        e.classList.remove('active');
+                    }
+                });
+
+                document.querySelectorAll('.softSkillDesc').forEach(function(skillDesc, i) {
+                    if (i === 0) {
+
+                        const isActive = skillDesc.classList.contains('active');
+
+                        if (!isActive) {
+                            skillDesc.classList.add('active');
+                            skillDesc.style.maxHeight = skillDesc.scrollHeight + 'px';
+                        }
+
+                        const icon = document.querySelectorAll('.softSkillTitle i').forEach(
+                            function(icon,
+                                index) {
+
+                                if (index === i) {
+
+                                    const rotateIcon = icon.classList.contains('active');
+
+                                    if (!rotateIcon) {
+                                        icon.classList.add('active');
+                                    }
+                                } else {
+                                    icon.classList.remove('active');
+                                }
+                            });
+                    } else {
+                        skillDesc.classList.remove('active')
+                        skillDesc.style.maxHeight = null;
+                    }
+                });
+            })
+        })
+
+
+        const exprcs = document.getElementById('experience');
+
+        // Work Experience
+        document.querySelectorAll('.workExperiencesMenu').forEach((event, index) => {
+            event.addEventListener('click', () => {
+                exprcs.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                })
+
+                workExperience.style.display = 'block';
+                projectShowcase.style.display = 'none';
+
+                btnWorkExperiences.classList.add('active')
+                btnProjectShowcase.classList.remove('active')
+            })
+        })
+
+        // Project Showcase
+        document.querySelectorAll('.projectShowcaseMenu').forEach((event, index) => {
+            event.addEventListener('click', () => {
+                exprcs.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                })
+
+                workExperience.style.display = 'none';
+                projectShowcase.style.display = 'block';
+
+                btnProjectShowcase.classList.add('active')
+                btnWorkExperiences.classList.remove('active')
+            })
         })
     </script>
 

@@ -95,7 +95,7 @@
     list-style-type: none;
     height: 65px;
     box-shadow: 3px 5px 5px 5px rgba(0, 0, 0, 0.062);
-    background:linear-gradient(to right, #393E46 60%, #393e46b9);
+    background:linear-gradient(to right, #393E46 60%, #393e46cc);
     color: white;
     display: flex;
     align-items: center;
