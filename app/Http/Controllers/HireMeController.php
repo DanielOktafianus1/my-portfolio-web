@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Rules\ReCaptcha;
 use App\Mail\HireMe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -13,7 +14,8 @@ class HireMeController extends Controller
         $validated = $request->validate([
             'email' => 'required|email',
             'subject' => 'required|string|min:1|max:200',
-            'message' => 'required|string|min:1'
+            'message' => 'required|string|min:1',
+            'g-recaptcha-response' => [new ReCaptcha]
         ]);
 
         Mail::to('danieloktafianus90@gmail.com')

@@ -27,7 +27,9 @@
     <link rel="stylesheet" href="{{ asset('css/certificate.css') }}">
 
     <title>PORTLINE</title>
+
 </head>
+
 
 <body style="background-color: #94897944">
     <div class="baseContainer">
@@ -205,6 +207,11 @@
                                     <span class="errorMessage"></span>
                                 </div>
 
+                                <div>
+                                    <div class="g-recaptcha mb-5" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}">
+                                    </div>
+                                </div>
+
                                 <div class="containerButton">
                                     <button type="submit">Send Message <i class="ri-send-plane-fill"></i></button>
                                 </div>
@@ -222,6 +229,8 @@
         </footer>
         {{-- Footer End --}}
     </div>
+
+
 
     <script>
         // Navbar Sticky
@@ -406,6 +415,10 @@
             sections.forEach(section => observer.observe(section))
         })
     </script>
+
+
+    <script async src="https://www.google.com/recaptcha/api.js"></script>
+
 </body>
 
 </html>
