@@ -1,0 +1,399 @@
+.skillsContainer{
+    padding: 0 40px;
+    margin: 120px 0;
+    display: flex;
+    min-height:20vh;
+    width: 100%;
+}
+
+
+.subSkillsContainer{
+   background-color: #393E46;
+   display: flex;
+   flex-direction: column;
+   gap:20px;
+   padding: 25px 20px;
+   width: 30%;
+   margin:0;
+   border-top-left-radius: 15px;
+   border-bottom-left-radius: 15px;
+   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.064);
+}
+
+.subSkillsContainer h1{
+    text-align: center;
+    color: red;
+    margin-bottom: 20px;
+    font-family: "Cal Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.subSkillsContainer ul{
+    margin: 0;
+    padding: 0;
+}
+
+.subSkillsContainer ul li{
+    list-style-type: none;
+    margin-bottom: 15px;
+}
+
+.subSkillsContainer li div{
+    border-bottom: 2px solid white;
+    width: 0;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+}
+
+.subSkillsContainer li div.active{
+    width: 100%;
+}
+
+.subSkillsContainer li:hover div{
+    width: 100%;
+}
+
+.subSkillsContainer h5{
+    cursor: pointer;
+    color: white;
+    font-family: "Cal Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    
+}
+
+.skillsContentContainer{
+    padding-left: 40px;
+    width: 70%;
+}
+
+.hardSkillTitle{
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    padding: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.377);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.hardSkillTitle:hover{
+    background-color: rgba(0, 0, 0, 0.132);
+}
+
+.hardSkillTitle div{
+    color: #393E46;
+    font-family: "Cal Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.hardSkillTitle i{
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+}
+
+.hardSkillTitle i.active{
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+}
+
+.hardSkillDesc{
+    margin: 0 10px;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+}
+
+.hardSkillDesc.active{
+    opacity: 1;
+    margin: 25px 10px;
+}
+
+.hardSkillDesc div {
+    display: grid;
+    grid-template-columns: 20% 1fr 20%;
+    margin-bottom: 15px;
+    gap: 5px;
+}
+
+.hardSkillDesc span{
+    position: relative;
+    display: inline-block;
+}
+
+.hardSkillDesc h6{
+    position: absolute;
+    top: 2px;
+    color: white;
+    transform:translate(-100%) ;
+    -webkit-transform:translate(-100%) ;
+    -moz-transform:translate(-100%) ;
+    -ms-transform:translate(-100%) ;
+    -o-transform:translate(-100%) ;
+}
+
+.hardSkillDesc div p{
+    background-color: #393E46;
+    color: white;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.hardSkillDesc div p:nth-of-type(1){
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+.hardSkillDesc div p:nth-of-type(2){
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.hardSkillDesc progress{
+    width: 100%;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    color: #393E46;
+    height:100%;
+    appearance: none;
+}
+
+.hardSkillDesc progress::-webkit-progress-value{
+    background-color: red;
+    position: relative;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+}
+
+.hardSkillDesc progress::-webkit-progress-bar{
+    background-color: rgb(223, 222, 222);
+}
+
+.hardSkillsContainer{
+    display: block;
+}
+
+.softSkillTitle{
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    padding: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.377);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.softSkillTitle:hover{
+    background-color: rgba(0, 0, 0, 0.132);
+}
+
+.softSkillTitle div{
+    color: #393E46;
+    font-family: "Cal Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.softSkillTitle i{
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+}
+
+.softSkillTitle i.active{
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+}
+
+.softSkillDesc{
+    margin: 0 10px;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+}
+
+.softSkillDesc.active{
+    opacity: 1;
+    margin: 25px 10px;
+}
+
+.softSkillsContainer{
+    display: none;
+}
+
+.softSkillDesc div {
+    display: grid;
+    grid-template-columns: 20% 1fr 20%;
+    margin-bottom: 15px;
+    gap: 5px;
+}
+
+.softSkillDesc span{
+    position: relative;
+    display: inline-block;
+}
+
+
+.softSkillDesc h6{
+    position: absolute;
+    top: 2px;
+    color: white;
+    white-space: nowrap;
+    transform:translate(-100%) ;
+    -webkit-transform:translate(-100%) ;
+    -moz-transform:translate(-100%) ;
+    -ms-transform:translate(-100%) ;
+    -o-transform:translate(-100%) ;
+
+}
+
+.softSkillDesc div p{
+    margin: 0 auto;
+    background-color: #393E46;
+    color: white;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+}
+
+.softSkillDesc div p:nth-of-type(1){
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+.softSkillDesc div p:nth-of-type(2){
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.softSkillDesc progress{
+    width: 100%;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    color: #393E46;
+    height: 100%;
+    appearance: none;
+}
+
+.softSkillDesc progress::-webkit-progress-value{
+    background-color: red;
+    position: relative;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+}
+
+
+
+@media screen and (max-width: 900px){
+    
+    .skillsContainer{
+        flex-direction: column;
+        padding: 0 20px;
+    }
+
+    .subSkillsContainer{
+        width: 100%;
+        border-bottom-left-radius: 0px;
+        border-top-right-radius: 15px;
+    }
+
+    .subSkillsContainer ul{
+        display: flex;
+        gap: 10px;
+    }
+
+    .subSkillsContainer ul li{
+        width: 50%;
+        text-align: center;
+    }
+
+    .skillsContentContainer{
+        width: 100%;
+        padding: 20px 0;
+    }
+
+    .subSkillsContainer ul li h5{
+        font-size: 16px;
+    }
+
+    .hardSkillDesc h6{
+        font-size: 13px;
+        top:4px;
+    }
+
+    .hardSkillDesc div p{
+        font-size: 13px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .softSkillDesc h6{
+        font-size: 13px;
+        top:4px;
+    }
+
+    .softSkillDesc div p{
+        font-size: 13px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+
+@media screen and (max-width:600px){
+    .skillsContainer{
+        padding: 0px  10px;
+    }
+}
+

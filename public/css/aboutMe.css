@@ -1,0 +1,207 @@
+.aboutMeContainer {
+    padding: 0 110px;
+    margin: 120px 0;
+}
+
+.aboutMeContainer h1{
+    justify-content: center;
+    font-family: "Cal Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    display: flex;
+    gap: 10px;
+    margin-bottom:50px;
+}
+
+.profileContainer{
+    display: flex;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+    box-shadow:  3px 5px 5px 5px rgba(0, 0, 0, 0.065);
+}
+
+.imgProfileContainer{
+    width: 50%;
+    height: 100%;
+    background-color: #222831;
+}
+
+.imgProfile{
+    height: auto;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.textProfileContainer{
+    width: 50%;
+    position: relative;
+}
+
+.headerTextProfile{
+    display:  flex;
+    gap: 10px;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.169);
+}
+
+.headerTextProfile div{
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+    overflow: hidden;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -o-border-radius: 100px;
+}
+
+.headerTextProfile h5{
+    margin: auto 0;
+    font-family: "Cal Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.bodyTextProfile{
+    padding: 15px 20px;
+    height: 335px;
+    overflow-y: auto;
+}
+
+.footerTextProfile{
+    position: absolute;
+    bottom: 0;
+    padding: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.169);
+    width: 100%;
+    background-color: white;
+}
+
+.footerTextProfile div{
+    display: flex;
+    justify-content: space-between;
+}
+
+.footerTextProfile div i{
+    font-size: 25px;
+}
+
+.footerTextProfile p{
+    margin: 0;
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.486);
+  
+}
+
+.iconSosmed{
+    text-decoration: none;
+    color:black;
+    position: relative;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+}
+
+.iconSosmed span{
+  
+    display: none;
+    position: absolute;
+    top: -18px;
+    left: 0px;
+    background-color: black;
+    font-size: 11px;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 6px;
+    transition:all 0.3s ease ;
+    -webkit-transition:all 0.3s ease ;
+    -moz-transition:all 0.3s ease ;
+    -ms-transition:all 0.3s ease ;
+    -o-transition:all 0.3s ease ;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+}
+
+
+.iconSosmed:hover span{
+    display: flex;
+}
+
+.iconDownload{
+    text-decoration: none;
+    color: black;
+    position: relative;
+}
+
+.iconDownload span{
+    position: absolute;
+    padding: 3px 8px;
+    font-size: 11px;
+    color: white;
+    background-color: black;
+    border-radius:6px ;
+    -webkit-border-radius:6px ;
+    -moz-border-radius:6px ;
+    -ms-border-radius:6px ;
+    -o-border-radius:6px ;
+    top: -18px;
+    left: -57px;
+    display: none;
+}
+
+.iconDownload:hover span{
+    display: block;
+}
+
+@media screen and (max-width:900px){
+
+    .aboutMeContainer{
+        padding: 0 30px ;
+    }
+
+    .profileContainer{
+        flex-direction: column;
+        height: 100%;
+        margin: 0 5%;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+}
+
+    .imgProfileContainer{
+        width: 100%;
+    }
+
+    .textProfileContainer{
+        width: 100%;
+        padding-bottom: 90px;
+    }
+}
+
+@media screen and (max-width:600px){
+
+    .aboutMeContainer{
+        padding: 0 10px ;
+    }
+
+    .profileContainer{
+        margin: 0 0;
+    }
+}
+
+
+
