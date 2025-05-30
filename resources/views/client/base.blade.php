@@ -593,6 +593,7 @@
         })
     </script>
 
+
     @if (Session::has('sentEmailSucess'))
         <script>
             Swal.fire({

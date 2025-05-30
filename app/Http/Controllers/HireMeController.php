@@ -31,9 +31,9 @@ class HireMeController extends Controller
             Mail::to('danieloktafianus36@gmail.com')
                 ->send(
                     new HireMe(
-                        $request->email,
-                        $request->subject,
-                        $request->message
+                        strip_tags($request->email),
+                        strip_tags($request->subject),
+                        strip_tags($request->message)
                     )
                 );
 

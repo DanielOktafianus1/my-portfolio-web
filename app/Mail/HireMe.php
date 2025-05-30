@@ -14,10 +14,6 @@ class HireMe extends Mailable
 {
     use Queueable, SerializesModels;
 
-    // public $fromEmail;
-    // public $subjectText;
-    // public $messageText;
-
     protected $fromEmail, $subjectText, $messageText;
 
     /**
