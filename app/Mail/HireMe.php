@@ -37,7 +37,7 @@ class HireMe extends Mailable
     {
         // dd($this->fromEmail);
         return new Envelope(
-            from: new Address($this->fromEmail, 'Web Portfolio Daniel'),
+            from: new Address(config('mail.from.address'), 'Web Portfolio Daniel'),
             replyTo: [new Address($this->fromEmail)],
             subject: $this->subjectText,
         );

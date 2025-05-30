@@ -17,6 +17,7 @@
     {{-- Bootstrap 5.3 Folder Address --}}
     <link rel="stylesheet" href="{{ asset('bootstrap-5.3.5-dist/css/bootstrap.min.css') }}">
 
+
     {{-- Css File Address --}}
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
@@ -32,6 +33,17 @@
 
 
 <body style="background-color: #94897944">
+
+    <div class="loadingContainer">
+        <div class="d-flex justify-content-center mb-2">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        <p>Loading...</p>
+        <i>The page is loading, please wait a moment</i>
+    </div>
+
     <div class="baseContainer">
         {{-- Navbar Start --}}
         <nav class="navbarContainer" id="navbarSticky">
@@ -235,7 +247,12 @@
     </div>
 
 
-
+    {{-- CDN ReCaptha --}}
+    <script async src="https://www.google.com/recaptcha/api.js"></script>
+    {{-- CDN JQuery --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    {{-- CDN Sweet Alert2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         // Navbar Sticky
         window.addEventListener('scroll', function() {
@@ -565,10 +582,42 @@
                 btnWorkExperiences.classList.remove('active')
             })
         })
+
+        // Loading
+        window.addEventListener('load', () => {
+            const loading = document.querySelector('.loadingContainer');
+
+            if (loading) {
+                loading.style.display = 'none'
+            }
+        })
     </script>
 
+    @if (Session::has('sentEmailSucess'))
+        <script>
+            Swal.fire({
+                title: "SUCCESS!",
+                icon: "success",
+                text: `{{ Session::get('sentEmailSucess') }}`,
+                timer: 5000,
+                draggable: true
+            });
+        </script>
+    @endif
+    @if (Session::has('sentEmailFail'))
+        <script>
+            Swal.fire({
+                title: "FAIL!",
+                icon: "error",
+                text: `{{ Session::get('sentEmailFail') }}`,
+                timer: 5000,
+                draggable: true
+            });
+        </script>
+    @endif
 
-    <script async src="https://www.google.com/recaptcha/api.js"></script>
+
+
 
 </body>
 

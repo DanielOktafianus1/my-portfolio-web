@@ -15,4 +15,8 @@ class BaseController extends Controller
     {
         return view('client.mainPage');
     }
+    public function test()
+    {
+        return view('test');
+    }
 }

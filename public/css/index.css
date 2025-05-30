@@ -211,6 +211,29 @@
     position: relative;
 }
 
+.loadingContainer{
+
+    position: fixed;
+    width: 100vw;
+    height: 110vh;
+    background-color: white;
+    z-index: 1000;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loadingContainer p{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.loadingContainer i{
+    font-size: 15px;
+    color: rgb(140, 139, 139);
+}
+
 @media screen and (max-width: 900px){
 
     .navbarContainer{
