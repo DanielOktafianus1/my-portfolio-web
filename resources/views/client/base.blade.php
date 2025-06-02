@@ -32,8 +32,9 @@
 </head>
 
 
-<body style="background-color: #94897944">
+<body style="background-color: #94897944" class="contentLoaded">
 
+    {{-- Loading content --}}
     <div class="loadingContainer">
         <div class="loadIcon">
             <div class="dot"></div>
@@ -246,6 +247,8 @@
             </div>
         </footer>
         {{-- Footer End --}}
+
+
     </div>
 
 
@@ -595,10 +598,10 @@
         window.onload = function() {
 
             const loadingContainer = document.querySelector('.loadingContainer');
-            const baseContainer = document.querySelector('.baseContainer');
+            const contentLoaded = document.querySelector('.contentLoaded');
 
             loadingContainer.style.display = 'none';
-            baseContainer.style.display = 'block';
+            contentLoaded.style.display = 'block';
         }
     </script>
 
@@ -609,7 +612,7 @@
                 title: "SUCCESS!",
                 icon: "success",
                 text: `{{ Session::get('sentEmailSucess') }}`,
-                timer: 5000,
+                // timer: 5000,
                 draggable: true
             });
         </script>
@@ -620,7 +623,7 @@
                 title: "FAIL!",
                 icon: "error",
                 text: `{{ Session::get('sentEmailFail') }}`,
-                timer: 5000,
+                // timer: 5000,
                 draggable: true
             });
         </script>
