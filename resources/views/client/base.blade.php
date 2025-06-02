@@ -35,13 +35,15 @@
 <body style="background-color: #94897944">
 
     <div class="loadingContainer">
-        <div class="d-flex justify-content-center mb-2">
-            <div class="spinner-border" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
+        <div class="loadIcon">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
         </div>
-        <p>Loading...</p>
-        <i>The page is loading, please wait a moment</i>
+
+        <p>The page is loading, please wait a moment</p>
     </div>
 
     <div class="baseContainer">
