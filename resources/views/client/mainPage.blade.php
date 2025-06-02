@@ -1408,7 +1408,6 @@
         // CERTIFICATE END
 
         // Drag to pan
-
         const panContainer = document.getElementById('skills');
         const panContent = document.querySelectorAll('.skillsContentContainer, .subSkillsContainer')
 
