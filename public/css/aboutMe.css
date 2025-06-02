@@ -3,25 +3,15 @@
     margin: 120px 0;
 }
 
-.aboutMeContainer h1{
-    justify-content: center;
-    font-family: "Cal Sans", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    display: flex;
-    gap: 10px;
-    margin-bottom:50px;
-}
-
 .profileContainer{
     display: flex;
     height: 500px;
     overflow: hidden;
-    border-radius: 25px;
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-    -ms-border-radius: 25px;
-    -o-border-radius: 25px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
     box-shadow:  3px 5px 5px 5px rgba(0, 0, 0, 0.065);
 }
 
@@ -29,6 +19,40 @@
     width: 50%;
     height: 100%;
     background-color: #222831;
+    position: relative;
+}
+
+.imgProfileContainer h1{
+    justify-content: center;
+    font-family: "Cal Sans", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    display: flex;
+    gap: 10px;
+    text-shadow: 2px 2px 5px  rgba(0, 0, 0, 0.157);
+    color: rgba(255, 255, 255, 0.597);
+    position: absolute;
+    top: 180px;
+    left: -190px;
+    font-size: 130px;
+    transform:translateX(-100%) rotate(-90deg);
+    -webkit-transform:translateX(-100%) rotate(-90deg);
+    -moz-transform:translateX(-100%) rotate(-90deg);
+    -ms-transform:translateX(-100%) rotate(-90deg);
+    -o-transform:translateX(-100%) rotate(-90deg);
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+}
+
+.profileContainer:hover .imgProfileContainer h1{
+     transform:translateX(-5%)  rotate(-90deg);
+     -webkit-transform:translateX(-5%)  rotate(-90deg);
+     -moz-transform:translateX(-5%)  rotate(-90deg);
+     -ms-transform:translateX(-5%)  rotate(-90deg);
+     -o-transform:translateX(-5%)  rotate(-90deg);
 }
 
 .imgProfile{
@@ -42,6 +66,7 @@
 .textProfileContainer{
     width: 50%;
     position: relative;
+    background-color: white;
 }
 
 .headerTextProfile{
@@ -74,6 +99,8 @@
     padding: 15px 20px;
     height: 335px;
     overflow-y: auto;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
 }
 
 .footerTextProfile{
@@ -190,6 +217,11 @@
         width: 100%;
         padding-bottom: 90px;
     }
+
+    .imgProfileContainer h1{
+        font-size: 120px;
+        left: -180px;
+    }
 }
 
 @media screen and (max-width:600px){
@@ -201,6 +233,20 @@
     .profileContainer{
         margin: 0 0;
     }
+
+    .imgProfileContainer h1{
+        font-size: 90px;
+        left: -140px;
+        top: 150px;
+    }
+
+   .profileContainer:hover .imgProfileContainer h1{
+     transform:translateX(-8%) rotate(-90deg);
+     -webkit-transform:translateX(-8%) rotate(-90deg);
+     -moz-transform:translateX(-8%) rotate(-90deg);
+     -ms-transform:translateX(-8%) rotate(-90deg);
+     -o-transform:translateX(-8%) rotate(-90deg);
+}
 }
 
 

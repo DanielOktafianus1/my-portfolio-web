@@ -71,13 +71,12 @@
 
     {{-- About Me --}}
     <div class="aboutMeContainer" id="aboutMe">
-        <h1>
-            About <div style="color: red">Me</div>
-        </h1>
-
 
         <div class="profileContainer">
             <div class="imgProfileContainer">
+                <h1>
+                    About <div style="color: rgba(255, 0, 0, 0.56)">Me</div>
+                </h1>
                 <img src="{{ asset('staticImages/fotoDaniel.png') }}" alt="" class="imgProfile">
             </div>
             <div class="textProfileContainer">
@@ -146,8 +145,12 @@
 
     {{-- Skills --}}
     <div class="skillsContainer" id="skills">
-        <div class="subSkillsContainer">
+
+        <div class="titleSkills">
             <h1>Skills</h1>
+            <p>You can slide the content in any direction.</p>
+        </div>
+        <div class="subSkillsContainer">
             <ul>
                 <li id="hardSkills">
                     <h5>Hard Skills</h5>
@@ -271,6 +274,7 @@
 
     {{-- Experiences --}}
     <div class="experiencesContainer" id="experience">
+
         <h1>Experiences</h1>
 
         <div class="experiencesWrepper">
@@ -699,155 +703,170 @@
 
             </div>
         </div>
+
     </div>
 
     {{-- Certificates --}}
-    <div class="certificateContainer">
-        <div class="closeCertif"><i class="ri-close-circle-line"></i></div>
-        <div class="certificatesWrapper">
-            <div class="mainCertificate">
-                <div class="mainImgCertifContainer">
-                    <img src="{{ asset('staticImages/contoh1.jpg') }}" alt="">
-                </div>
-                <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit eos esse voluptatem beatae in quasi,
-                    impedit voluptas aperiam vel commodi modi fugit ipsam, expedita totam saepe velit explicabo consectetur
-                    quidem!</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa earum quos consectetur, quisquam
-                    cupiditate
-                    aliquam dolore repellat exercitationem quo? Dolores eveniet eos voluptatum in, recusandae dolorum magni
-                    ullam autem beatae. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste aliquam harum hic
-                    quos,
-                    quasi reiciendis praesentium aliquid error facilis omnis sit cupiditate. Distinctio unde illo quibusdam,
-                    officiis voluptate dolorem debitis.lorem Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus
-                    et
-                    libero totam earum itaque quo, recusandae, cupiditate accusamus facere ad atque quidem natus cumque cum
-                    voluptatibus aut culpa voluptate nostrum! Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Facere
-                    quaerat officia quibusdam non! Labore, dolorum quaerat possimus iste delectus culpa, qui vitae, dolor
-                    hic
-                    officia perferendis incidunt! Sequi, eveniet facere!
-                </p>
-            </div>
-
-            <div class="certificateCollection">
-
-                <h3>Certificates</h3>
-                <div class="certifCollContainer">
-                    <div class="imgCertifContainer">
-                        <img src="{{ asset('staticImages/contoh2.jpg') }}" alt="">
-                    </div>
-                    <div class="textCertifContainer">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quia nostrum odit
-                            assumenda
-                            error
-                            dolor minus animi eligendi doloremque ducimus, hic illo. Sed at distinctio velit, excepturi
-                            dolore
-                            voluptate ipsum! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae rem
-                            facilis
-                            minus
-                            ad provident obcaecati autem harum iusto esse possimus? Architecto voluptate possimus, quisquam
-                            atque
-                            aperiam doloribus provident recusandae doloremque.</p>
-                        <div>2024 - 2027</div>
-                    </div>
-                </div>
-                <div class="certifCollContainer">
-                    <div class="imgCertifContainer">
+    <div class="backgroundCertif">
+        <div class="certificateContainer">
+            <div class="closeCertif"><i class="ri-close-circle-line"></i></div>
+            <div class="certificatesWrapper">
+                <div class="mainCertificate">
+                    <div class="mainImgCertifContainer">
                         <img src="{{ asset('staticImages/contoh1.jpg') }}" alt="">
                     </div>
-                    <div class="textCertifContainer">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quia nostrum odit
-                            assumenda
-                            error
-                            dolor minus animi eligendi doloremque ducimus, hic illo. Sed at distinctio velit, excepturi
-                            dolore
-                            voluptate ipsum! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae rem
-                            facilis
-                            minus
-                            ad provident obcaecati autem harum iusto esse possimus? Architecto voluptate possimus, quisquam
-                            atque
-                            aperiam doloribus provident recusandae doloremque.</p>
-                        <div>2024 - 2027</div>
-                    </div>
-                </div>
-                <div class="certifCollContainer">
-                    <div class="imgCertifContainer">
-                        <img src="{{ asset('staticImages/contoh2.jpg') }}" alt="">
-                    </div>
-                    <div class="textCertifContainer">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quia nostrum odit
-                            assumenda
-                            error
-                            dolor minus animi eligendi doloremque ducimus, hic illo. Sed at distinctio velit, excepturi
-                            dolore
-                            voluptate ipsum! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae rem
-                            facilis
-                            minus
-                            ad provident obcaecati autem harum iusto esse possimus? Architecto voluptate possimus, quisquam
-                            atque
-                            aperiam doloribus provident recusandae doloremque.</p>
-                        <div>2024 - 2027</div>
-                    </div>
-                </div>
-                <div class="certifCollContainer">
-                    <div class="imgCertifContainer">
-                        <img src="{{ asset('staticImages/contoh2.jpg') }}" alt="">
-                    </div>
-                    <div class="textCertifContainer">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quia nostrum odit
-                            assumenda
-                            error
-                            dolor minus animi eligendi doloremque ducimus, hic illo. Sed at distinctio velit, excepturi
-                            dolore
-                            voluptate ipsum! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae rem
-                            facilis
-                            minus
-                            ad provident obcaecati autem harum iusto esse possimus? Architecto voluptate possimus, quisquam
-                            atque
-                            aperiam doloribus provident recusandae doloremque.</p>
-                        <div>2024 - 2027</div>
-                    </div>
-                </div>
-                <div class="certifCollContainer">
-                    <div class="imgCertifContainer">
-                        <img src="{{ asset('staticImages/contoh2.jpg') }}" alt="">
-                    </div>
-                    <div class="textCertifContainer">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quia nostrum odit
-                            assumenda
-                            error
-                            dolor minus animi eligendi doloremque ducimus, hic illo. Sed at distinctio velit, excepturi
-                            dolore
-                            voluptate ipsum! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae rem
-                            facilis
-                            minus
-                            ad provident obcaecati autem harum iusto esse possimus? Architecto voluptate possimus, quisquam
-                            atque
-                            aperiam doloribus provident recusandae doloremque.</p>
-                        <div>2024 - 2027</div>
-                    </div>
-                </div>
-                <div class="certifCollContainer">
-                    <div class="imgCertifContainer">
-                        <img src="{{ asset('staticImages/contoh2.jpg') }}" alt="">
-                    </div>
-                    <div class="textCertifContainer">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quia nostrum odit
-                            assumenda
-                            error
-                            dolor minus animi eligendi doloremque ducimus, hic illo. Sed at distinctio velit, excepturi
-                            dolore
-                            voluptate ipsum! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae rem
-                            facilis
-                            minus
-                            ad provident obcaecati autem harum iusto esse possimus? Architecto voluptate possimus, quisquam
-                            atque
-                            aperiam doloribus provident recusandae doloremque.</p>
-                        <div>2024 - 2027</div>
-                    </div>
+                    <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit eos esse voluptatem beatae in quasi,
+                        impedit voluptas aperiam vel commodi modi fugit ipsam, expedita totam saepe velit explicabo
+                        consectetur
+                        quidem!</h4>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa earum quos consectetur, quisquam
+                        cupiditate
+                        aliquam dolore repellat exercitationem quo? Dolores eveniet eos voluptatum in, recusandae dolorum
+                        magni
+                        ullam autem beatae. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste aliquam harum hic
+                        quos,
+                        quasi reiciendis praesentium aliquid error facilis omnis sit cupiditate. Distinctio unde illo
+                        quibusdam,
+                        officiis voluptate dolorem debitis.lorem Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                        Minus
+                        et
+                        libero totam earum itaque quo, recusandae, cupiditate accusamus facere ad atque quidem natus cumque
+                        cum
+                        voluptatibus aut culpa voluptate nostrum! Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Facere
+                        quaerat officia quibusdam non! Labore, dolorum quaerat possimus iste delectus culpa, qui vitae,
+                        dolor
+                        hic
+                        officia perferendis incidunt! Sequi, eveniet facere!
+                    </p>
                 </div>
 
+                <div class="certificateCollection">
+
+                    <h3>Certificates</h3>
+                    <div class="certifCollContainer">
+                        <div class="imgCertifContainer">
+                            <img src="{{ asset('staticImages/contoh2.jpg') }}" alt="">
+                        </div>
+                        <div class="textCertifContainer">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quia nostrum odit
+                                assumenda
+                                error
+                                dolor minus animi eligendi doloremque ducimus, hic illo. Sed at distinctio velit, excepturi
+                                dolore
+                                voluptate ipsum! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae rem
+                                facilis
+                                minus
+                                ad provident obcaecati autem harum iusto esse possimus? Architecto voluptate possimus,
+                                quisquam
+                                atque
+                                aperiam doloribus provident recusandae doloremque.</p>
+                            <div>2024 - 2027</div>
+                        </div>
+                    </div>
+                    <div class="certifCollContainer">
+                        <div class="imgCertifContainer">
+                            <img src="{{ asset('staticImages/contoh1.jpg') }}" alt="">
+                        </div>
+                        <div class="textCertifContainer">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quia nostrum odit
+                                assumenda
+                                error
+                                dolor minus animi eligendi doloremque ducimus, hic illo. Sed at distinctio velit, excepturi
+                                dolore
+                                voluptate ipsum! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae rem
+                                facilis
+                                minus
+                                ad provident obcaecati autem harum iusto esse possimus? Architecto voluptate possimus,
+                                quisquam
+                                atque
+                                aperiam doloribus provident recusandae doloremque.</p>
+                            <div>2024 - 2027</div>
+                        </div>
+                    </div>
+                    <div class="certifCollContainer">
+                        <div class="imgCertifContainer">
+                            <img src="{{ asset('staticImages/contoh2.jpg') }}" alt="">
+                        </div>
+                        <div class="textCertifContainer">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quia nostrum odit
+                                assumenda
+                                error
+                                dolor minus animi eligendi doloremque ducimus, hic illo. Sed at distinctio velit, excepturi
+                                dolore
+                                voluptate ipsum! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae rem
+                                facilis
+                                minus
+                                ad provident obcaecati autem harum iusto esse possimus? Architecto voluptate possimus,
+                                quisquam
+                                atque
+                                aperiam doloribus provident recusandae doloremque.</p>
+                            <div>2024 - 2027</div>
+                        </div>
+                    </div>
+                    <div class="certifCollContainer">
+                        <div class="imgCertifContainer">
+                            <img src="{{ asset('staticImages/contoh2.jpg') }}" alt="">
+                        </div>
+                        <div class="textCertifContainer">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quia nostrum odit
+                                assumenda
+                                error
+                                dolor minus animi eligendi doloremque ducimus, hic illo. Sed at distinctio velit, excepturi
+                                dolore
+                                voluptate ipsum! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae rem
+                                facilis
+                                minus
+                                ad provident obcaecati autem harum iusto esse possimus? Architecto voluptate possimus,
+                                quisquam
+                                atque
+                                aperiam doloribus provident recusandae doloremque.</p>
+                            <div>2024 - 2027</div>
+                        </div>
+                    </div>
+                    <div class="certifCollContainer">
+                        <div class="imgCertifContainer">
+                            <img src="{{ asset('staticImages/contoh2.jpg') }}" alt="">
+                        </div>
+                        <div class="textCertifContainer">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quia nostrum odit
+                                assumenda
+                                error
+                                dolor minus animi eligendi doloremque ducimus, hic illo. Sed at distinctio velit, excepturi
+                                dolore
+                                voluptate ipsum! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae rem
+                                facilis
+                                minus
+                                ad provident obcaecati autem harum iusto esse possimus? Architecto voluptate possimus,
+                                quisquam
+                                atque
+                                aperiam doloribus provident recusandae doloremque.</p>
+                            <div>2024 - 2027</div>
+                        </div>
+                    </div>
+                    <div class="certifCollContainer">
+                        <div class="imgCertifContainer">
+                            <img src="{{ asset('staticImages/contoh2.jpg') }}" alt="">
+                        </div>
+                        <div class="textCertifContainer">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quia nostrum odit
+                                assumenda
+                                error
+                                dolor minus animi eligendi doloremque ducimus, hic illo. Sed at distinctio velit, excepturi
+                                dolore
+                                voluptate ipsum! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae rem
+                                facilis
+                                minus
+                                ad provident obcaecati autem harum iusto esse possimus? Architecto voluptate possimus,
+                                quisquam
+                                atque
+                                aperiam doloribus provident recusandae doloremque.</p>
+                            <div>2024 - 2027</div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
@@ -1375,13 +1394,64 @@
 
         // CERTIFICATE START
         const certif = document.querySelector('.certificateContainer');
+        const backgroundCertif = document.querySelector('.backgroundCertif');
 
         document.getElementById('certificate').addEventListener('click', () => {
             certif.classList.add('active')
+            backgroundCertif.classList.add('active')
         })
 
         document.querySelector('.closeCertif').addEventListener('click', () => {
             certif.classList.remove('active')
+            backgroundCertif.classList.remove('active')
+        })
+        // CERTIFICATE END
+
+        // Drag to pan
+
+        const panContainer = document.getElementById('skills');
+        const panContent = document.querySelectorAll('.skillsContentContainer, .subSkillsContainer')
+
+        let isDragging = false;
+        let startX, startY;
+        let currentElement = null;
+
+        panContent.forEach(event => {
+            event.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.clientX;
+                startY = e.clientY;
+                currentElement = event;
+                event.style.cursor = 'grabbing';
+                e.preventDefault();
+            })
+        })
+
+        window.addEventListener('mouseup', () => {
+            isDragging = false;
+            if (currentElement) {
+                panContainer.style.cursor = 'grab';
+                currentElement = null;
+            }
+        })
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDragging || !currentElement) return;
+
+            const dx = e.clientX - startX;
+            const dy = e.clientY - startY;
+
+
+            const left = parseInt(currentElement.style.left || 0);
+            const top = parseInt(currentElement.style.top || 0);
+
+            currentElement.style.left = `${left+dx}px`;
+            currentElement.style.top = `${top+dy}px`;
+
+            startX = e.clientX;
+            startY = e.clientY;
+
+            panContent.style.cursor = "grab";
         })
     </script>
 @endsection

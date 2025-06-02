@@ -360,7 +360,7 @@
             if (!message) {
                 erroMessage.textContent = 'Message must be filled in!';
                 isValid = false
-            } else if (!messagePattern.text(message)) {
+            } else if (!messagePattern.test(message)) {
                 erroMessage.textContent = 'Invalid Message!';
                 isValid = false
             }
@@ -391,7 +391,7 @@
                         activeMenuIndex = index;
                         sections[index].scrollIntoView({
                             behavior: 'smooth',
-                            block: 'nearest'
+                            block: 'center'
                         })
                     }
                 });
@@ -584,13 +584,20 @@
         })
 
         // Loading
-        window.addEventListener('load', () => {
-            const loading = document.querySelector('.loadingContainer');
 
-            if (loading) {
-                loading.style.display = 'none'
-            }
-        })
+        document.addEventListener('DOMContentLoaded', function() {
+            loadData();
+        });
+
+
+        window.onload = function() {
+
+            const loadingContainer = document.querySelector('.loadingContainer');
+            const baseContainer = document.querySelector('.baseContainer');
+
+            loadingContainer.style.display = 'none';
+            baseContainer.style.display = 'block';
+        }
     </script>
 
 

@@ -1,33 +1,62 @@
 .skillsContainer{
     padding: 0 40px;
-    margin: 120px 0;
+    margin: 120px 20px;
     display: flex;
-    min-height:20vh;
-    width: 100%;
+    height:600px;
+    width: auto;
+    border: 1px dashed  rgba(0, 0, 0, 0.546);
+    position: relative;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
 }
 
-
-.subSkillsContainer{
-   background-color: #393E46;
-   display: flex;
-   flex-direction: column;
-   gap:20px;
-   padding: 25px 20px;
-   width: 30%;
-   margin:0;
-   border-top-left-radius: 15px;
-   border-bottom-left-radius: 15px;
-   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.064);
+.titleSkills{
+    margin: auto;
 }
 
-.subSkillsContainer h1{
-    text-align: center;
-    color: red;
+.titleSkills h1{
+    color: rgba(255, 0, 0, 0.383);
     margin-bottom: 20px;
     font-family: "Cal Sans", sans-serif;
     font-weight: 700;
     font-style: normal;
+    margin: auto;
+    font-size: 200px;
+    font-style: italic;
 }
+
+.titleSkills p{
+    text-align: center;
+    color: rgba(0, 0, 0, 0.267);
+}
+
+
+.subSkillsContainer{
+   /* background-color: #393E46; */
+   background: linear-gradient(to right, #393E46, #393e46c6);
+   display: flex;
+   flex-direction: column;
+   gap:20px;
+   padding: 25px 30px;
+   width: 25%;
+   margin:0;
+   top: 35%;
+   left:100px;
+   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.064);
+   position: absolute;
+   z-index: 10;
+   padding-top: 50px;
+   border-radius: 5px;
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   -ms-border-radius: 5px;
+   -o-border-radius: 5px;
+}
+
+
 
 .subSkillsContainer ul{
     margin: 0;
@@ -67,8 +96,15 @@
 }
 
 .skillsContentContainer{
-    padding-left: 40px;
+    padding: 40px;
+    position: absolute;
     width: 70%;
+    height: fit-content;
+    background-color: rgba(255, 255, 255, 0.637);
+    right: 50px;
+    bottom: 20%;
+    z-index: 4;
+    
 }
 
 .hardSkillTitle{
@@ -338,12 +374,42 @@
     .skillsContainer{
         flex-direction: column;
         padding: 0 20px;
+        margin: 120px 0px;
+         height:fit-content;
+        position: static;
+        border: none;
+    }
+
+    .titleSkills{
+        margin:0;
+    }
+
+    .titleSkills h1{
+        font-size: 70px;
+        color: rgba(255, 0, 0, 0.522);
+
+    }
+
+    .titleSkills p{
+    display: none;
     }
 
     .subSkillsContainer{
+        background: linear-gradient(to right, #393E46, #393e46);
+        gap:20px;
+        padding: 25px 30px;
         width: 100%;
-        border-bottom-left-radius: 0px;
-        border-top-right-radius: 15px;
+        margin:0;
+        left:100px;
+        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.064);
+        position:static;
+        z-index: 10;
+        padding-top: 50px;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
     }
 
     .subSkillsContainer ul{
@@ -359,6 +425,7 @@
     .skillsContentContainer{
         width: 100%;
         padding: 20px 0;
+        position: static;
     }
 
     .subSkillsContainer ul li h5{
@@ -394,6 +461,14 @@
 @media screen and (max-width:600px){
     .skillsContainer{
         padding: 0px  10px;
+    }
+
+    .skillsContentContainer{
+        padding: 20px 0;
+    }
+
+    .titleSkills h1{
+        font-size: 50px;
     }
 }
 

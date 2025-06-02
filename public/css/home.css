@@ -15,14 +15,14 @@
 
 .textHome h1{
     font-family: "Cal Sans", sans-serif;
-    font-weight: 700;
+    font-weight: bolder;
     font-style: normal;
     color: red;
 }
 
 .textHome h2{
     font-family: "Cal Sans", sans-serif;
-    font-weight: 400;
+    font-weight: 500;
     font-style: normal;
     color: #948979;
 }
@@ -66,12 +66,14 @@
 }
 
 .subMenu{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    padding: 40px 40px ;
+    display: flex;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    width: 100%;
     z-index: 3;
     position: relative;
+    padding: 0;
 }
 
 .subMenu a {
@@ -94,13 +96,12 @@
 .subMenu a li{
     list-style-type: none;
     height: 65px;
-    box-shadow: 3px 5px 5px 5px rgba(0, 0, 0, 0.062);
-    background:linear-gradient(to right, #393E46 60%, #393e46cc);
-    color: white;
+    width: 250px;
+    color: #393e46;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-left: 7px solid #948979;
+    border-left: 1px solid #393e46;
     gap: 10px;
     overflow: hidden;
     font-family: "Cal Sans", sans-serif;
@@ -111,11 +112,6 @@
     -moz-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
 }
 
 .subMenu a li i{
@@ -184,31 +180,52 @@
         left: 0;
         top: 400px;
         background-color: white;
-        box-shadow: 3px 3px 2px 5px rgba(0, 0, 0, 0.062);
-        border-radius: 10px;
-        -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
-        -ms-border-radius: 10px;
-        -o-border-radius: 10px;
+        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.062);
+        border: 1px solid rgba(0, 0, 0, 0.209);
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
 }
 
-    .textHome h1{
+    /* .textHome h1{
         font-size: 25px;
+
     }
     
     .textHome h2{
         font-size: 20px;
-    }
+    } */
 
     .textHome p{
         color: black;
-        font-size: 13px;
     }
 
     .subMenu{
-        margin-top: 260px;
-        padding: 0 20px;
+    display: grid;
+    overflow:visible;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr  ) );
+    gap: 20px;
+    width: 100%;
+    z-index: 3;
+    margin-top: 260px;
+    padding: 0 20px;
     }
+
+.subMenu a li{
+        background-color: white;
+        color: black;
+        width: 100%;
+        border-left: 5px solid #948979;
+        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.062);
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        -o-border-radius: 3px;
+}
+
 
     .subMenu a li i{
         transform: translateY(0%);
@@ -226,18 +243,24 @@
     }
 
     .subMenu{
+        grid-template-columns: repeat(2 ,2fr);
         margin-top: 260px;
-        padding: 0 20px;
+        padding: 0 10px;
+    }
+
+    .subMenu a li{
+        font-size: 11px;
+        gap: 5px;
     }
 }
 
-@media screen and (max-width:500px){
+@media screen and (max-width:520px){
     .textHome{
         top: 350px;
     }
 
     .subMenu{
-        margin-top: 280px;
+        margin-top: 300px;
     }
 }
 
@@ -247,7 +270,7 @@
     }
 
     .subMenu{
-        margin-top: 300px;
+        margin-top: 350px;
     }
 }
 
@@ -257,7 +280,7 @@
     }
 
     .subMenu{
-        margin-top: 320px;
+        margin-top: 370px;
     }
 }
 
@@ -267,6 +290,6 @@
     }
 
     .subMenu{
-        margin-top: 340px;
+        margin-top: 400px;
     }
 }

@@ -209,6 +209,7 @@
     margin:0px;
     /* background-color:; */
     position: relative;
+    overflow: hidden;
 }
 
 .loadingContainer{
@@ -218,10 +219,11 @@
     height: 110vh;
     background-color: white;
     z-index: 1000;
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: rgb(140, 139, 139);
 }
 
 .loadingContainer p{

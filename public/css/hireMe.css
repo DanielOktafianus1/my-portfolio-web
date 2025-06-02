@@ -51,16 +51,15 @@
 .emailContainer input{
     width: 100%;
     height: 45px;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
     padding: 10px;
     border: 1px solid white;
-     background-color: #2e3239;
-     color: white;
-     
+    background-color: #2e3239;
+    color: white;
 }
 
 .emailContainer label{
@@ -102,18 +101,18 @@
 }
 
 .subjectContainer input{
-    width: 100%;
-     height: 45px;
-      border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-    border: 1px solid black;
-    padding: 10px;
-    border: 1px solid white;
-     background-color: #2e3239;
-     color: white;
+      width: 100%;
+      height: 45px;
+      border-radius: 3px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      -o-border-radius: 3px;
+      border: 1px solid black;
+      padding: 10px;
+      border: 1px solid white;
+      background-color: #2e3239;
+      color: white;
 }
 
 .subjectContainer label{
@@ -153,14 +152,14 @@
 }
 
 .messageContainer textarea{
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
     padding: 10px;
     border: 1px solid white;
-     background-color: #2e3239;
+    background-color: #2e3239;
     color: white;
 }
 
