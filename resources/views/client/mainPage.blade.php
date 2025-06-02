@@ -1427,6 +1427,11 @@
             })
         })
 
+        window.addEventListener('mouseleave', () => {
+            isDragging = false
+            panContainer.style.cursor = 'default';
+        })
+
         window.addEventListener('mouseup', () => {
             isDragging = false;
             if (currentElement) {

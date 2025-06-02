@@ -589,12 +589,6 @@
         })
 
         // Loading
-
-        document.addEventListener('DOMContentLoaded', function() {
-            loadData();
-        });
-
-
         window.onload = function() {
 
             const loadingContainer = document.querySelector('.loadingContainer');
