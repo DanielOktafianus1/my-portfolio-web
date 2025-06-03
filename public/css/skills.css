@@ -36,8 +36,7 @@
 
 
 .subSkillsContainer{
-   /*background-color: #393E46;
-   */background: linear-gradient(to right, #393E46, #393e46c6);
+   background: linear-gradient(to right, #393E46, #393e46df);
    display: flex;
    flex-direction: column;
    gap:20px;
@@ -46,7 +45,7 @@
    margin:0;
    top: 35%;
    left:100px;
-   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.064);
+   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.062);
    position: absolute;
    z-index: 10;
    padding-top: 50px;
@@ -101,11 +100,15 @@
     position: absolute;
     width: 70%;
     height: fit-content;
-    background-color: rgba(255, 255, 255, 0.637);
+    background-color: rgba(255, 255, 255, 0.774);
     right: 50px;
     bottom: 20%;
     z-index: 4;
-    
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
 
 .hardSkillTitle{
@@ -402,7 +405,7 @@
         width: 100%;
         margin:0;
         left:100px;
-        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.064);
+        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.032);
         position:static;
         z-index: 10;
         padding-top: 50px;

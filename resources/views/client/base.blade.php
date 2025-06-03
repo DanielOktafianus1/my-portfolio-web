@@ -378,12 +378,27 @@
         })
 
         // Menu click
+        function scrollWithOffset(el) {
+            const navbar = document.querySelector('nav');
+            const navStyles = window.getComputedStyle(navbar);
+            const isSticky = navStyles.position === 'sticky';
+
+            const navbarHeight = navbar ? navbar.offsetHeight : 0;
+
+            const y = el.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+            window.scrollTo({
+                top: y,
+                behavior: 'smooth'
+            })
+        }
         document.addEventListener('DOMContentLoaded', () => {
             const underlines = document.querySelectorAll('.underline');
             const aboutMe = document.getElementById('aboutMe');
             const sectionIds = ['aboutMe', 'skills', 'experience', 'hireMe']
             const sections = sectionIds.map(id => document.getElementById(id))
             let activeMenuIndex = null
+
+
 
             document.querySelectorAll('.aboutMeMenu, .hireMeMenu, .experiencesMenu, .skillsMenu').forEach((event,
                 index) => {
@@ -394,10 +409,8 @@
 
                     if (index !== -1) {
                         activeMenuIndex = index;
-                        sections[index].scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'center'
-                        })
+                        scrollWithOffset(sections[index]);
+
                     }
                 });
             });
@@ -444,10 +457,7 @@
         // Hard Skills
         document.querySelectorAll('.hardSkillsMenu').forEach((event, index) => {
             event.addEventListener('click', () => {
-                skills.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center'
-                })
+                scrollWithOffset(skills);
 
                 document.querySelectorAll('.hardSkillsContainer').forEach(function(eventSoftSkills) {
                     eventSoftSkills.style.display = 'block';
@@ -498,10 +508,7 @@
         // Soft Skills
         document.querySelectorAll('.softSkillsMenu').forEach((event, index) => {
             event.addEventListener('click', () => {
-                skills.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center'
-                })
+                scrollWithOffset(skills);
 
                 document.querySelectorAll('.softSkillsContainer').forEach(function(eventSoftSkills) {
                     eventSoftSkills.style.display = 'block';
@@ -555,38 +562,35 @@
 
 
         const exprcs = document.getElementById('experience');
-
+        const workExpr = document.querySelector('.workExperiences');
+        const prjctShwCase = document.querySelector('.projectShowcase');
+        const btnWorkExpr = document.querySelector('.btnWorkExperiences');
+        const btnPrjctShwCase = document.querySelector('.btnProjectShowcase');
         // Work Experience
-        document.querySelectorAll('.workExperiencesMenu').forEach((event, index) => {
+        document.querySelectorAll('.workExperiencesMenu').forEach((event) => {
             event.addEventListener('click', () => {
-                exprcs.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center'
-                })
+                scrollWithOffset(exprcs);
 
-                workExperience.style.display = 'block';
-                projectShowcase.style.display = 'none';
+                workExpr.style.display = 'block';
+                prjctShwCase.style.display = 'none';
 
-                btnWorkExperiences.classList.add('active')
-                btnProjectShowcase.classList.remove('active')
+                btnWorkExpr.classList.add('active')
+                btnPrjctShwCase.classList.remove('active')
             })
-        })
+        });
 
         // Project Showcase
-        document.querySelectorAll('.projectShowcaseMenu').forEach((event, index) => {
+        document.querySelectorAll('.projectShowcaseMenu').forEach((event) => {
             event.addEventListener('click', () => {
-                exprcs.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center'
-                })
+                scrollWithOffset(exprcs);
 
-                workExperience.style.display = 'none';
-                projectShowcase.style.display = 'block';
+                workExpr.style.display = 'none';
+                prjctShwCase.style.display = 'block';
 
-                btnProjectShowcase.classList.add('active')
-                btnWorkExperiences.classList.remove('active')
+                btnPrjctShwCase.classList.add('active')
+                btnWorkExpr.classList.remove('active')
             })
-        })
+        });
 
         // Loading
         window.onload = function() {
