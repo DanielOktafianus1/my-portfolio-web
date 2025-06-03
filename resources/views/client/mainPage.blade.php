@@ -72,6 +72,7 @@
     {{-- About Me --}}
     <div class="aboutMeContainer" id="aboutMe">
 
+
         <div class="profileContainer">
             <div class="imgProfileContainer">
                 <h1>

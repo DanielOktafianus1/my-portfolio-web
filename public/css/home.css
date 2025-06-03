@@ -67,18 +67,19 @@
 
 .subMenu{
     display: flex;
+    gap: 20px;
     overflow-y: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
     width: 100%;
     z-index: 3;
     position: relative;
-    padding: 0;
+    padding: 20px ;
+    background-image: linear-gradient(to right, #222831,#393E46);
 }
 
 .subMenu a {
     text-decoration: none;
-    font-weight: 700 ;
     width: 100%;
     cursor: pointer;
     border-radius: 1px;
@@ -95,13 +96,13 @@
 
 .subMenu a li{
     list-style-type: none;
-    height: 65px;
+    height: 70px;
     width: 250px;
-    color: #393e46;
-    display: flex;
+    color: white;
+    /*color: white;
+    */display: flex;
     align-items: center;
     justify-content: center;
-    border-left: 1px solid #393e46;
     gap: 10px;
     overflow: hidden;
     font-family: "Cal Sans", sans-serif;
@@ -112,6 +113,25 @@
     -moz-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.022);
+    border: 1.5px solid #393e463b;
+    border-top: 3px solid #393e4699;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    background-color: #393E46;
+    backdrop-filter: blur(8px);
+   
+}
+
+.subMenu a li:hover{
+    background-color: #948979ea;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.062);
+    scale: 107%;
+    color: white;
+    /* background-color: #393e4697; */
 }
 
 .subMenu a li i{
@@ -124,9 +144,9 @@
     -o-transform: translateY(200%);
 }
 
-.subMenu a li:hover{
+/* .subMenu a li:hover{
     box-shadow: 3px 5px 5px 1px rgba(0, 0, 0, 0.062);
-}
+} */
 
 .subMenu a li:hover i{
     transform: translateY(0%);
@@ -166,7 +186,7 @@
     
     .homeContainer{
         padding: 20px;
-        background-image: linear-gradient(to left, white, white);
+        background-image: linear-gradient(to left,  rgba(200, 200, 200, 0),  rgba(200, 200, 200, 0));
         flex-direction: column;
     }
 
@@ -211,6 +231,8 @@
     z-index: 3;
     margin-top: 260px;
     padding: 0 20px;
+        background-image: linear-gradient(to left,  rgba(200, 200, 200, 0),  rgba(200, 200, 200, 0));
+
     }
 
 .subMenu a li{
@@ -218,12 +240,13 @@
         color: black;
         width: 100%;
         border-left: 5px solid #948979;
-        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.062);
+        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.032);
         border-radius: 3px;
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
         -ms-border-radius: 3px;
         -o-border-radius: 3px;
+        border-top: 0;
 }
 
 

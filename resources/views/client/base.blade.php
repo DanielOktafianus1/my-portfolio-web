@@ -32,7 +32,7 @@
 </head>
 
 
-<body style="background-color: #94897944" class="contentLoaded">
+<body style="background-color: #94897914" class="contentLoaded">
 
     {{-- Loading content --}}
     <div class="loadingContainer">
