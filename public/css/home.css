@@ -12,6 +12,27 @@
     padding: 20px 50px;
     justify-content: center;
     overflow: visible;
+    animation: slideRight 1.5s ease-in-out forwards;
+    -webkit-animation: slideRight 1.5s ease-in-out forwards;
+}
+
+@keyframes slideRight {
+    from{
+        opacity: 0;
+        transform: translateX(-100%);
+        -webkit-transform: translateX(-100%);
+        -moz-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+        -o-transform: translateX(-100%);
+}
+    to {
+          opacity: 1;
+          transform: translateX(0);
+          -webkit-transform: translateX(0);
+          -moz-transform: translateX(0);
+          -ms-transform: translateX(0);
+          -o-transform: translateX(0);
+}
 }
 
 .textHome h1{
@@ -35,6 +56,17 @@
 .homeImageContainer{
     margin: auto;
     height: auto;
+    animation: arise 2s ease-in-out forwards;
+    -webkit-animation: arise 2s ease-in-out forwards;
+}
+
+@keyframes arise {
+    from{
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .containerIconNext{

@@ -30,10 +30,13 @@
     {{-- CDN toastr --}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" />
 
+    {{-- Admin CSS --}}
+    <link rel="stylesheet" href="{{ asset('adminCss/user.css') }}">
+
 </head>
 
 <body>
-    <div class="container-scroller">
+    <div class="container-scroller" style="max-width: 1500px; margin:auto">
 
         <!-- partial:partials/_sidebar.html -->
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -58,9 +61,14 @@
                     <div class="profile-desc">
                         <div class="profile-pic">
                             <div class="count-indicator">
-                                <img class="img-xs rounded-circle "
-                                    src="{{ asset('assetTemplate/template/assets/images/faces/face15.jpg') }}"
-                                    alt="">
+                                @if (optional(Auth::user())->image === null)
+                                    <img class="img-xs rounded-circle" src="{{ asset('staticImages/noprofile.jpeg') }}"
+                                        alt="" style="object-fit:cover; object-position:center; opacity:50%">
+                                @else
+                                    <img class="img-xs rounded-circle"
+                                        src="{{ asset('assetTemplate/template/assets/images/faces/face15.jpg') }}"
+                                        alt="">
+                                @endif
                                 <span class="count bg-success"></span>
                             </div>
                             <div class="profile-name" style="overflow: hidden">
@@ -161,8 +169,8 @@
             <!-- partial:partials/_navbar.html -->
             <nav class="navbar p-0 fixed-top d-flex flex-row">
                 <div class="navbar-brand-wrapper d-flex d-lg-none align-items-center justify-content-center">
-                    <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg"
-                            alt="logo" /></a>
+                    {{-- <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/logo-mini.svg"
+                            alt="logo" /></a> --}}
                 </div>
                 <div class="navbar-menu-wrapper flex-grow d-flex align-items-stretch">
                     <button class="navbar-toggler navbar-toggler align-self-center" type="button"
@@ -227,9 +235,15 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
                                 <div class="navbar-profile">
-                                    <img class="img-xs rounded-circle"
-                                        src="{{ asset('assetTemplate/template/assets/images/faces/face15.jpg') }}"
-                                        alt="">
+                                    @if (optional(Auth::user())->image === null)
+                                        <img class="img-xs rounded-circle"
+                                            src="{{ asset('staticImages/noprofile.jpeg') }}" alt=""
+                                            style="object-fit:cover; object-position:center; opacity:50%">
+                                    @else
+                                        <img class="img-xs rounded-circle"
+                                            src="{{ asset('assetTemplate/template/assets/images/faces/face15.jpg') }}"
+                                            alt="">
+                                    @endif
                                     <p class="mb-0 d-none d-sm-block navbar-profile-name ">
                                         {{ Auth::user()->name }}</p>
                                     <i class="mdi mdi-menu-down d-none d-sm-block"></i>

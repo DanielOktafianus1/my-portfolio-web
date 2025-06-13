@@ -384,8 +384,14 @@
             const isSticky = navStyles.position === 'sticky';
 
             const navbarHeight = navbar ? navbar.offsetHeight : 0;
+            const elementRect = el.getBoundingClientRect();
+            const elementTop = elementRect.top + window.pageYOffset;
+            const elementHeight = elementRect.height;
 
-            const y = el.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+            const viewportHeight = window.innerHeight;
+
+            const y = elementTop - (viewportHeight / 2) + (elementHeight / 2) - (isSticky ? navbarHeight : 0);
+
             window.scrollTo({
                 top: y,
                 behavior: 'smooth'

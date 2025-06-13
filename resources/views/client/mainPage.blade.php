@@ -1458,5 +1458,61 @@
 
             panContent.style.cursor = "grab";
         })
+
+        // Arise Content
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileContainer = document.querySelector('.profileContainer');
+            const subSkillsContainer = document.querySelector('.subSkillsContainer');
+            const skillsContentContainer = document.querySelector('.skillsContentContainer');
+            const buttonExperiencesContainer = document.querySelector('.buttonExperiencesContainer');
+            let lastScrollY = window.scrollY || window.pageYOffeset;
+
+            const observerContent = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show')
+                    } else {
+                        entry.target.classList.remove('show')
+                    }
+                })
+            }, {
+                root: null,
+                threshold: 0.5
+            })
+
+            observerContent.observe(profileContainer);
+            observerContent.observe(subSkillsContainer);
+            observerContent.observe(skillsContentContainer);
+            observerContent.observe(buttonExperiencesContainer);
+        })
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const allSections = document.querySelectorAll('.workExperiences, .projectShowcase');
+
+            allSections.forEach(section => {
+                const items = section.querySelectorAll('.mainExperienceContent');
+                const observerContent = new IntersectionObserver((entries, observerContent) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            items.forEach((item, index) => {
+                                setTimeout(() => {
+                                    item.classList.add('show')
+                                }, index * 150);
+                            });
+                        } else {
+                            items.forEach((item, index) => {
+                                setTimeout(() => {
+                                    item.classList.remove('show')
+                                }, index * 50);
+                            });
+                        }
+                    });
+                }, {
+                    threshold: 0.5
+                });
+
+                observerContent.observe(section)
+            });
+        });
     </script>
 @endsection

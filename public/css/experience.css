@@ -1,6 +1,6 @@
 .experiencesContainer{
-    padding: 20px 40px;
-    margin: 120px 20px;
+    padding: 0px 40px;
+    margin: 120px 0px;
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -11,10 +11,7 @@
     -moz-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
-}
-
-.experiencesContainer:hover{
-    background-color: rgba(211, 209, 209, 0.51);
+    width: 100%;
 }
 
 .experiencesContainer h1{
@@ -40,6 +37,16 @@
 
 .buttonExperiencesContainer{
     width: 30%;
+    opacity: 0;
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+}
+.buttonExperiencesContainer.show{
+    opacity: 1;
+    
 }
 
 .buttonExperiencesContainer h5{
@@ -78,11 +85,11 @@
     overflow: hidden;
     height:105px;
     position: relative;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
     margin-bottom: 10px;
     box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.062);
     border: 1.5px solid #393E46;
@@ -92,6 +99,21 @@
     -ms-transition: all 0.4s ease;
     -o-transition: all 0.4s ease;
     width: 100%;
+    opacity: 0;
+    transform: translateX(50px);
+    -webkit-transform: translateX(50px);
+    -moz-transform: translateX(50px);
+    -ms-transform: translateX(50px);
+    -o-transform: translateX(50px);
+}
+
+.mainExperienceContent.show{
+     opacity: 1;
+     transform: translateX(0);
+     -webkit-transform: translateX(0);
+     -moz-transform: translateX(0);
+     -ms-transform: translateX(0);
+     -o-transform: translateX(0);
 }
 
 .mainExperienceContent:hover{
@@ -325,8 +347,10 @@
         gap: 10px;
         padding: 20px 3px;
         width: 100%;
-    }
+    
+}
 
+   
     .buttonExperiencesContainer h5{
         font-size: 16px;
         padding: 17px 5px;
