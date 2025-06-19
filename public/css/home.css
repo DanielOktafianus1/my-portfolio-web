@@ -40,6 +40,7 @@
     font-weight: bolder;
     font-style: normal;
     color: red;
+    font-size: 60px;
 }
 
 .textHome h2{
@@ -213,6 +214,7 @@
 @media screen and (max-width:900px){
 
     
+    
     .imgHome{
         filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.6)) opacity(85%);
         -webkit-filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.6)) opacity(85%);
@@ -242,6 +244,13 @@
         -moz-border-radius: 5px;
         -ms-border-radius: 5px;
         -o-border-radius: 5px;
+}
+.textHome h1{
+    font-family: "Cal Sans", sans-serif;
+    font-weight: bolder;
+    font-style: normal;
+    color: red;
+    font-size:37px;
 }
 
     .textHome p{

@@ -5,6 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>ADMIN PORTLINE</title>
     <!-- plugins:css -->
     <link rel="stylesheet"
@@ -66,8 +67,9 @@
                                         alt="" style="object-fit:cover; object-position:center; opacity:50%">
                                 @else
                                     <img class="img-xs rounded-circle"
-                                        src="{{ asset('assetTemplate/template/assets/images/faces/face15.jpg') }}"
-                                        alt="">
+                                        src="{{ asset('/storage/' . Auth::user()->image) }}" alt=""
+                                        height="100%" width="100%"
+                                        style="object-fit: cover; object-position: center; ">
                                 @endif
                                 <span class="count bg-success"></span>
                             </div>
@@ -107,19 +109,19 @@
                     </a>
                 </li>
                 <li class="nav-item menu-items">
-                    <a class="nav-link" href="pages/forms/basic_elements.html">
-                        <span class="menu-icon">
-                            <i class="mdi mdi-chart-timeline-variant"></i>
-                        </span>
-                        <span class="menu-title">Experiences</span>
-                    </a>
-                </li>
-                <li class="nav-item menu-items">
                     <a class="nav-link" href="pages/tables/basic-table.html">
                         <span class="menu-icon">
                             <i class="mdi mdi-puzzle"></i>
                         </span>
                         <span class="menu-title">Skills</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" href="pages/forms/basic_elements.html">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-chart-timeline-variant"></i>
+                        </span>
+                        <span class="menu-title">Experiences</span>
                     </a>
                 </li>
                 <li class="nav-item menu-items">
@@ -241,8 +243,9 @@
                                             style="object-fit:cover; object-position:center; opacity:50%">
                                     @else
                                         <img class="img-xs rounded-circle"
-                                            src="{{ asset('assetTemplate/template/assets/images/faces/face15.jpg') }}"
-                                            alt="">
+                                            src="{{ asset('/storage/' . Auth::user()->image) }}" alt=""
+                                            height="100%" width="100%"
+                                            style="object-fit: cover; object-position: center; ">
                                     @endif
                                     <p class="mb-0 d-none d-sm-block navbar-profile-name ">
                                         {{ Auth::user()->name }}</p>
@@ -334,6 +337,8 @@
             toastr.success(@json(session('loginSuccess')))
         </script>
     @endif
+    @yield('toastr')
+
 
 
     <!-- container-scroller -->

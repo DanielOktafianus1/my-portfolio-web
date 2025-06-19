@@ -75,38 +75,29 @@
 
         <div class="profileContainer">
             <div class="imgProfileContainer">
-                <h1>
-                    About <div style="color: rgba(255, 0, 0, 0.56)">Me</div>
-                </h1>
-                <img src="{{ asset('staticImages/fotoDaniel.png') }}" alt="" class="imgProfile">
+                @if (optional($user)->image === null)
+                    <img src="{{ asset('staticImages/fotoDaniel.png') }}" alt="" class="imgProfile">
+                @else
+                    <img src="{{ asset('storage/' . $user->image) }}" alt="" class="imgProfile">
+                @endif
             </div>
             <div class="textProfileContainer">
                 <div class="headerTextProfile">
                     <div>
-                        <img src="{{ asset('staticImages/contoh1.jpg') }}" alt="" width="100%" height="100%">
+                        @if (optional($user)->image === null)
+                            <img src="{{ asset('staticImages/noprofile.png') }}" alt="" class="imgProfile">
+                        @else
+                            <img src="{{ asset('storage/' . $user->image) }}" alt="" class="imgProfile">
+                        @endif
                     </div>
-                    <h5>
-                        Daniel Oktafianus
-                    </h5>
+
+                    <h1>
+                        {{ $user->name }}
+                    </h1>
                 </div>
                 <div class="bodyTextProfile">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore eveniet culpa cupiditate quaerat
-                        ullam
-                        nam delectus voluptatum dolor repellat rerum id, tempore nesciunt explicabo provident. Veritatis ad
-                        impedit enim repellendus.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto vitae assumenda amet fuga odit
-                        beatae, fugit magni inventore itaque iste excepturi similique tenetur repellat harum, temporibus
-                        modi et aspernatur corrupti.
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam nesciunt necessitatibus neque
-                        cupiditate eius sequi debitis nihil quia aspernatur iste consectetur, enim corporis voluptatibus
-                        facilis qui rerum quam, omnis sapiente.
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vitae iste nam quam nesciunt perferendis
-                        optio omnis magnam illum! Expedita amet provident asperiores in tenetur iste quaerat, exercitationem
-                        mollitia alias culpa!
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad molestiae esse nostrum velit magni et
-                        reprehenderit impedit, dicta possimus eum iste cupiditate assumenda dolorum ex quos laborum
-                        asperiores vitae accusantium!
+                        {!! nl2br(e($user->desc)) !!}
                     </p>
                 </div>
                 <div class="footerTextProfile">
@@ -131,14 +122,14 @@
 
                         </div>
                         <div>
-                            <a href="" class="iconDownload">
+                            <a href="{{ route('downloadCv') }}" class="iconDownload">
                                 <i class="ri-download-2-line"></i>
                                 <span>Download CV</span>
                             </a>
                         </div>
                     </div>
 
-                    <p>Update On: January 10 2024</p>
+                    <p>Update On: {{ $user->updated_at->format('F d, Y') }}</p>
                 </div>
             </div>
         </div>

@@ -15,7 +15,7 @@
                         <h3 style="color: rgba(255, 255, 255, 0.087); text-align:center; margin:50px 0">Description not
                             created yet.</h3>
                     @else
-                        <p>{{ Auth::user()->desc }}</p>
+                        <p>{!! nl2br(e(Auth::user()->desc)) !!}</p>
                     @endif
                 </div>
             </div>
@@ -28,8 +28,10 @@
                             posted.</h4>
                     </div>
                 @else
-                    <img src="{{ asset('staticImages/contoh1.jpg') }}" alt="" width="100%" height="auto"
-                        style=" border-radius:7px">
+                    <div class="mainCVContainer">
+                        <iframe src="{{ asset('storage/' . Auth::user()->cv) }}" alt="" width="100%" height="100%"
+                            style=" border-radius:7px"></iframe>
+                    </div>
                 @endif
             </div>
         </div>
@@ -39,7 +41,8 @@
                     <img src="{{ asset('staticImages/noprofile.jpeg') }}" alt="" width="100%" height="100%"
                         style="object-fit: cover; object-position: center; opacity:40%">
                 @else
-                    <img src="" alt="">
+                    <img src="{{ asset('storage/' . Auth::user()->image) }}" alt="" width="100%" height="100%"
+                        style="object-fit: cover; object-position: center;">
                 @endif
             </div>
 

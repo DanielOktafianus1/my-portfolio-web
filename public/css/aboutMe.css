@@ -4,26 +4,21 @@
 }
 
 .profileContainer{
-    display: flex;
-    height: 500px;
-    overflow: hidden;
-    border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-    box-shadow:  3px 5px 5px 5px rgba(0, 0, 0, 0.062);
-    opacity: 0;
-    transform: translateY(50px);
-    -webkit-transform: translateY(50px);
-    -moz-transform: translateY(50px);
-    -ms-transform: translateY(50px);
-    -o-transform: translateY(50px);
-    transition: all 0.5s ease;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -ms-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
+     display: grid;
+     grid-template-columns: repeat(2, 1fr);
+     gap: 50px;
+     width: 100%;
+     opacity: 0;
+     transition: all 0.3s ease-in-out;
+     -webkit-transition: all 0.3s ease-in-out;
+     -moz-transition: all 0.3s ease-in-out;
+     -ms-transition: all 0.3s ease-in-out;
+     -o-transition: all 0.3s ease-in-out;
+     transform: translateY(40px);
+     -webkit-transform: translateY(40px);
+     -moz-transform: translateY(40px);
+     -ms-transform: translateY(40px);
+     -o-transform: translateY(40px);
 }
 
 .profileContainer.show{
@@ -35,69 +30,37 @@
     -o-transform: translateY(0);
 }
 
-/* .profileContainer.hidden{
-   
-} */
-
 .imgProfileContainer{
-    width: 50%;
-    height: 100%;
-    background-color: #222831;
     position: relative;
-}
-
-.imgProfileContainer h1{
-    justify-content: center;
-    font-family: "Cal Sans", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    display: flex;
-    gap: 10px;
-    text-shadow: 2px 2px 5px  rgba(0, 0, 0, 0.157);
-    color: rgba(255, 255, 255, 0.597);
-    position: absolute;
-    top: 180px;
-    left: -190px;
-    font-size: 130px;
-    transform:translateX(-100%) rotate(-90deg);
-    -webkit-transform:translateX(-100%) rotate(-90deg);
-    -moz-transform:translateX(-100%) rotate(-90deg);
-    -ms-transform:translateX(-100%) rotate(-90deg);
-    -o-transform:translateX(-100%) rotate(-90deg);
-    transition: all 0.5s ease;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -ms-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-}
-
-.profileContainer:hover .imgProfileContainer h1{
-     transform:translateX(-5%)  rotate(-90deg);
-     -webkit-transform:translateX(-5%)  rotate(-90deg);
-     -moz-transform:translateX(-5%)  rotate(-90deg);
-     -ms-transform:translateX(-5%)  rotate(-90deg);
-     -o-transform:translateX(-5%)  rotate(-90deg);
+    overflow: hidden;
+    width: 600px;
+    height: 600px;
+    border-bottom: 10px solid  #393E46;
+    border-right: 10px solid  #393E46;
+    border-radius:50% ;
+    -webkit-border-radius:50% ;
+    -moz-border-radius:50% ;
+    -ms-border-radius:50% ;
+    -o-border-radius:50% ;
 }
 
 .imgProfile{
     height: auto;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
 }
 
 .textProfileContainer{
-    width: 50%;
+    width: 100%;
     position: relative;
-    background-color: white;
 }
 
 .headerTextProfile{
     display:  flex;
     gap: 10px;
     padding: 15px 20px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.169);
 }
 
 .headerTextProfile div{
@@ -110,18 +73,20 @@
     -moz-border-radius: 100px;
     -ms-border-radius: 100px;
     -o-border-radius: 100px;
+    display: none;
 }
 
-.headerTextProfile h5{
+.headerTextProfile h1{
     margin: auto 0;
     font-family: "Cal Sans", sans-serif;
-    font-weight: 400;
+    font-weight: 600;
     font-style: normal;
+    color: red;
 }
 
 .bodyTextProfile{
     padding: 15px 20px;
-    height: 335px;
+    height: 330px;
     overflow-y: auto;
     scrollbar-width:none;
     -ms-overflow-style:none;
@@ -132,9 +97,9 @@
     position: absolute;
     bottom: 0;
     padding: 20px;
-    border-top: 1px solid rgba(0, 0, 0, 0.169);
+    /* border-top: 1px solid rgba(0, 0, 0, 0.169); */
     width: 100%;
-    background-color: white;
+    /* background-color: white; */
 }
 
 .footerTextProfile div{
@@ -217,6 +182,38 @@
     display: block;
 }
 
+.imgHeaderText{
+    display: none
+    ;
+}
+
+@media screen and (max-width:1104px){
+
+    .imgProfileContainer{
+    position: relative;
+    overflow: hidden;
+    width: 500px;
+    height: 500px;
+    border-bottom: 10px solid  #393E46;
+    border-right: 10px solid  #393E46;
+    border-radius:50% ;
+    -webkit-border-radius:50% ;
+    -moz-border-radius:50% ;
+    -ms-border-radius:50% ;
+    -o-border-radius:50% ;
+}
+
+.bodyTextProfile{
+    padding: 15px 20px;
+    height: 240px;
+    overflow-y: auto;
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+    color: #222831cf;
+}
+
+}
+
 @media screen and (max-width:900px){
 
     .aboutMeContainer{
@@ -224,30 +221,73 @@
     }
 
     .profileContainer{
-        flex-direction: column;
+        grid-template-columns: 1fr;
         height: 100%;
-        margin: 0 5%;
+        margin: 0 ;
+        overflow: hidden;
         border-radius: 10px;
         -webkit-border-radius: 10px;
         -moz-border-radius: 10px;
         -ms-border-radius: 10px;
         -o-border-radius: 10px;
         box-shadow:  3px 5px 5px 5px rgba(0, 0, 0, 0.032);
+        gap: 0;
 }
 
     .imgProfileContainer{
         width: 100%;
     }
 
+    .imgProfileContainer{
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 500px;
+    border-bottom:none;
+    border-right:none;
+    border-radius:0% ;
+    -webkit-border-radius:0% ;
+    -moz-border-radius:0% ;
+    -ms-border-radius:0% ;
+    -o-border-radius:0% ;
+    background-color: #222831;
+}
+
     .textProfileContainer{
         width: 100%;
         padding-bottom: 90px;
-    }
+        background-color: white;
+    } 
+    
+    .headerTextProfile h1{
+    margin: auto 0;
+    font-family: "Cal Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+}
 
-    .imgProfileContainer h1{
-        font-size: 120px;
-        left: -180px;
-    }
+.headerTextProfile div{
+    display: block;
+}
+
+.headerTextProfile{
+     border-bottom: 1px solid rgba(0, 0, 0, 0.169);
+}
+
+.footerTextProfile{
+    border-top: 1px solid rgba(0, 0, 0, 0.169);
+    background-color: white;
+}
+
+.imgHeaderText{
+    display: block;
+}
+
+.bodyTextProfile{
+    height: 330px;
+}
+
 }
 
 @media screen and (max-width:600px){
@@ -260,18 +300,14 @@
         margin: 0 0;
     }
 
-    .imgProfileContainer h1{
-        font-size: 90px;
-        left: -140px;
-        top: 150px;
-    }
 
-   .profileContainer:hover .imgProfileContainer h1{
-     transform:translateX(-8%) rotate(-90deg);
-     -webkit-transform:translateX(-8%) rotate(-90deg);
-     -moz-transform:translateX(-8%) rotate(-90deg);
-     -ms-transform:translateX(-8%) rotate(-90deg);
-     -o-transform:translateX(-8%) rotate(-90deg);
+
+  .headerTextProfile h1{
+    margin: auto 0;
+    font-family: "Cal Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
 }
 }
 
