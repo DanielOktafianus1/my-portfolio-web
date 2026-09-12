@@ -1,27 +1,86 @@
 .aboutMeContainer {
-    padding: 0 110px;
-    margin: 120px 0;
+    width: 100%;
+    margin: 20px 0;
+    padding: 0 5%;
+    position: relative;
 }
 
-.profileContainer{
-     display: grid;
-     grid-template-columns: repeat(2, 1fr);
-     gap: 50px;
-     width: 100%;
-     opacity: 0;
-     transition: all 0.3s ease-in-out;
-     -webkit-transition: all 0.3s ease-in-out;
-     -moz-transition: all 0.3s ease-in-out;
-     -ms-transition: all 0.3s ease-in-out;
-     -o-transition: all 0.3s ease-in-out;
-     transform: translateY(40px);
-     -webkit-transform: translateY(40px);
-     -moz-transform: translateY(40px);
-     -ms-transform: translateY(40px);
-     -o-transform: translateY(40px);
+.aboutMeCamera {
+    z-index: 3;
+    transform-origin: 0 0;
+    will-change: transform;
+    transition: transform 3s cubic-bezier(0.25, 0.5, 0.25, 1);
+    -webkit-transition: transform 3s cubic-bezier(0.25, 0.5, 0.25, 1);
+    -moz-transition: transform 3s cubic-bezier(0.25, 0.5, 0.25, 1);
+    -ms-transition: transform 3s cubic-bezier(0.25, 0.5, 0.25, 1);
+    -o-transition: transform 3s cubic-bezier(0.25, 0.5, 0.25, 1);
 }
 
-.profileContainer.show{
+body.activeAM {
+    overflow: hidden;
+    width: 100%;
+    touch-action: none;
+}
+
+.aboutMeCamera.active {
+    position: fixed;
+    background-color: #f0f4fc;
+    height: 110vh;
+    top: -50px;
+    left: 0;
+    overflow: hidden;
+    touch-action: none;
+}
+
+.lineAboutMe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 600px;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.scrollLine,
+.scrollLineOverlay {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+}
+
+#arcPath {
+    stroke-dasharray: 3000;
+    stroke-dashoffset: 3000;
+    transition: stroke-dashoffset 2s ease;
+    -webkit-transition: stroke-dashoffset 2s ease;
+    -moz-transition: stroke-dashoffset 2s ease;
+    -ms-transition: stroke-dashoffset 2s ease;
+    -o-transition: stroke-dashoffset 2s ease;
+}
+
+.aboutMeContainer.active #arcPath {
+    stroke-dashoffset: 0;
+}
+
+.OWAboutMe {
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.6s ease;
+    -webkit-transition: all 0.6s ease;
+    -moz-transition: all 0.6s ease;
+    -ms-transition: all 0.6s ease;
+    -o-transition: all 0.6s ease;
+    transform: translateY(50px);
+    -webkit-transform: translateY(50px);
+    -moz-transform: translateY(50px);
+    -ms-transform: translateY(50px);
+    -o-transform: translateY(50px);
+}
+
+.OWAboutMe.active {
     opacity: 1;
     transform: translateY(0);
     -webkit-transform: translateY(0);
@@ -30,286 +89,564 @@
     -o-transform: translateY(0);
 }
 
-.imgProfileContainer{
-    position: relative;
-    overflow: hidden;
-    width: 600px;
-    height: 600px;
-    border-bottom: 10px solid  #393E46;
-    border-right: 10px solid  #393E46;
-    border-radius:50% ;
-    -webkit-border-radius:50% ;
-    -moz-border-radius:50% ;
-    -ms-border-radius:50% ;
-    -o-border-radius:50% ;
+.OWAboutMe h1 {
+    font-size: 70px;
+    font-weight: 300;
 }
 
-.imgProfile{
-    height: auto;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-}
-
-.textProfileContainer{
-    width: 100%;
-    position: relative;
-}
-
-.headerTextProfile{
-    display:  flex;
-    gap: 10px;
-    padding: 15px 20px;
-}
-
-.headerTextProfile div{
-    width: 30px;
-    height: 30px;
-    border: 1px solid black;
-    overflow: hidden;
-    border-radius: 100px;
-    -webkit-border-radius: 100px;
-    -moz-border-radius: 100px;
-    -ms-border-radius: 100px;
-    -o-border-radius: 100px;
+.mobileLine {
     display: none;
 }
 
-.headerTextProfile h1{
-    margin: auto 0;
-    font-family: "Cal Sans", sans-serif;
-    font-weight: 600;
-    font-style: normal;
-    color: red;
+.aboutMeContent {
+    z-index: 1;
+    position: relative;
+    display: grid;
+    gap: 50px;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 50px 0;
 }
 
-.bodyTextProfile{
-    padding: 15px 20px;
-    height: 330px;
-    overflow-y: auto;
-    scrollbar-width:none;
-    -ms-overflow-style:none;
-    color: #222831cf;
+.aboutMeContentLeft {
+    margin: auto;
 }
 
-.footerTextProfile{
-    position: absolute;
-    bottom: 0;
-    padding: 20px;
-    /* border-top: 1px solid rgba(0, 0, 0, 0.169); */
-    width: 100%;
-    /* background-color: white; */
+.aboutMeContentLeft div {
+    width: 300px;
+    height: 200px;
+    margin: auto;
+    background: #000;
+    border-radius: 20px;
+    overflow: hidden;
+
+    /* PENTING */
+    position: relative;
+    transform: scale(1);
+    transform-origin: center center;
+
+    transition:
+        transform 0.9s ease-in-out,
+        border-radius 0.9s ease-in-out;
 }
 
-.footerTextProfile div{
+/* STATE ZOOM */
+
+.targetZoom {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
 }
 
-.footerTextProfile div i{
+.targetZoom img {
+    width: 30%;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+}
+
+.targetZoom img.hidden {
+    scale: 0;
+}
+
+.logoTransition {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    display: none;
+    opacity: 0;
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    height: 150px;
+    width: 150px;
+    z-index: 10;
+}
+
+.logoTransition img {
+    height: 100%;
+}
+
+.logoTransition.active {
+    opacity: 1;
+}
+
+.logoTransition2nd {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transition: all 0.5s ease-out;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -ms-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    height: 150px;
+    width: 150px;
+    z-index: 10;
+}
+
+.logoTransition2nd img {
+    height: 100%;
+}
+
+.logoTransition2nd.hidden {
+    opacity: 0 !important;
+}
+
+.aboutMeContentLeft div.active {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+
+    width: 300px;
+    height: 200px;
+
+    /* zoom besar */
+    transform: scale(10);
+
+    border-radius: 0;
+    z-index: 999;
+    pointer-events: none;
+}
+
+.aboutMeContentRight {
+    margin: auto;
+    padding: 50px;
+    opacity: 0;
+    transform: translateY(50px);
+    -webkit-transform: translateY(50px);
+    -moz-transform: translateY(50px);
+    -ms-transform: translateY(50px);
+    -o-transform: translateY(50px);
+    transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    -o-transition: all 1s ease;
+}
+
+.aboutMeContentRight.active {
+    opacity: 1;
+    transform: translate(0);
+    -webkit-transform: translate(0);
+    -moz-transform: translate(0);
+    -ms-transform: translate(0);
+    -o-transform: translate(0);
+}
+
+.aboutMeContentRight p {
+    font-size: 17px;
+    font-weight: 300;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+.btnAboutMe {
+    background-color: #ffff;
+    padding: 10px 20px;
+    border: none;
+    width: 150px;
+    cursor: pointer;
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 2px 2px 3px 2px rgba(0, 0, 0, 0.072);
+    overflow: hidden;
+    position: relative;
+    transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -ms-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+}
+
+.btnAboutMe i {
+    left: -20px;
+    position: absolute;
+    color: #000000;
+    transition:
+        color 0.2s ease-in-out,
+        left 0.2s ease-in-out;
+    -webkit-transition:
+        color 0.2s ease-in-out,
+        left 0.2s ease-in-out;
+    -moz-transition:
+        color 0.2s ease-in-out,
+        left 0.2s ease-in-out;
+    -ms-transition:
+        color 0.2s ease-in-out,
+        left 0.2s ease-in-out;
+    -o-transition:
+        color 0.2s ease-in-out,
+        left 0.2s ease-in-out;
+}
+
+.btnAboutMe span {
+    font-weight: 500;
+}
+
+.btnAboutMe div {
+    height: 5px;
+    width: 5px;
+    background-color: #000000;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+    -webkit-transition: opacity 0.3s ease-in-out;
+    -moz-transition: opacity 0.3s ease-in-out;
+    -ms-transition: opacity 0.3s ease-in-out;
+    -o-transition: opacity 0.3s ease-in-out;
+}
+
+.btnAboutMe:hover {
+    background-color: #7b3eff;
+    align-items: end;
+    justify-content: end;
+    color: white;
+}
+
+.btnAboutMe:hover i {
+    color: white;
+    left: 20px;
+}
+
+.btnAboutMe:hover div {
+    display: none;
+}
+
+/* Detail */
+
+.conDetailAM {
+    opacity: 0;
+    position: relative;
+    transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    -o-transition: all 1s ease;
+}
+
+.containerAvatar {
+    width: 100%;
+    max-width: 50vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow: visible;
+    z-index: 1;
+}
+
+.containerAvatar::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgb(0, 0, 0) 90%,
+        rgb(0, 0, 0) 100%
+    );
+    pointer-events: none;
+}
+
+.mouseGlow {
+    position: fixed;
+    z-index: 1;
+    width: 340px;
+    height: 340px;
+    pointer-events: none;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.381) 0%,
+        rgba(0, 200, 255, 0.345) 20%,
+        rgba(0, 149, 255, 0.337) 40%,
+        rgba(0, 100, 255, 0.12) 55%,
+        transparent 100%
+    );
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    filter: blur(10px);
+    mix-blend-mode: screen;
+}
+
+.containerDetail {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    display: flex;
+    flex-direction: column;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
+
+.aboutMeDesc {
+    font-family: "Orbitron", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+
+    /* background-color: rgba(15, 23, 42, 0.85); */
+
+    width: 50%;
+    min-height: 100vh;
+    flex-shrink: 0;
+    padding: 32px 24px 32px 28px;
+    color: #ffffffcf;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: auto;
+    scroll-snap-align: center;
+    z-index: 3;
+}
+
+/* 1 & 3 → kanan */
+/* .aboutMeDesc:nth-child(odd) {
+    margin-left: auto;
+} */
+
+/* 2 → kiri */
+/* .aboutMeDesc:nth-child(even) {
+    margin-right: auto;
+} */
+
+.aboutMeDesc h1 {
+    font-weight: bolder;
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.aboutMeDesc h4 {
+    font-weight: 300;
     font-size: 25px;
+    margin-bottom: 20px;
 }
 
-.footerTextProfile p{
-    margin: 0;
+.aboutMeDesc h6 {
+    font-weight: 200;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.aboutMeDesc .d-flex h6:first-child {
+    text-align: left;
+}
+
+.aboutMeDesc .d-flex h6:last-child {
+    text-align: right;
+    opacity: 0.85;
+}
+
+.aboutMeDesc h6 {
+    font-weight: 200;
     font-size: 13px;
-    color: rgba(0, 0, 0, 0.486);
-  
+    margin-bottom: 10px;
 }
 
-.iconSosmed{
-    text-decoration: none;
-    color:black;
+.containerCardHobi {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.cardHobi {
+    max-width: 500px;
+    max-height: 150px;
+    overflow: hidden;
+    background-color: #7b3eff;
+    /* border-radius:15px ;
+ -webkit-border-radius:15px ;
+ -moz-border-radius:15px ;
+ -ms-border-radius:15px ;
+ -o-border-radius:15px ; */
     position: relative;
     transition: all 0.3s ease;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -ms-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
+    opacity: 0.4;
+    clip-path: polygon(
+        16px 0,
+        calc(100% - 16px) 0,
+        100% 16px,
+        100% calc(100% - 16px),
+        calc(100% - 16px) 100%,
+        16px 100%,
+        0 calc(100% - 16px),
+        0 16px
+    );
 }
 
-.iconSosmed span{
-  
-    display: none;
-    position: absolute;
-    top: -18px;
-    left: 0px;
-    background-color: black;
-    font-size: 11px;
-    color: white;
-    padding: 3px 8px;
-    border-radius: 6px;
-    transition:all 0.3s ease ;
-    -webkit-transition:all 0.3s ease ;
-    -moz-transition:all 0.3s ease ;
-    -ms-transition:all 0.3s ease ;
-    -o-transition:all 0.3s ease ;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    -ms-border-radius: 6px;
-    -o-border-radius: 6px;
-}
-
-
-.iconSosmed:hover span{
-    display: flex;
-}
-
-.iconDownload{
-    text-decoration: none;
-    color: black;
-    position: relative;
-}
-
-.iconDownload span{
-    position: absolute;
-    padding: 3px 8px;
-    font-size: 11px;
-    color: white;
-    background-color: black;
-    border-radius:6px ;
-    -webkit-border-radius:6px ;
-    -moz-border-radius:6px ;
-    -ms-border-radius:6px ;
-    -o-border-radius:6px ;
-    top: -18px;
-    left: -57px;
-    display: none;
-}
-
-.iconDownload:hover span{
-    display: block;
-}
-
-.imgHeaderText{
-    display: none
-    ;
-}
-
-@media screen and (max-width:1104px){
-
-    .imgProfileContainer{
-    position: relative;
-    overflow: hidden;
-    width: 500px;
-    height: 500px;
-    border-bottom: 10px solid  #393E46;
-    border-right: 10px solid  #393E46;
-    border-radius:50% ;
-    -webkit-border-radius:50% ;
-    -moz-border-radius:50% ;
-    -ms-border-radius:50% ;
-    -o-border-radius:50% ;
-}
-
-.bodyTextProfile{
-    padding: 15px 20px;
-    height: 240px;
-    overflow-y: auto;
-    scrollbar-width:none;
-    -ms-overflow-style:none;
-    color: #222831cf;
-}
-
-}
-
-@media screen and (max-width:900px){
-
-    .aboutMeContainer{
-        padding: 0 30px ;
-    }
-
-    .profileContainer{
-        grid-template-columns: 1fr;
-        height: 100%;
-        margin: 0 ;
-        overflow: hidden;
-        border-radius: 10px;
-        -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
-        -ms-border-radius: 10px;
-        -o-border-radius: 10px;
-        box-shadow:  3px 5px 5px 5px rgba(0, 0, 0, 0.032);
-        gap: 0;
-}
-
-    .imgProfileContainer{
-        width: 100%;
-    }
-
-    .imgProfileContainer{
-    position: relative;
-    overflow: hidden;
+.cardHobi img {
+    height: 100%;
     width: 100%;
-    height: 500px;
-    border-bottom:none;
-    border-right:none;
-    border-radius:0% ;
-    -webkit-border-radius:0% ;
-    -moz-border-radius:0% ;
-    -ms-border-radius:0% ;
-    -o-border-radius:0% ;
-    background-color: #222831;
+    object-fit: cover;
 }
 
-    .textProfileContainer{
+.cardHobi h5 {
+    position: absolute;
+    /* bottom: 5px; */
+    left: 10px;
+    transform: translateY(100%);
+    -webkit-transform: translateY(100%);
+    -moz-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    -o-transform: translateY(100%);
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    z-index: 3;
+}
+
+.cardHobi:hover {
+    opacity: 1;
+}
+
+.cardHobi:hover h5 {
+    transform: translateY(0);
+    bottom: 5px;
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+}
+
+.cardHobi::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent, black);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cardHobi:hover::after {
+    opacity: 1;
+}
+
+/* @media (max-width: 1050px) { 
+    .aboutMeCamera {
+     transform-origin: 0 0;
+     transition: transform 2s cubic-bezier(.25,.5,.25,1);
+     -webkit-transition: transform 2s cubic-bezier(.25,.5,.25,1);
+     -moz-transition: transform 2s cubic-bezier(.25,.5,.25,1);
+     -ms-transition: transform 2s cubic-bezier(.25,.5,.25,1);
+     -o-transition: transform 2s cubic-bezier(.25,.5,.25,1);
+}
+} */
+@media (max-width: 1000px) {
+    .containerAvatar {
         width: 100%;
-        padding-bottom: 90px;
-        background-color: white;
-    } 
-    
-    .headerTextProfile h1{
-    margin: auto 0;
-    font-family: "Cal Sans", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 20px;
-}
-
-.headerTextProfile div{
-    display: block;
-}
-
-.headerTextProfile{
-     border-bottom: 1px solid rgba(0, 0, 0, 0.169);
-}
-
-.footerTextProfile{
-    border-top: 1px solid rgba(0, 0, 0, 0.169);
-    background-color: white;
-}
-
-.imgHeaderText{
-    display: block;
-}
-
-.bodyTextProfile{
-    height: 330px;
-}
-
-}
-
-@media screen and (max-width:600px){
-
-    .aboutMeContainer{
-        padding: 0 10px ;
+        max-width: 70vw;
+        height: 100vh;
+        position: fixed;
+        left: 0;
     }
 
-    .profileContainer{
-        margin: 0 0;
+    .containerDetail {
+        z-index: 3;
+    }
+}
+@media (max-width: 700px) {
+    body.activeAM {
+        /* position: fixed; */
+        overflow: hidden;
+        /* width: 100%; */
+        height: 100vh;
+        touch-action: none;
     }
 
+    .aboutMeCamera {
+        transform-origin: 0 0;
+        transition: transform 2s cubic-bezier(0.25, 0.5, 0.25, 1);
+        -webkit-transition: transform 2s cubic-bezier(0.25, 0.5, 0.25, 1);
+        -moz-transition: transform 2s cubic-bezier(0.25, 0.5, 0.25, 1);
+        -ms-transition: transform 2s cubic-bezier(0.25, 0.5, 0.25, 1);
+        -o-transition: transform 2s cubic-bezier(0.25, 0.5, 0.25, 1);
+    }
 
+    .aboutMeCamera.active {
+        overflow: hidden;
+    }
 
-  .headerTextProfile h1{
-    margin: auto 0;
-    font-family: "Cal Sans", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 16px;
+    .OWAboutMe h1 {
+        font-size: 60px;
+    }
+
+    .desktopLine {
+        display: none;
+    }
+
+    .mobileLine {
+        display: block;
+    }
+
+    .aboutMeContent {
+        grid-template-columns: none;
+    }
+
+    .aboutMeContentRight {
+        padding: 0;
+    }
+
+    .containerAvatar {
+        width: 100%;
+        max-width: 100vw;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        margin: auto;
+    }
+
+    .aboutMeDesc {
+        width: 100vw;
+        background-color: transparent;
+    }
+
+    .aboutMeDesc h6 {
+        font-weight: 200;
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+
+    .containerCardHobi {
+        grid-template-columns: 1fr;
+    }
 }
-}
-
-
-

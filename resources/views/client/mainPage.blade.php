@@ -1,1509 +1,190 @@
 @extends('client.base')
 @section('mainClientContent')
-    {{-- Home --}}
-    <div class="homeContainer">
-        <div class="textHome">
-            <h1><i>Welcome,</i> </h1>
-            <h2> to my portfolio website.</h2>
-            <p>Welcome to my portfolio! Here, you can check out my projects and work experience. I enjoy trying new things
-                and finding the right solutions for every need. Feel free to explore my work!</p>
-
-            <div class="containerIconNext">
-                <a onclick="document.getElementById('subMenu').scrollIntoView({behavior: 'smooth', block:'center'})"
-                    style="text-decoration: none; color:white">
-                    <i class="ri-arrow-down-wide-line"></i>
-                </a>
-            </div>
-        </div>
-        <div class="homeImageContainer">
-            <img src="{{ asset('staticImages/logoDaniel.png') }}" alt="" class="imgHome">
-        </div>
-    </div>
-
-    {{-- Sub Menu --}}
     <div>
-        <ul class="subMenu" id="subMenu">
-            <a onclick="document.getElementById('hireMe').scrollIntoView({behavior: 'smooth', block: 'center'})">
-                <li>
-                    <i class="ri-mail-send-fill"></i>
-                    Hire Me
-                </li>
-            </a>
-            <a onclick="document.getElementById('aboutMe').scrollIntoView({behavior: 'smooth', block:'center'})">
-                <li>
-                    <i class="ri-folder-user-fill"></i>
-                    About Me
-                </li>
-            </a>
-            <a>
-                <li class="hardSkillsMenu">
-                    <i class="ri-settings-3-fill"></i>
-                    Hard Skills
-                </li>
-            </a>
-            <a>
-                <li class="softSkillsMenu">
-                    <i class="ri-settings-3-fill"></i>
-                    Soft Skills
-                </li>
-            </a>
-            <a>
-                <li class="workExperiencesMenu">
-                    <i class="ri-macbook-fill"></i>
-                    Work Experiences
-                </li>
-            </a>
-            <a>
-                <li class="projectShowcaseMenu">
-                    <i class="ri-book-shelf-fill"></i>
-                    Project Showcases
-                </li>
-            </a>
-            <a>
-                <li id="certificate">
-                    <i class="ri-file-list-3-fill"></i>
-                    Certificates
-                </li>
-            </a>
-
-        </ul>
-    </div>
-
-    {{-- About Me --}}
-    <div class="aboutMeContainer" id="aboutMe">
-
-
-        <div class="profileContainer">
-            <div class="imgProfileContainer">
-                @if (optional($user)->image === null)
-                    <img src="{{ asset('staticImages/fotoDaniel.png') }}" alt="" class="imgProfile">
-                @else
-                    <img src="{{ asset('storage/' . $user->image) }}" alt="" class="imgProfile">
-                @endif
+        {{-- Hero Section --}}
+        <section class="heroContainer">
+            <div class="plus">
+                <div>+</div>
+                <div>+</div>
+                <div>+</div>
+                <div>+</div>
             </div>
-            <div class="textProfileContainer">
-                <div class="headerTextProfile">
-                    <div>
-                        @if (optional($user)->image === null)
-                            <img src="{{ asset('staticImages/noprofile.png') }}" alt="" class="imgProfile">
-                        @else
-                            <img src="{{ asset('storage/' . $user->image) }}" alt="" class="imgProfile">
-                        @endif
+            <div class="heroWrapper">
+                <div class="heroWellcome scrollEffect">
+                    <h1>Welcome to <br> My Personal Website</h1>
+                </div>
+                <div class="heroContent">
+                    {{-- <div class="heroImgContainer">
+                        <img src="{{ asset('staticImages/logo.png') }}" alt="">
+                    </div> --}}
+                    <div class="heroNameContainer">
+                        <!-- DAN -->
+                        <span>D</span><span>A</span><span>N</span>
+
+                        <!-- IEL -->
+                        <span>I</span><span>E</span><span>L</span>
+
+                        <!-- OKTAF -->
+                        <span>O</span><span>K</span><span>T</span><span>A</span><span>F</span>
+
+                        <!-- IANUS -->
+                        <span>I</span><span>A</span><span>N</span><span>U</span><span>S</span>
+
                     </div>
-
-                    <h1>
-                        {{ $user->name }}
-                    </h1>
                 </div>
-                <div class="bodyTextProfile">
-                    <p>
-                        {!! nl2br(e($user->desc)) !!}
-                    </p>
-                </div>
-                <div class="footerTextProfile">
-                    <div>
-                        <div>
-                            <a href="" class="iconSosmed">
-                                <i class="ri-instagram-fill "></i>
-                                <span class="textIcon">Instagram</span>
-                            </a>
-                            <a href="" class="iconSosmed">
-                                <i class="ri-instagram-fill "></i>
-                                <span class="textIcon">Instagram</span>
-                            </a>
-                            <a href="" class="iconSosmed">
-                                <i class="ri-instagram-fill "></i>
-                                <span class="textIcon">Instagram</span>
-                            </a>
-                            <a href="" class="iconSosmed">
-                                <i class="ri-instagram-fill "></i>
-                                <span class="textIcon">Instagram</span>
-                            </a>
-
-                        </div>
-                        <div>
-                            <a href="{{ route('downloadCv') }}" class="iconDownload">
-                                <i class="ri-download-2-line"></i>
-                                <span>Download CV</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <p>Update On: {{ $user->updated_at->format('F d, Y') }}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {{-- Skills --}}
-    <div class="skillsContainer" id="skills">
-
-        <div class="titleSkills">
-            <h1>Skills</h1>
-            <p>You can slide the content in any direction.</p>
-        </div>
-        <div class="subSkillsContainer">
-            <ul>
-                <li id="hardSkills">
-                    <h5>Hard Skills</h5>
+                <div class="continueScrollText scrollEffect">
                     <div></div>
-                </li>
-                <li id="softSkills">
-                    <h5>Soft Skills</h5>
-                    <div></div>
-                </li>
-            </ul>
+                    <h5>Keep scrolling to explore my journey.</h5>
+                </div>
+            </div>
+            <div class="plus">
+                <div>+</div>
+                <div>+</div>
+                <div>+</div>
+                <div>+</div>
+            </div>
+        </section>
+
+        <br>
+        <br>
+        <br>
+        <br>
+
+        {{-- About Me Section --}}
+        <div class="logoTransition">
+            <img src="{{ asset('staticImages/wlogo.png') }}" alt="">
         </div>
+        <section class="aboutMeContainer aboutMeCamera" id="aboutMeSec">
+            <svg class="lineAboutMe" viewBox="0 0 1000 1000" preserveAspectRatio="none">
 
-        <div class="skillsContentContainer">
+                <defs>
+                    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#b8e3ff" />
+                        <stop offset="100%" stop-color="#379dfc" />
+                    </linearGradient>
 
-            {{-- Hard Skills --}}
-            <div class="hardSkillsContainer">
-                <div class="hardSkillTitle">
-                    <div>JavaScript</div>
-                    <i class="ri-arrow-down-s-line"></i>
-                </div>
-                <div class="hardSkillDesc">
-                    <div>
-                        <p>0%</p>
-                        <span>
-                            <progress value="100" max="100" min="1"> </progress>
-                            <h6></h6>
-                        </span>
-                        <p>100%</p>
-                    </div>
+                    <filter id="softShadow" x="-30%" y="-30%" width="180%" height="180%">
+                        <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#8ccfff"
+                            flood-opacity="0.6" />
+                    </filter>
+                </defs>
 
-                    Konten 1 ipsum dolor sit amet consectetur adipisicing elit. Doloribus labore qui sunt, vero minus id
-                    quibusdam hic nostrum? Officia, tenetur tempora velit fuga saepe quisquam odio distinctio. Culpa,
-                    illum
-                    temporibus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque veniam et vitae,
-                    architecto optio in id odio dolorem accusantium, accusamus ex quos delectus totam quis iure
-                    veritatis
-                    commodi quo quas.
-                </div>
-            </div>
-            <div class="hardSkillsContainer">
-                <div class="hardSkillTitle">
-                    <div>PHP</div>
-                    <i class="ri-arrow-down-s-line"></i>
-                </div>
-                <div class="hardSkillDesc">
-                    <div>
-                        <p>0%</p>
-                        <span>
-                            <progress value="90" max="100" min="1"></progress>
-                            <h6></h6>
-                        </span>
-                        <p>100%</p>
-                    </div>
+                <!-- DESKTOP PATH -->
+                <path class="scrollLine desktopLine"
+                    d="
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  M 0 40
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  C 360 140, 430 500, 340 800
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  C 260 1040, 110 820, 160 520
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  C 220 240, 450 360, 500 600
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  C 560 860, 750 240, 1050 650
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                "
+                    stroke="url(#blueGradient)" stroke-width="40" fill="none" stroke-linecap="round"
+                    vector-effect="non-scaling-stroke" stroke-linejoin="round" filter="url(#softShadow)" />
 
-                    Untuk menampilkan dan menyembunyikan deskripsi keterampilan (skill descriptions) secara dinamis dengan
-                    transisi yang halus dan responsif terhadap konten yang berbeda-beda panjangnya, kita dapat menggunakan
-                    pendekatan kombinasi antara JavaScript dan CSS di mana elemen deskripsi diberikan efek transisi melalui
-                    properti max-height dan opacity, sementara nilai max-height disesuaikan secara real-time menggunakan
-                    properti scrollHeight dari JavaScript, sehingga ketika pengguna mengklik salah satu judul keterampilan,
-                    sistem secara otomatis akan menentukan tinggi maksimum aktual dari konten tersebut dan menerapkannya ke
-                    dalam elemen terkait, memungkinkan animasi slide-down terjadi dengan mulus tanpa membatasi isi konten,
-                    serta sekaligus menutup elemen lainnya dengan cara menghapus class active dan menghapus nilai max-height
-                    agar kembali ke kondisi tersembunyi, sehingga pengalaman interaktif yang diberikan menjadi lebih
-                    fleksibel, elegan, dan sesuai dengan praktik UI/UX modern.
-                </div>
+                <!-- MOBILE PATH (LEBIH PENDEK & SIMPLE) -->
+                <path class="scrollLine mobileLine"
+                    d="
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  M 0 30
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  C 50 50, 650 100, 650 400
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  C 670 700, 240 700, 200 540
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  C 170 350, 650 70, 1500 1200
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                "
+                    stroke="url(#blueGradient)" stroke-width="30" fill="none" stroke-linecap="round"
+                    vector-effect="non-scaling-stroke" stroke-linejoin="round" filter="url(#softShadow)" />
+
+            </svg>
+
+
+            <div class="OWAboutMe scrollEffect">
+                <h1>Allow Me to Introduce <br> Myself Further</h1>
             </div>
 
-            {{-- Soft Skills --}}
-            <div class="softSkillsContainer">
-                <div class="softSkillTitle">
-                    <div>Leadership</div>
-                    <i class="ri-arrow-down-s-line"></i>
-                </div>
-                <div class="softSkillDesc">
+            <div class="aboutMeContent ">
 
-                    <div>
-                        <p>0%</p>
-                        <span>
-                            <progress value="100" max="100" min="1"></progress>
-                            <h6></h6>
-                        </span>
-                        <p>100%</p>
+                <div class="aboutMeContentLeft scrollEffect">
+                    <div class="targetZoom ">
+                        <img src="{{ asset('staticImages/wlogo.png') }}" alt="">
                     </div>
+                </div>
+                <div class="aboutMeContentRight scrollEffect">
+                    <div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam magni at perspiciatis quidem.
+                            Repellendus, neque! Cumque velit sequi, sed obcaecati unde ratione labore iure, culpa
+                            expedita
+                            aliquam vero quam iusto! Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, ex
+                            consequatur. Delectus, fugit quae! Vel alias, quod placeat vero aspernatur dolores, veniam
+                            repellat
+                            perspiciatis sit a voluptatem nisi dignissimos unde!</p>
 
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus labore qui sunt, vero minus id
-                    quibusdam hic nostrum? Officia, tenetur tempora velit fuga saepe quisquam odio distinctio. Culpa,
-                    illum
-                    temporibus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque veniam et vitae,
-                    architecto optio in id odio dolorem accusantium, accusamus ex quos delectus totam quis iure
-                    veritatis
-                    commodi quo quas.
+                        <button type="button" class="btnAboutMe">
+                            <i class="ri-arrow-right-long-line"></i>
+                            <span>ABOUT ME</span>
+                            <div></div>
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="softSkillsContainer">
-                <div class="softSkillTitle">
-                    <div>Problem Solving</div>
-                    <i class="ri-arrow-down-s-line"></i>
+        </section>
+
+        <br>
+        <br>
+        {{-- <br> --}}
+        {{-- <br> --}}
+
+        {{-- Skills Section --}}
+        <section class="skillsContainer">
+            <div class="OWskills ">
+                <h1 class="scrollEffect">An Overview</h1>
+                <h1 class="scrollEffect">of My Skills</h1>
+            </div>
+
+            {{-- Content Skills --}}
+            <div class="skillsWrapper" id="brainContainer">
+
+                <svg class="lineSkills" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+                    <defs>
+                        <linearGradient id="blueGradientSkill" x1="100%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#379dfc" />
+                            <stop offset="100%" stop-color="#2563eb" />
+                        </linearGradient>
+
+                        <filter id="softShadow" x="-30%" y="-30%" width="180%" height="180%">
+                            <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#8ccfff"
+                                flood-opacity="0.6" />
+                        </filter>
+                    </defs>
+
+
+                    <path class="scrollSkillLine desktopLineSkill"
+                        d="M 1060,-10
+                                                                                                                        C 900,50 800,200 960,600
+                                                                                                                        S 550,1300 750,300
+                                                                                                                        S 200,-200 500,200
+                                                                                                                        S 300,1000 -100,100"
+                        stroke="url(#blueGradientSkill)" stroke-width="40" fill="none" stroke-linecap="round"
+                        vector-effect="non-scaling-stroke" stroke-linejoin="round" filter="url(#softShadow)" />
+
+                    <path class="scrollSkillLine mobileLineSkill"
+                        d="M 1100,50
+                                                                                                                            C 700,100 400,300 600,450
+                                                                                                                            S 900,600 600,750
+                                                                                                                            S 300,1000 1100,1100"
+                        stroke="url(#blueGradientSkill)" stroke-width="30" fill="none" stroke-linecap="round"
+                        vector-effect="non-scaling-stroke" stroke-linejoin="round" filter="url(#softShadow)" />
+                </svg>
+
+                <div>
+                    <p class="scrollEffect">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates, minima
+                        unde! Eos laboriosam libero nam repellat ea explicabo possimus. Ducimus placeat hic ullam
+                        dignissimos autem temporibus doloribus dolorem iure perspiciatis?</p>
                 </div>
-                <div class="softSkillDesc">
 
-                    <div>
-                        <p>0%</p>
-                        <span>
-                            <progress value="45" max="100" min="1"></progress>
-                            <h6></h6>
-                        </span>
-                        <p>100%</p>
+                <div class="skillsContainerContent">
+                    <div class="SoftSkillContent">
+                        <h1>Faaaakkkkk!!!</h1>
                     </div>
-
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus labore qui sunt, vero minus id
-                    quibusdam hic nostrum? Officia, tenetur tempora velit fuga saepe quisquam odio distinctio. Culpa,
-                    illum
-                    temporibus? Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque veniam et vitae,
-                    architecto optio in id odio dolorem accusantium, accusamus ex quos delectus totam quis iure
-                    veritatis
-                    commodi quo quas.
                 </div>
             </div>
-        </div>
+        </section>
     </div>
-
-    {{-- Experiences --}}
-    <div class="experiencesContainer" id="experience">
-
-        <h1>Experiences</h1>
-
-        <div class="experiencesWrepper">
-            <div class="buttonExperiencesContainer">
-                <h5 class="btnProjectShowcase">Project Showcases</h5>
-                <h5 class="btnWorkExperiences">Work Experiences</h5>
-            </div>
-            <div class="mainExperiencesContentContainer">
-
-                <div class="workExperiences">
-
-                    <div class="containerInputSearch">
-                        <input type="search" name="" id="searchWorkExperiences"
-                            placeholder="Search Work Experience here!">
-                        <div><i class="ri-search-line"></i></div>
-                    </div>
-
-                    <div class="mainExperienceContent">
-                        <img src="{{ asset('staticImages/contoh2.jpg') }}" alt="">
-                        <a href="">
-                            <div class="textExperienceContainer">
-                                <div>
-                                    <h5>Work 1Experiences Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
-                                        ex
-                                        possimus,
-                                        quia, nihil quam quisquam illum voluptatibus suscipit doloribus repudiandae
-                                        blanditiis
-                                        neque
-                                        impedit. Quibusdam, voluptatem veritatis velit eius dolorum adipisci.</h5>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque rerum
-                                        praesentium
-                                        reiciendis, tempore harum quia, nulla veniam vitae delectus nisi quibusdam saepe
-                                        earum
-                                        accusantium reprehenderit quam accusamus! In, laborum quia! Lorem ipsum dolor sit,
-                                        amet
-                                        consectetur adipisicing elit. Ipsum sequi impedit dolorum consequatur dolore?
-                                        Facilis
-                                        repellat
-                                        molestias nisi. Aut veritatis voluptatem doloribus distinctio ea, facilis ex
-                                        corporis
-                                        cum?
-                                        Omnis, doloribus?</p>
-                                </div>
-                                <div>
-                                    <i class="ri-arrow-right-wide-fill"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="mainExperienceContent">
-                        <img src="{{ asset('staticImages/contoh2.jpg') }}" alt="">
-                        <a href="">
-                            <div class="textExperienceContainer">
-                                <div>
-                                    <h5>Work 2 Experiences Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
-                                        ex
-                                        possimus,
-                                        quia, nihil quam quisquam illum voluptatibus suscipit doloribus repudiandae
-                                        blanditiis
-                                        neque
-                                        impedit. Quibusdam, voluptatem veritatis velit eius dolorum adipisci.</h5>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque rerum
-                                        praesentium
-                                        reiciendis, tempore harum quia, nulla veniam vitae delectus nisi quibusdam saepe
-                                        earum
-                                        accusantium reprehenderit quam accusamus! In, laborum quia! Lorem ipsum dolor sit,
-                                        amet
-                                        consectetur adipisicing elit. Ipsum sequi impedit dolorum consequatur dolore?
-                                        Facilis
-                                        repellat
-                                        molestias nisi. Aut veritatis voluptatem doloribus distinctio ea, facilis ex
-                                        corporis
-                                        cum?
-                                        Omnis, doloribus?</p>
-                                </div>
-                                <div>
-                                    <i class="ri-arrow-right-wide-fill"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="mainExperienceContent">
-                        <img src="{{ asset('staticImages/contoh2.jpg') }}" alt="">
-                        <a href="">
-                            <div class="textExperienceContainer">
-                                <div>
-                                    <h5>Work 3 Experiences Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
-                                        ex
-                                        possimus,
-                                        quia, nihil quam quisquam illum voluptatibus suscipit doloribus repudiandae
-                                        blanditiis
-                                        neque
-                                        impedit. Quibusdam, voluptatem veritatis velit eius dolorum adipisci.</h5>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque rerum
-                                        praesentium
-                                        reiciendis, tempore harum quia, nulla veniam vitae delectus nisi quibusdam saepe
-                                        earum
-                                        accusantium reprehenderit quam accusamus! In, laborum quia! Lorem ipsum dolor sit,
-                                        amet
-                                        consectetur adipisicing elit. Ipsum sequi impedit dolorum consequatur dolore?
-                                        Facilis
-                                        repellat
-                                        molestias nisi. Aut veritatis voluptatem doloribus distinctio ea, facilis ex
-                                        corporis
-                                        cum?
-                                        Omnis, doloribus?</p>
-                                </div>
-                                <div>
-                                    <i class="ri-arrow-right-wide-fill"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="mainExperienceContent">
-                        <img src="{{ asset('staticImages/contoh2.jpg') }}" alt="">
-                        <a href="">
-                            <div class="textExperienceContainer">
-                                <div>
-                                    <h5>Work 4 Experiences Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
-                                        ex
-                                        possimus,
-                                        quia, nihil quam quisquam illum voluptatibus suscipit doloribus repudiandae
-                                        blanditiis
-                                        neque
-                                        impedit. Quibusdam, voluptatem veritatis velit eius dolorum adipisci.</h5>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque rerum
-                                        praesentium
-                                        reiciendis, tempore harum quia, nulla veniam vitae delectus nisi quibusdam saepe
-                                        earum
-                                        accusantium reprehenderit quam accusamus! In, laborum quia! Lorem ipsum dolor sit,
-                                        amet
-                                        consectetur adipisicing elit. Ipsum sequi impedit dolorum consequatur dolore?
-                                        Facilis
-                                        repellat
-                                        molestias nisi. Aut veritatis voluptatem doloribus distinctio ea, facilis ex
-                                        corporis
-                                        cum?
-                                        Omnis, doloribus?</p>
-                                </div>
-                                <div>
-                                    <i class="ri-arrow-right-wide-fill"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="mainExperienceContent">
-                        <img src="{{ asset('staticImages/contoh2.jpg') }}" alt="">
-                        <a href="">
-                            <div class="textExperienceContainer">
-                                <div>
-                                    <h5>Work 5 Experiences Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
-                                        ex
-                                        possimus,
-                                        quia, nihil quam quisquam illum voluptatibus suscipit doloribus repudiandae
-                                        blanditiis
-                                        neque
-                                        impedit. Quibusdam, voluptatem veritatis velit eius dolorum adipisci.</h5>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque rerum
-                                        praesentium
-                                        reiciendis, tempore harum quia, nulla veniam vitae delectus nisi quibusdam saepe
-                                        earum
-                                        accusantium reprehenderit quam accusamus! In, laborum quia! Lorem ipsum dolor sit,
-                                        amet
-                                        consectetur adipisicing elit. Ipsum sequi impedit dolorum consequatur dolore?
-                                        Facilis
-                                        repellat
-                                        molestias nisi. Aut veritatis voluptatem doloribus distinctio ea, facilis ex
-                                        corporis
-                                        cum?
-                                        Omnis, doloribus?</p>
-                                </div>
-                                <div>
-                                    <i class="ri-arrow-right-wide-fill"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="mainExperienceContent">
-                        <img src="{{ asset('staticImages/contoh2.jpg') }}" alt="">
-                        <a href="">
-                            <div class="textExperienceContainer">
-                                <div>
-                                    <h5>Work 5 Experiences Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
-                                        ex
-                                        possimus,
-                                        quia, nihil quam quisquam illum voluptatibus suscipit doloribus repudiandae
-                                        blanditiis
-                                        neque
-                                        impedit. Quibusdam, voluptatem veritatis velit eius dolorum adipisci.</h5>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque rerum
-                                        praesentium
-                                        reiciendis, tempore harum quia, nulla veniam vitae delectus nisi quibusdam saepe
-                                        earum
-                                        accusantium reprehenderit quam accusamus! In, laborum quia! Lorem ipsum dolor sit,
-                                        amet
-                                        consectetur adipisicing elit. Ipsum sequi impedit dolorum consequatur dolore?
-                                        Facilis
-                                        repellat
-                                        molestias nisi. Aut veritatis voluptatem doloribus distinctio ea, facilis ex
-                                        corporis
-                                        cum?
-                                        Omnis, doloribus?</p>
-                                </div>
-                                <div>
-                                    <i class="ri-arrow-right-wide-fill"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-
-                    <div class="iconMore"><i class="ri-arrow-down-wide-line"></i></div>
-
-                </div>
-
-                <div class="projectShowcase">
-
-                    <div class="containerInputSearch">
-                        <input type="search" name="" id="searchProjectShowcase"
-                            placeholder="Search Project Showcase here!">
-                        <div><i class="ri-search-line"></i></div>
-                    </div>
-
-                    <div class="mainExperienceContent">
-                        <img src="{{ asset('staticImages/contoh1.jpg') }}" alt="">
-                        <a href="">
-                            <div class="textExperienceContainer">
-                                <div>
-                                    <h5>Project 1 Showcase ke 1 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Aliquid ex
-                                        possimus,
-                                        quia, nihil quam quisquam illum voluptatibus suscipit doloribus repudiandae
-                                        blanditiis
-                                        neque
-                                        impedit. Quibusdam, voluptatem veritatis velit eius dolorum adipisci.</h5>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque rerum
-                                        praesentium
-                                        reiciendis, tempore harum quia, nulla veniam vitae delectus nisi quibusdam saepe
-                                        earum
-                                        accusantium reprehenderit quam accusamus! In, laborum quia! Lorem ipsum dolor
-                                        sit,
-                                        amet
-                                        consectetur adipisicing elit. Ipsum sequi impedit dolorum consequatur dolore?
-                                        Facilis
-                                        repellat
-                                        molestias nisi. Aut veritatis voluptatem doloribus distinctio ea, facilis ex
-                                        corporis
-                                        cum?
-                                        Omnis, doloribus?</p>
-                                </div>
-                                <div>
-                                    <i class="ri-arrow-right-wide-fill"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="mainExperienceContent">
-                        <img src="{{ asset('staticImages/contoh1.jpg') }}" alt="">
-                        <a href="">
-                            <div class="textExperienceContainer">
-                                <div>
-                                    <h5>Project 2 Showcase ke 2Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Aliquid ex
-                                        possimus,
-                                        quia, nihil quam quisquam illum voluptatibus suscipit doloribus repudiandae
-                                        blanditiis
-                                        neque
-                                        impedit. Quibusdam, voluptatem veritatis velit eius dolorum adipisci.</h5>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque rerum
-                                        praesentium
-                                        reiciendis, tempore harum quia, nulla veniam vitae delectus nisi quibusdam saepe
-                                        earum
-                                        accusantium reprehenderit quam accusamus! In, laborum quia! Lorem ipsum dolor
-                                        sit,
-                                        amet
-                                        consectetur adipisicing elit. Ipsum sequi impedit dolorum consequatur dolore?
-                                        Facilis
-                                        repellat
-                                        molestias nisi. Aut veritatis voluptatem doloribus distinctio ea, facilis ex
-                                        corporis
-                                        cum?
-                                        Omnis, doloribus?</p>
-                                </div>
-                                <div>
-                                    <i class="ri-arrow-right-wide-fill"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="mainExperienceContent">
-                        <img src="{{ asset('staticImages/contoh1.jpg') }}" alt="">
-                        <a href="">
-                            <div class="textExperienceContainer">
-                                <div>
-                                    <h5>Project 3 Showcase ke 3 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Aliquid ex
-                                        possimus,
-                                        quia, nihil quam quisquam illum voluptatibus suscipit doloribus repudiandae
-                                        blanditiis
-                                        neque
-                                        impedit. Quibusdam, voluptatem veritatis velit eius dolorum adipisci.</h5>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque rerum
-                                        praesentium
-                                        reiciendis, tempore harum quia, nulla veniam vitae delectus nisi quibusdam saepe
-                                        earum
-                                        accusantium reprehenderit quam accusamus! In, laborum quia! Lorem ipsum dolor
-                                        sit,
-                                        amet
-                                        consectetur adipisicing elit. Ipsum sequi impedit dolorum consequatur dolore?
-                                        Facilis
-                                        repellat
-                                        molestias nisi. Aut veritatis voluptatem doloribus distinctio ea, facilis ex
-                                        corporis
-                                        cum?
-                                        Omnis, doloribus?</p>
-                                </div>
-                                <div>
-                                    <i class="ri-arrow-right-wide-fill"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="mainExperienceContent">
-                        <img src="{{ asset('staticImages/contoh1.jpg') }}" alt="">
-                        <a href="">
-                            <div class="textExperienceContainer">
-                                <div>
-                                    <h5>Project 4 Showcase ke 4 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Aliquid ex
-                                        possimus,
-                                        quia, nihil quam quisquam illum voluptatibus suscipit doloribus repudiandae
-                                        blanditiis
-                                        neque
-                                        impedit. Quibusdam, voluptatem veritatis velit eius dolorum adipisci.</h5>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque rerum
-                                        praesentium
-                                        reiciendis, tempore harum quia, nulla veniam vitae delectus nisi quibusdam saepe
-                                        earum
-                                        accusantium reprehenderit quam accusamus! In, laborum quia! Lorem ipsum dolor
-                                        sit,
-                                        amet
-                                        consectetur adipisicing elit. Ipsum sequi impedit dolorum consequatur dolore?
-                                        Facilis
-                                        repellat
-                                        molestias nisi. Aut veritatis voluptatem doloribus distinctio ea, facilis ex
-                                        corporis
-                                        cum?
-                                        Omnis, doloribus?</p>
-                                </div>
-                                <div>
-                                    <i class="ri-arrow-right-wide-fill"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="mainExperienceContent">
-                        <img src="{{ asset('staticImages/contoh1.jpg') }}" alt="">
-                        <a href="">
-                            <div class="textExperienceContainer">
-                                <div>
-                                    <h5>Project Showcase ke 5 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Aliquid ex
-                                        possimus,
-                                        quia, nihil quam quisquam illum voluptatibus suscipit doloribus repudiandae
-                                        blanditiis
-                                        neque
-                                        impedit. Quibusdam, voluptatem veritatis velit eius dolorum adipisci.</h5>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque rerum
-                                        praesentium
-                                        reiciendis, tempore harum quia, nulla veniam vitae delectus nisi quibusdam saepe
-                                        earum
-                                        accusantium reprehenderit quam accusamus! In, laborum quia! Lorem ipsum dolor
-                                        sit,
-                                        amet
-                                        consectetur adipisicing elit. Ipsum sequi impedit dolorum consequatur dolore?
-                                        Facilis
-                                        repellat
-                                        molestias nisi. Aut veritatis voluptatem doloribus distinctio ea, facilis ex
-                                        corporis
-                                        cum?
-                                        Omnis, doloribus?</p>
-                                </div>
-                                <div>
-                                    <i class="ri-arrow-right-wide-fill"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="mainExperienceContent">
-                        <img src="{{ asset('staticImages/contoh1.jpg') }}" alt="">
-                        <a href="">
-                            <div class="textExperienceContainer">
-                                <div>
-                                    <h5>Project Showcase ke 6Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Aliquid ex
-                                        possimus,
-                                        quia, nihil quam quisquam illum voluptatibus suscipit doloribus repudiandae
-                                        blanditiis
-                                        neque
-                                        impedit. Quibusdam, voluptatem veritatis velit eius dolorum adipisci.</h5>
-                                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloremque rerum
-                                        praesentium
-                                        reiciendis, tempore harum quia, nulla veniam vitae delectus nisi quibusdam saepe
-                                        earum
-                                        accusantium reprehenderit quam accusamus! In, laborum quia! Lorem ipsum dolor
-                                        sit,
-                                        amet
-                                        consectetur adipisicing elit. Ipsum sequi impedit dolorum consequatur dolore?
-                                        Facilis
-                                        repellat
-                                        molestias nisi. Aut veritatis voluptatem doloribus distinctio ea, facilis ex
-                                        corporis
-                                        cum?
-                                        Omnis, doloribus?</p>
-                                </div>
-                                <div>
-                                    <i class="ri-arrow-right-wide-fill"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="iconMore"><i class="ri-arrow-down-wide-line"></i></div>
-                </div>
-
-
-            </div>
-        </div>
-
-    </div>
-
-    {{-- Certificates --}}
-    <div class="backgroundCertif">
-        <div class="certificateContainer">
-            <div class="closeCertif"><i class="ri-close-circle-line"></i></div>
-            <div class="certificatesWrapper">
-                <div class="mainCertificate">
-                    <div class="mainImgCertifContainer">
-                        <img src="{{ asset('staticImages/contoh1.jpg') }}" alt="">
-                    </div>
-                    <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit eos esse voluptatem beatae in quasi,
-                        impedit voluptas aperiam vel commodi modi fugit ipsam, expedita totam saepe velit explicabo
-                        consectetur
-                        quidem!</h4>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa earum quos consectetur, quisquam
-                        cupiditate
-                        aliquam dolore repellat exercitationem quo? Dolores eveniet eos voluptatum in, recusandae dolorum
-                        magni
-                        ullam autem beatae. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste aliquam harum hic
-                        quos,
-                        quasi reiciendis praesentium aliquid error facilis omnis sit cupiditate. Distinctio unde illo
-                        quibusdam,
-                        officiis voluptate dolorem debitis.lorem Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                        Minus
-                        et
-                        libero totam earum itaque quo, recusandae, cupiditate accusamus facere ad atque quidem natus cumque
-                        cum
-                        voluptatibus aut culpa voluptate nostrum! Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Facere
-                        quaerat officia quibusdam non! Labore, dolorum quaerat possimus iste delectus culpa, qui vitae,
-                        dolor
-                        hic
-                        officia perferendis incidunt! Sequi, eveniet facere!
-                    </p>
-                </div>
-
-                <div class="certificateCollection">
-
-                    <h3>Certificates</h3>
-                    <div class="certifCollContainer">
-                        <div class="imgCertifContainer">
-                            <img src="{{ asset('staticImages/contoh2.jpg') }}" alt="">
-                        </div>
-                        <div class="textCertifContainer">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quia nostrum odit
-                                assumenda
-                                error
-                                dolor minus animi eligendi doloremque ducimus, hic illo. Sed at distinctio velit, excepturi
-                                dolore
-                                voluptate ipsum! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae rem
-                                facilis
-                                minus
-                                ad provident obcaecati autem harum iusto esse possimus? Architecto voluptate possimus,
-                                quisquam
-                                atque
-                                aperiam doloribus provident recusandae doloremque.</p>
-                            <div>2024 - 2027</div>
-                        </div>
-                    </div>
-                    <div class="certifCollContainer">
-                        <div class="imgCertifContainer">
-                            <img src="{{ asset('staticImages/contoh1.jpg') }}" alt="">
-                        </div>
-                        <div class="textCertifContainer">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quia nostrum odit
-                                assumenda
-                                error
-                                dolor minus animi eligendi doloremque ducimus, hic illo. Sed at distinctio velit, excepturi
-                                dolore
-                                voluptate ipsum! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae rem
-                                facilis
-                                minus
-                                ad provident obcaecati autem harum iusto esse possimus? Architecto voluptate possimus,
-                                quisquam
-                                atque
-                                aperiam doloribus provident recusandae doloremque.</p>
-                            <div>2024 - 2027</div>
-                        </div>
-                    </div>
-                    <div class="certifCollContainer">
-                        <div class="imgCertifContainer">
-                            <img src="{{ asset('staticImages/contoh2.jpg') }}" alt="">
-                        </div>
-                        <div class="textCertifContainer">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quia nostrum odit
-                                assumenda
-                                error
-                                dolor minus animi eligendi doloremque ducimus, hic illo. Sed at distinctio velit, excepturi
-                                dolore
-                                voluptate ipsum! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae rem
-                                facilis
-                                minus
-                                ad provident obcaecati autem harum iusto esse possimus? Architecto voluptate possimus,
-                                quisquam
-                                atque
-                                aperiam doloribus provident recusandae doloremque.</p>
-                            <div>2024 - 2027</div>
-                        </div>
-                    </div>
-                    <div class="certifCollContainer">
-                        <div class="imgCertifContainer">
-                            <img src="{{ asset('staticImages/contoh2.jpg') }}" alt="">
-                        </div>
-                        <div class="textCertifContainer">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quia nostrum odit
-                                assumenda
-                                error
-                                dolor minus animi eligendi doloremque ducimus, hic illo. Sed at distinctio velit, excepturi
-                                dolore
-                                voluptate ipsum! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae rem
-                                facilis
-                                minus
-                                ad provident obcaecati autem harum iusto esse possimus? Architecto voluptate possimus,
-                                quisquam
-                                atque
-                                aperiam doloribus provident recusandae doloremque.</p>
-                            <div>2024 - 2027</div>
-                        </div>
-                    </div>
-                    <div class="certifCollContainer">
-                        <div class="imgCertifContainer">
-                            <img src="{{ asset('staticImages/contoh2.jpg') }}" alt="">
-                        </div>
-                        <div class="textCertifContainer">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quia nostrum odit
-                                assumenda
-                                error
-                                dolor minus animi eligendi doloremque ducimus, hic illo. Sed at distinctio velit, excepturi
-                                dolore
-                                voluptate ipsum! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae rem
-                                facilis
-                                minus
-                                ad provident obcaecati autem harum iusto esse possimus? Architecto voluptate possimus,
-                                quisquam
-                                atque
-                                aperiam doloribus provident recusandae doloremque.</p>
-                            <div>2024 - 2027</div>
-                        </div>
-                    </div>
-                    <div class="certifCollContainer">
-                        <div class="imgCertifContainer">
-                            <img src="{{ asset('staticImages/contoh2.jpg') }}" alt="">
-                        </div>
-                        <div class="textCertifContainer">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quia nostrum odit
-                                assumenda
-                                error
-                                dolor minus animi eligendi doloremque ducimus, hic illo. Sed at distinctio velit, excepturi
-                                dolore
-                                voluptate ipsum! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae rem
-                                facilis
-                                minus
-                                ad provident obcaecati autem harum iusto esse possimus? Architecto voluptate possimus,
-                                quisquam
-                                atque
-                                aperiam doloribus provident recusandae doloremque.</p>
-                            <div>2024 - 2027</div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {{-- Js --}}
-    <script>
-        // SKILLS START
-        borderBottom = document.querySelectorAll('.subSkillsContainer li div');
-
-        borderBottom.forEach(function(e, index) {
-            if (index === 0) {
-                e.classList.add('active');
-            } else {
-                e.classList.remove('active');
-            }
-        });
-
-
-        // Hard Skills
-
-        document.querySelectorAll('.hardSkillDesc').forEach(function(skillDesc, i) {
-            if (i === 0) {
-                const isActive = skillDesc.classList.contains('active');
-
-                if (!isActive) {
-                    skillDesc.classList.add('active');
-                    skillDesc.style.maxHeight = skillDesc.scrollHeight + 'px';
-                }
-
-                document.querySelectorAll('.hardSkillTitle i').forEach(function(icon, index) {
-                    if (index === i) {
-
-                        const rotateIcon = icon.classList.contains('active');
-
-                        icon.classList.remove('active');
-
-                        if (!rotateIcon) {
-                            icon.classList.add('active');
-                        }
-                    } else {
-                        icon.classList.remove('active');
-                    }
-                })
-            } else {
-                skillDesc.classList.remove('active')
-                skillDesc.style.maxHeight = null;
-            }
-        });
-
-        document.getElementById('hardSkills').addEventListener('click', function(eHardSkills) {
-
-            document.querySelectorAll('.hardSkillsContainer').forEach(function(eventSoftSkills) {
-                eventSoftSkills.style.display = 'block';
-
-            });
-            document.querySelectorAll('.softSkillsContainer').forEach(function(eventSoftSkills) {
-                eventSoftSkills.style.display = 'none';
-            });
-
-            borderBottom.forEach(function(e, index) {
-                if (index === 0) {
-                    e.classList.add('active');
-                } else {
-                    e.classList.remove('active');
-                }
-            });
-
-            document.querySelectorAll('.hardSkillDesc').forEach(function(skillDesc, i) {
-                if (i === 0) {
-                    const isActive = skillDesc.classList.contains('active')
-
-                    if (!isActive) {
-                        skillDesc.classList.add('active');
-                        skillDesc.style.maxHeight = skillDesc.scrollHeight + 'px';
-                    }
-
-                    document.querySelectorAll('.hardSkillTitle i').forEach(function(icon, index) {
-                        if (index === i) {
-
-                            const rotateIcon = icon.classList.contains('active');
-
-                            if (!rotateIcon) {
-                                icon.classList.add('active');
-                            }
-                        } else {
-                            icon.classList.remove('active');
-                        }
-                    })
-                } else {
-                    skillDesc.classList.remove('active')
-                    skillDesc.style.maxHeight = null;
-                }
-            });
-
-        });
-
-
-        document.querySelectorAll('.hardSkillTitle').forEach(function(event, index) {
-            event.addEventListener('click', () => {
-                document.querySelectorAll('.hardSkillDesc').forEach(function(skillDesc, i) {
-                    if (i === index) {
-
-                        const isActive = skillDesc.classList.contains('active')
-
-                        skillDesc.classList.remove('active');
-                        skillDesc.style.maxHeight = null;
-
-                        if (!isActive) {
-                            skillDesc.classList.add('active');
-                            skillDesc.style.maxHeight = skillDesc.scrollHeight + 'px';
-                        }
-                    } else {
-                        skillDesc.classList.remove('active')
-                        skillDesc.style.maxHeight = null;
-                    }
-                })
-
-                document.querySelectorAll('.hardSkillTitle i').forEach(function(icon, i) {
-                    if (i === index) {
-
-                        const rotateIcon = icon.classList.contains('active');
-
-                        icon.classList.remove('active');
-
-                        if (!rotateIcon) {
-                            icon.classList.add('active');
-                        }
-                    } else {
-                        icon.classList.remove('active');
-                    }
-                })
-            })
-        });
-
-        // Soft Skills
-        document.getElementById('softSkills').addEventListener('click', function(eSoftSkills) {
-
-            document.querySelectorAll('.softSkillsContainer').forEach(function(eventSoftSkills) {
-                eventSoftSkills.style.display = 'block';
-
-            });
-
-            document.querySelectorAll('.hardSkillsContainer').forEach(function(eventHardSkills) {
-                eventHardSkills.style.display = 'none';
-            });
-
-            borderBottom.forEach(function(e, index) {
-                if (index === 1) {
-                    e.classList.add('active');
-                } else {
-                    e.classList.remove('active');
-                }
-            });
-
-            document.querySelectorAll('.softSkillDesc').forEach(function(skillDesc, i) {
-                if (i === 0) {
-
-                    const isActive = skillDesc.classList.contains('active');
-
-                    if (!isActive) {
-                        skillDesc.classList.add('active');
-                        skillDesc.style.maxHeight = skillDesc.scrollHeight + 'px';
-                    }
-
-                    const icon = document.querySelectorAll('.softSkillTitle i').forEach(function(icon,
-                        index) {
-
-                        if (index === i) {
-
-                            const rotateIcon = icon.classList.contains('active');
-
-                            if (!rotateIcon) {
-                                icon.classList.add('active');
-                            }
-                        } else {
-                            icon.classList.remove('active');
-                        }
-                    });
-                } else {
-                    skillDesc.classList.remove('active')
-                    skillDesc.style.maxHeight = null;
-                }
-            });
-        });
-
-
-        document.querySelectorAll('.softSkillTitle').forEach(function(event, index) {
-
-
-            event.addEventListener('click', () => {
-                document.querySelectorAll('.softSkillDesc').forEach(function(skillDesc, i) {
-                    if (i === index) {
-
-                        const isActive = skillDesc.classList.contains('active')
-
-                        skillDesc.classList.remove('active');
-                        skillDesc.style.maxHeight = null;
-
-                        if (!isActive) {
-                            skillDesc.classList.add('active');
-                            skillDesc.style.maxHeight = skillDesc.scrollHeight + 'px';
-                        }
-                    } else {
-                        skillDesc.classList.remove('active')
-                        skillDesc.style.maxHeight = null;
-                    }
-                })
-
-                const icon = document.querySelectorAll('.softSkillTitle i').forEach(function(icon, i) {
-
-                    if (i === index) {
-
-                        const rotateIcon = icon.classList.contains('active');
-
-                        icon.classList.remove('active');
-
-                        if (!rotateIcon) {
-                            icon.classList.add('active');
-                        }
-                    } else {
-                        icon.classList.remove('active');
-                    }
-                });
-            });
-        });
-
-        // Skills persentation
-        function updateAllLabels() {
-
-            const hardSkillProgressContainer = document.querySelectorAll('.hardSkillDesc span');
-            const softSkillrogressContainer = document.querySelectorAll('.softSkillDesc span');
-
-            hardSkillProgressContainer.forEach(container => {
-                const progress = container.querySelector('progress');
-                const label = container.querySelector('h6');
-
-                if (!progress || !label) return;
-
-                const max = parseFloat(progress.max);
-                const value = parseFloat(progress.value);
-                const width = progress.offsetWidth;
-
-                if (!max || !label) return;
-
-                const percent = value / max;
-                const offset = percent * width;
-                const maxOffset = width + label.offsetWidth;
-
-                if (!isNaN(offset) && isFinite(offset)) {
-                    label.style.position = 'absolute';
-                    const labelLeft = Math.min(offset + 1, maxOffset);
-                    label.style.left = `${labelLeft}px`;
-                    label.textContent = `${Math.round(percent * 100)}%`;
-                }
-            })
-
-            softSkillrogressContainer.forEach(container => {
-                const progress = container.querySelector('progress');
-                const label = container.querySelector('h6');
-
-                if (!progress || !label) return;
-
-                const max = parseFloat(progress.max);
-                const value = parseFloat(progress.value);
-                const width = progress.offsetWidth;
-
-                if (!max || !width) return;
-
-                const percent = value / max;
-                const offset = percent * width;
-                const maxOffset = width + label.offsetWidth
-
-                if (!isNaN(offset) && isFinite(offset)) {
-                    label.style.position = 'absolute';
-                    const labelLeft = Math.min(offset + 1, maxOffset);
-                    label.style.left = `${labelLeft}px`;
-                    label.textContent = `${Math.round(percent * 100)}%`;
-                }
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-
-            setTimeout(updateAllLabels, 200);
-
-            const target = document.querySelector('.softSkillsContainer');
-
-            if (target) {
-                const observer = new MutationObserver(() => {
-                    setTimeout(updateAllLabels, 50);
-                })
-
-                observer.observe(target, {
-                    attributes: true,
-                    childList: true,
-                    subtree: true
-                });
-            } else {
-                console.warn('.skillsContentContainer not found');
-
-            }
-        });
-
-        window.addEventListener('resize', updateAllLabels);
-        //SKILLS END
-
-
-
-        // EXPERIENCES START
-        // Work experiences
-        const workExperience = document.querySelector('.workExperiences');
-        const projectShowcase = document.querySelector('.projectShowcase');
-        const btnWorkExperiences = document.querySelector('.btnWorkExperiences');
-        const btnProjectShowcase = document.querySelector('.btnProjectShowcase');
-
-        btnProjectShowcase.classList.add('active');
-
-        workExperience.style.display = 'none';
-        projectShowcase.style.display = 'block';
-
-
-
-        document.querySelector('.btnWorkExperiences').addEventListener('click', function() {
-            workExperience.style.display = 'block';
-            projectShowcase.style.display = 'none';
-
-            btnWorkExperiences.classList.add('active')
-            btnProjectShowcase.classList.remove('active')
-        })
-
-        // Project showcase
-        document.querySelector('.btnProjectShowcase').addEventListener('click', function() {
-            workExperience.style.display = 'none';
-            projectShowcase.style.display = 'block';
-
-            btnProjectShowcase.classList.add('active')
-            btnWorkExperiences.classList.remove('active')
-        })
-
-        // Search experiances
-        document.querySelectorAll('.containerInputSearch div').forEach(function(e, i) {
-            e.addEventListener('click', () => {
-                document.querySelectorAll('.containerInputSearch input').forEach(function(evnt, index) {
-
-                    if (i === index) {
-                        evnt.classList.toggle('active')
-                    }
-                })
-            })
-        })
-
-
-        const searchExperiences = document.querySelectorAll('.containerInputSearch');
-        const iconMore = document.querySelectorAll('.iconMore');
-        const icons = document.querySelectorAll('.iconMore i');
-        const workExperiences = document.querySelectorAll('.workExperiences .mainExperienceContent')
-        const projectShowcases = document.querySelectorAll('.projectShowcase .mainExperienceContent')
-
-        const LIMIT = 4;
-
-        function setupToggle(experiences, toggleIcon, searchContainer) {
-
-            experiences.forEach((e, i) => {
-                e.style.display = i < LIMIT ? 'block' : 'none';
-            });
-
-            if (experiences.length > LIMIT) {
-
-                if (searchContainer) searchContainer.classList.add('active');
-                if (toggleIcon) toggleIcon.classList.add('active');
-
-                toggleIcon.addEventListener('click', () => {
-                    const isExpanded = experiences[LIMIT].style.display === 'block';
-                    experiences.forEach((e, i) => {
-                        if (i >= LIMIT) {
-                            e.style.display = isExpanded ? 'none' : 'block';
-                        }
-                    });
-
-                    const icon = toggleIcon.querySelector('i');
-
-
-                    if (icon) icon.classList.toggle('active');
-
-                });
-
-            }
-        }
-
-        setupToggle(workExperiences, iconMore[0], searchExperiences[0]);
-        setupToggle(projectShowcases, iconMore[1], searchExperiences[1]);
-
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const searchProject = document.getElementById('searchProjectShowcase');
-            const searchWork = document.getElementById('searchWorkExperiences');
-            const projects = document.querySelectorAll('.projectShowcase .mainExperienceContent');
-            const works = document.querySelectorAll('.workExperiences .mainExperienceContent');
-            const parent = document.querySelector('.projectShowcase');
-            const parents = document.querySelector('.workExperiences');
-            const iconMore = document.querySelectorAll('.iconMore');
-            const icon = document.querySelectorAll('.iconMore i');
-
-            searchProject.addEventListener('input', function() {
-                const keyword = this.value.toLowerCase();
-                let matchCount = 0;
-
-                projects.forEach(function(project, i) {
-                    const text = project.textContent.toLowerCase();
-                    const isMatch = text.includes(keyword);
-
-                    if (isMatch) {
-                        project.style.display = 'block'
-                        matchCount++
-
-                        if (iconMore[1]) {
-                            iconMore[1].classList.remove('active');
-                        }
-
-                    } else {
-                        project.style.display = 'none';
-                        if (iconMore[1]) {
-                            iconMore[1].classList.remove('active');
-                        }
-
-                    }
-
-                    if (matchCount === 0 && keyword !== '') {
-                        if (!document.querySelector('.alertSearch')) {
-                            alertProject = document.createElement('span');
-                            alertProject.classList.add('alertSearch');
-                            alertProject.textContent = "Sorry, project showcases not found";
-
-                            parent.appendChild(alertProject)
-                        }
-
-                    } else {
-                        const existingAlert = document.querySelector('.alertSearch');
-
-                        if (existingAlert) {
-                            existingAlert.remove();
-                        }
-                    }
-
-
-                    if (keyword == '') {
-                        const backToDefault = project.style.display = i >= 4 ? 'none' : 'block';
-
-                        if (icon[1]) {
-                            icon[1].classList.remove('active');
-                        }
-
-                        if (iconMore[1]) {
-                            iconMore[1].classList.add('active');
-                        }
-                    }
-
-
-                })
-
-            })
-
-            searchWork.addEventListener('input', function() {
-                const keyword = this.value.toLowerCase();
-                let matchCount = 0;
-
-                works.forEach(function(work, i) {
-                    const text = work.textContent.toLowerCase();
-                    const isMatch = text.includes(keyword);
-
-                    if (isMatch) {
-                        work.style.display = 'block'
-                        matchCount++
-
-                        if (iconMore[0]) {
-                            iconMore[0].classList.remove('active');
-                        }
-
-                    } else {
-                        work.style.display = 'none';
-                        if (iconMore[0]) {
-                            iconMore[0].classList.remove('active');
-                        }
-
-                    }
-
-                    if (matchCount === 0 && keyword !== '') {
-                        if (!document.querySelector('.alertSearch')) {
-                            alertWork = document.createElement('span');
-                            alertWork.classList.add('alertSearch');
-                            alertWork.textContent = "Sorry, work experiences not found";
-
-                            parents.appendChild(alertWork)
-                        }
-
-                    } else {
-                        const existingAlert = document.querySelector('.alertSearch');
-
-                        if (existingAlert) {
-                            existingAlert.remove();
-                        }
-                    }
-
-
-                    if (keyword == '') {
-                        const backToDefault = work.style.display = i >= 4 ? 'none' : 'block';
-
-                        if (icon[0]) {
-                            icon[0].classList.remove('active');
-                        }
-
-                        if (iconMore[0]) {
-                            iconMore[0].classList.add('active');
-                        }
-                    }
-
-
-                })
-
-            })
-
-        })
-
-        // EXPERIENCES END
-
-        // CERTIFICATE START
-        const certif = document.querySelector('.certificateContainer');
-        const backgroundCertif = document.querySelector('.backgroundCertif');
-
-        document.getElementById('certificate').addEventListener('click', () => {
-            certif.classList.add('active')
-            backgroundCertif.classList.add('active')
-        })
-
-        document.querySelector('.closeCertif').addEventListener('click', () => {
-            certif.classList.remove('active')
-            backgroundCertif.classList.remove('active')
-        })
-        // CERTIFICATE END
-
-        // Drag to pan
-        const panContainer = document.getElementById('skills');
-        const panContent = document.querySelectorAll('.skillsContentContainer, .subSkillsContainer')
-
-        let isDragging = false;
-        let startX, startY;
-        let currentElement = null;
-
-        panContent.forEach(event => {
-            event.addEventListener('mousedown', (e) => {
-                isDragging = true;
-                startX = e.clientX;
-                startY = e.clientY;
-                currentElement = event;
-                event.style.cursor = 'grabbing';
-                e.preventDefault();
-            })
-        })
-
-        window.addEventListener('mouseleave', () => {
-            isDragging = false
-            panContainer.style.cursor = 'default';
-        })
-
-        window.addEventListener('mouseup', () => {
-            isDragging = false;
-            if (currentElement) {
-                panContainer.style.cursor = 'grab';
-                currentElement = null;
-            }
-        })
-
-        window.addEventListener('mousemove', (e) => {
-            if (!isDragging || !currentElement) return;
-
-            const dx = e.clientX - startX;
-            const dy = e.clientY - startY;
-
-
-            const left = parseInt(currentElement.style.left || 0);
-            const top = parseInt(currentElement.style.top || 0);
-
-            currentElement.style.left = `${left+dx}px`;
-            currentElement.style.top = `${top+dy}px`;
-
-            startX = e.clientX;
-            startY = e.clientY;
-
-            panContent.style.cursor = "grab";
-        })
-
-        // Arise Content
-        document.addEventListener('DOMContentLoaded', function() {
-            const profileContainer = document.querySelector('.profileContainer');
-            const subSkillsContainer = document.querySelector('.subSkillsContainer');
-            const skillsContentContainer = document.querySelector('.skillsContentContainer');
-            const buttonExperiencesContainer = document.querySelector('.buttonExperiencesContainer');
-            let lastScrollY = window.scrollY || window.pageYOffeset;
-
-            const observerContent = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('show')
-                    } else {
-                        entry.target.classList.remove('show')
-                    }
-                })
-            }, {
-                root: null,
-                threshold: 0.5
-            })
-
-            observerContent.observe(profileContainer);
-            observerContent.observe(subSkillsContainer);
-            observerContent.observe(skillsContentContainer);
-            observerContent.observe(buttonExperiencesContainer);
-        })
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const allSections = document.querySelectorAll('.workExperiences, .projectShowcase');
-
-            allSections.forEach(section => {
-                const items = section.querySelectorAll('.mainExperienceContent');
-                const observerContent = new IntersectionObserver((entries, observerContent) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            items.forEach((item, index) => {
-                                setTimeout(() => {
-                                    item.classList.add('show')
-                                }, index * 150);
-                            });
-                        } else {
-                            items.forEach((item, index) => {
-                                setTimeout(() => {
-                                    item.classList.remove('show')
-                                }, index * 50);
-                            });
-                        }
-                    });
-                }, {
-                    threshold: 0.5
-                });
-
-                observerContent.observe(section)
-            });
-        });
-    </script>
 @endsection

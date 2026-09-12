@@ -18,4 +18,9 @@ class BaseController extends Controller
         $user = User::first();
         return view('client.mainPage', compact('user'));
     }
+
+    public function aboutMe()
+    {
+        return view('client.aboutMe');
+    }
 }

@@ -11,8 +11,41 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap" rel="stylesheet">
 
+    {{-- font  CDN --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+    {{-- font CDN about me --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=BBH+Sans+Bogle&family=Bebas+Neue&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron:wght@400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    {{-- CDN Font Skill --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&family=Stack+Sans+Headline:wght@200..700&display=swap"
+        rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&family=Stack+Sans+Headline:wght@200..700&display=swap"
+        rel="stylesheet">
+
     {{-- Remix Icon CDN --}}
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
 
     {{-- Bootstrap 5.3 Folder Address --}}
     <link rel="stylesheet" href="{{ asset('bootstrap-5.3.5-dist/css/bootstrap.min.css') }}">
@@ -20,152 +53,71 @@
 
     {{-- Css File Address --}}
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/hero.css') }}">
     <link rel="stylesheet" href="{{ asset('css/aboutMe.css') }}">
     <link rel="stylesheet" href="{{ asset('css/skills.css') }}">
     <link rel="stylesheet" href="{{ asset('css/experience.css') }}">
     <link rel="stylesheet" href="{{ asset('css/hireMe.css') }}">
     <link rel="stylesheet" href="{{ asset('css/certificate.css') }}">
 
-    <title>PORTLINE</title>
+    <link rel="icon" type="image/png" href="{{ asset('staticImages/logo.png') }}">
+    <title>Creative Web Portfolio | Daniel Oktafianus</title>
 
 </head>
 
 
 <body style="background-color: #94897914" class="contentLoaded">
 
-    {{-- Loading content --}}
-    <div class="loadingContainer">
-        <div class="loadIcon">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
-
-        <p>The page is loading, please wait a moment</p>
-    </div>
-
     <div class="baseContainer">
         {{-- Navbar Start --}}
         <nav class="navbarContainer" id="navbarSticky">
+
+            {{-- Logo --}}
             <div class="logoContainer">
-                <a href="">
-                    <h3>
-                        <i>OKT</i>
-                        <div style="color: rgb(205, 31, 31)">.</div>
-                        DNL
+                <a href="" style="display: flex; gap:0px">
+                    <div style="width:40px; height:40px; overflow:hidden">
+                        <img src="{{ request()->routeIs('aboutMe') ? asset('staticImages/wlogo.png') : asset('staticImages/logo.png') }}"
+                            alt="" style="height: 100%; width:100%; object-fit:fill;" id="logoImg">
+                    </div>
+                    <h3 class="{{ request()->is('about-me*') ? 'text-white' : '' }} ">
+                        Daniel Oktafianus
                     </h3>
                 </a>
             </div>
+
             <div class="menuBarContainer">
+                {{-- Hire Me --}}
+                <div class="hireMeMenu">
+                    <i class="ri-arrow-right-long-line"></i>
+                    <p>CONTACT ME</p>
+                    <div></div>
+                </div>
+                <div class="wrapperMenu">
+                    <div class="containerMenu">
+                        <p class="text-menu active">MENU</p>
+                        <p class="text-menu next">CLOSE</p>
+                    </div>
+                    {{-- Menu Icon --}}
+                    <div class="containerIconMenu">
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+
+            {{-- List Menu --}}
+            <div class="containerListMenu">
                 <ul>
-                    <li>
-                        <a class="aboutMeMenu" data-section="aboutMe">
-                            About Me</a>
-                        <div class="underline"></div>
-                    </li>
-
-                    <li>
-                        <a class="skillsMenu" data-section="skills">Skills <i
-                                class="ri-arrow-down-s-line iconDropdown"></i></a>
-                        <div class="underline"></div>
-
-                        <ul class="subCategorySkills">
-                            <li>
-                                <a class="hardSkillsMenu">Hard Skills</a>
-                            </li>
-                            <li>
-                                <a class="softSkillsMenu">Soft Skills</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a class="experiencesMenu" data-section="experience">Experiences <i
-                                class="ri-arrow-down-s-line iconDropdown"></i></a>
-                        <div class="underline"></div>
-
-                        <ul class="subCategoryExperiences">
-                            <li>
-                                <a class="workExperiencesMenu" style="color: white">Work Experiences</a>
-                            </li>
-                            <li>
-                                <a class="projectShowcaseMenu" style="color: white">Project Showcases</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <a style="font-weight: bold; color: #948979" class="hireMeMenu" data-section="hireMe"> <i
-                                class="ri-mail-send-fill"></i>
-                            Hire Me </a>
-                        <div class="underline"></div>
-                    </li>
+                    <li>About Me</li>
+                    <li>Skills</li>
+                    <li>Experiences</li>
                 </ul>
-
-                {{-- Contact Me (Mobile) --}}
-                <div class="contactMeContainer">
-                    <a style="font-weight: bold; color: #948979; text-decoration:none" class="hireMeMenu"
-                        data-section="hireMe"><i class="ri-mail-send-fill"></i>
-                        Hire Me</a>
-                </div>
-
-                {{-- Menu Icon --}}
-                <div class="menuIcon" id="menuToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-
+                <ul>
+                    <li>Certificates</li>
+                </ul>
             </div>
         </nav>
 
-        {{-- Mobile menu --}}
-        <nav class="sidebarContainerMobile" id="sidebarMobile">
-            <ul>
-                <li>
-                    <a class="aboutMeMenu" data-section="aboutMe">About Me</a>
-                    <div class="underline"></div>
-                </li>
-
-                <li>
-                    <div style="display: flex; justify-content:space-between">
-                        <a class="skillsMenu" data-section="skills">Skills</a>
-                        <i class="ri-arrow-down-s-line iconDropdownMobile" data-target="subCategorySkillsMobile"></i>
-                    </div>
-                    <div class="underline"></div>
-
-                    <ul class="subCategorySkillsMobile" id="subCategorySkillsMobile">
-                        <li>
-                            <a class="hardSkillsMenu">Hard Skills</a>
-                        </li>
-                        <li>
-                            <a class="softSkillsMenu">Soft Skills</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    <div style="display: flex; justify-content:space-between">
-                        <a class="experiencesMenu" data-section="experience">Experiences</a>
-                        <i class="ri-arrow-down-s-line iconDropdownMobile"
-                            data-target="subCategoryExperiencesMobile"></i>
-                    </div>
-                    <div class="underline"></div>
-
-                    <ul class="subCategoryExperiencesMobile" id="subCategoryExperiencesMobile">
-                        <li>
-                            <a class="workExperiencesMenu">Work Experiences</a>
-                        </li>
-                        <li>
-                            <a class="projectShowcaseMenu">Project Showcases</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
         {{-- Navbar End --}}
 
         {{-- Main Content Start --}}
@@ -174,441 +126,105 @@
         </main>
         {{-- Main Content End --}}
 
-        {{-- Footer Start --}}
-        <footer>
-            {{-- Hire Me --}}
-
-            <div class="hireMeContainer">
-                <div class="hireMeWrapper">
-                    <div class="contactMeWrapper">
-                        <h2>Contact Me</h2>
-                        <div class="contactAddress">
-                            <ul>
-                                <li><i class="ri-mail-fill"></i> danieloktafianus60@gmail.com</li>
-                                <li><i class="ri-whatsapp-line"></i> +6285718447093</li>
-                                <li><i class="ri-github-fill"></i> Danieloktafianus1</li>
-                                <li><i class="ri-instagram-fill "></i> dnl.okt</li>
-                            </ul>
-                        </div>
-
-                        <h2>My Loction</h2>
-                        <div class="location">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.4018076034145!2d106.73201887349585!3d-6.210617993777241!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f7501a4001bb%3A0x165b06848a11b2d3!2sGg.%20Mutiara%2C%20Meruya%20Sel.%2C%20Kec.%20Kembangan%2C%20Kota%20Jakarta%20Barat%2C%20Daerah%20Khusus%20Ibukota%20Jakarta%2011650!5e0!3m2!1sid!2sid!4v1747678554521!5m2!1sid!2sid"
-                                width="" height="" style="border:0;" allowfullscreen="" loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-                    </div>
-                    <div class="formEmailContainer">
-
-                        <div class="formEmail" id="hireMe">
-                            <form action="{{ route('hireMe') }}" method="POST">
-                                @csrf
-                                <h2>Hire Me</h2>
-
-                                <div class="emailContainer">
-                                    <input type="email" id="formEmail" placeholder=" " name="email">
-                                    <label for="formEmail">Email Address</label>
-                                    <span class="errorEmail"></span>
-                                </div>
-                                <div class="subjectContainer">
-                                    <input type="text" id="formSubjectEmail" placeholder=" " name="subject">
-                                    <label for="formSubjectEmail">Email Subject</label>
-                                    <span class="errorSubject"></span>
-                                </div>
-                                <div class="messageContainer">
-                                    <textarea name="message" id="formMessage" cols="30" rows="5" placeholder=" "></textarea>
-                                    <label for="formMessage">Message</label>
-                                    <span class="errorMessage"></span>
-                                </div>
-
-                                <div>
-                                    @error('g-recaptcha-response')
-                                        <span class="errorReCaptcha">{{ $message }}</span>
-                                    @enderror
-                                    <div class="g-recaptcha mb-5 recaptchaContainer"
-                                        data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}">
-                                    </div>
-                                </div>
-
-                                <div class="containerButton">
-                                    <button type="submit">Send Message <i class="ri-send-plane-fill"></i></button>
-                                </div>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div
-                    style="text-align: center; padding:25px 20px; color:rgb(126, 126, 126); font-weight:700; font-size:15px">
-                    &copy; 2025 Daniel Oktafianus. All right reserved
-                </div>
-            </div>
-        </footer>
-        {{-- Footer End --}}
-
-
     </div>
 
 
     {{-- CDN ReCaptha --}}
     <script async src="https://www.google.com/recaptcha/api.js"></script>
-    {{-- CDN JQuery --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     {{-- CDN Sweet Alert2 --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    {{-- CDN Tree.js --}}
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script type="module" src="{{ asset('js/aboutMe.js') }}"></script>
+    <script type="module" src="{{ asset('js/skills.js') }}"></script>
+    <script src="{{ asset('js/hero.js') }}"></script>
+
     <script>
-        // Navbar Sticky
-        window.addEventListener('scroll', function() {
-            const navbarSticky = document.getElementById('navbarSticky');
-            const sidebarMobile = document.getElementById('sidebarMobile')
-            const menuToggle = document.getElementById('menuToggle')
-            if (window.scrollY > 100) {
-                navbarSticky.classList.add('navSticky');
-            } else {
-                navbarSticky.classList.remove('navSticky');
-            }
-
-            if (window.scrollY) {
-                sidebarMobile.classList.remove('sidebarToggle')
-                menuToggle.classList.remove('active')
-            }
-        })
-
-        // Menu Icon
-        const menuToggle = document.getElementById('menuToggle')
-        const sidebarMobile = document.getElementById('sidebarMobile')
-        menuToggle.addEventListener('click', function() {
-            this.classList.toggle('active')
-            sidebarMobile.classList.toggle('sidebarToggle')
-        })
-
-        // Dropdown Menu
-        document.querySelectorAll('.iconDropdownMobile').forEach(function(element) {
-            element.addEventListener('click', function() {
-                this.classList.toggle('rotate')
-
-                const targetId = this.getAttribute('data-target');
-                const targetElement = document.getElementById(targetId);
-
-                targetElement.classList.toggle('dropDown')
-            });
-        })
-
-
-        // Alert sent email
-
-        const button = document.querySelector('.containerButton button');
-
-        // Email require
-        document.getElementById('formEmail').addEventListener('input', (inputEmail) => {
-
-            let isValid = true;
-
-            const email = inputEmail.target.value;
-            const errorEmail = document.querySelector('.errorEmail');
-            errorEmail.textContent = '';
-            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-
-            if (!email) {
-                errorEmail.textContent = 'Email must be filled in!';
-                isValid = false
-            } else if (!emailPattern.test(email)) {
-                errorEmail.textContent = 'Invalid email!';
-                isValid = false;
-            }
-
-            if (isValid == true) {
-                button.disabled = false
-            } else {
-                button.disabled = true
-            }
-        });
-
-        // Subject require
-        document.getElementById('formSubjectEmail').addEventListener('input', (inputSubject) => {
-
-            let isValid = true
-
-            const subject = inputSubject.target.value;
-            const errorSubject = document.querySelector('.errorSubject');
-            errorSubject.textContent = '';
-            const subjectPattern = /^[a-zA-Z0-9\s._,'-]{1,200}$/;
-
-            if (!subject) {
-                errorSubject.textContent = 'Subject must be filled in!';
-                isValid = false
-            } else if (!subjectPattern.test(subject)) {
-                errorSubject.textContent = 'Invalid email subject!'
-                isValid = false
-            }
-
-            if (isValid == true) {
-                button.disabled = false
-            } else {
-                button.disabled = true
-            }
-        });
-
-
-        // Message require
-        document.getElementById('formMessage').addEventListener('input', (inputMessage) => {
-            let isValid = true
-
-            const message = inputMessage.target.value;
-            const erroMessage = document.querySelector('.errorMessage');
-            erroMessage.textContent = '';
-
-            const messagePattern = /^[a-zA-Z0-9\s.,;:!?'"@()\-_\n\r]{1,700}$/;
-
-            if (!message) {
-                erroMessage.textContent = 'Message must be filled in!';
-                isValid = false
-            } else if (!messagePattern.test(message)) {
-                erroMessage.textContent = 'Invalid Message!';
-                isValid = false
-            }
-
-            if (isValid == true) {
-                button.disabled = false
-            } else {
-                button.disabled = true
-            }
-        })
-
-        // Menu click
-        function scrollWithOffset(el) {
-            const navbar = document.querySelector('nav');
-            const navStyles = window.getComputedStyle(navbar);
-            const isSticky = navStyles.position === 'sticky';
-
-            const navbarHeight = navbar ? navbar.offsetHeight : 0;
-            const elementRect = el.getBoundingClientRect();
-            const elementTop = elementRect.top + window.pageYOffset;
-            const elementHeight = elementRect.height;
-
-            const viewportHeight = window.innerHeight;
-
-            const y = elementTop - (viewportHeight / 2) + (elementHeight / 2) - (isSticky ? navbarHeight : 0);
-
-            window.scrollTo({
-                top: y,
-                behavior: 'smooth'
-            })
-        }
-        document.addEventListener('DOMContentLoaded', () => {
-            const underlines = document.querySelectorAll('.underline');
-            const aboutMe = document.getElementById('aboutMe');
-            const sectionIds = ['aboutMe', 'skills', 'experience', 'hireMe']
-            const sections = sectionIds.map(id => document.getElementById(id))
-            let activeMenuIndex = null
-
-
-
-            document.querySelectorAll('.aboutMeMenu, .hireMeMenu, .experiencesMenu, .skillsMenu').forEach((event,
-                index) => {
-                event.addEventListener('click', () => {
-
-                    const targetId = event.getAttribute('data-section');
-                    const index = sectionIds.indexOf(targetId);
-
-                    if (index !== -1) {
-                        activeMenuIndex = index;
-                        scrollWithOffset(sections[index]);
-
-                    }
-                });
-            });
-
-
-            function updateUnderline(indexToUse) {
-                underlines.forEach((underline, idx) => {
-                    underline.style.width = (idx === indexToUse) ? '100%' : '0%';
-
-                })
-            }
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-
-                    const rect = entry.target.getBoundingClientRect();
-                    const viewportCenter = entry.isIntersecting ? 0.1 : 0;
-
-                    if (viewportCenter) {
-                        const id = entry.target.id;
-                        const indexToUse = sectionIds.indexOf(id);
-                        updateUnderline(indexToUse)
-                        activeMenuIndex = indexToUse;
-                    } else {
-
-                        underlines.forEach((underline) => {
-                            underline.style.width = '0%';
-                        })
-
-                        activeMenuIndex = null
-                    }
-
-                })
-            }, {
-                threshold: 0.7
-            });
-
-            sections.forEach(section => observer.observe(section))
-        })
-
-        // // Sub Menu click
-        const skills = document.getElementById('skills');
-
-        // Hard Skills
-        document.querySelectorAll('.hardSkillsMenu').forEach((event, index) => {
-            event.addEventListener('click', () => {
-                scrollWithOffset(skills);
-
-                document.querySelectorAll('.hardSkillsContainer').forEach(function(eventSoftSkills) {
-                    eventSoftSkills.style.display = 'block';
-
-                });
-                document.querySelectorAll('.softSkillsContainer').forEach(function(eventSoftSkills) {
-                    eventSoftSkills.style.display = 'none';
-                });
-
-                borderBottom.forEach(function(e, index) {
-                    if (index === 0) {
-                        e.classList.add('active');
-                    } else {
-                        e.classList.remove('active');
-                    }
-                });
-
-                document.querySelectorAll('.hardSkillDesc').forEach(function(skillDesc, i) {
-                    if (i === 0) {
-                        const isActive = skillDesc.classList.contains('active')
-
-                        if (!isActive) {
-                            skillDesc.classList.add('active');
-                            skillDesc.style.maxHeight = skillDesc.scrollHeight + 'px';
-                        }
-
-                        document.querySelectorAll('.hardSkillTitle i').forEach(function(icon,
-                            index) {
-                            if (index === i) {
-
-                                const rotateIcon = icon.classList.contains('active');
-
-                                if (!rotateIcon) {
-                                    icon.classList.add('active');
-                                }
-                            } else {
-                                icon.classList.remove('active');
-                            }
-                        })
-                    } else {
-                        skillDesc.classList.remove('active')
-                        skillDesc.style.maxHeight = null;
-                    }
-                });
-            })
-        })
-
-        // Soft Skills
-        document.querySelectorAll('.softSkillsMenu').forEach((event, index) => {
-            event.addEventListener('click', () => {
-                scrollWithOffset(skills);
-
-                document.querySelectorAll('.softSkillsContainer').forEach(function(eventSoftSkills) {
-                    eventSoftSkills.style.display = 'block';
-
-                });
-
-                document.querySelectorAll('.hardSkillsContainer').forEach(function(eventHardSkills) {
-                    eventHardSkills.style.display = 'none';
-                });
-
-                borderBottom.forEach(function(e, index) {
-                    if (index === 1) {
-                        e.classList.add('active');
-                    } else {
-                        e.classList.remove('active');
-                    }
-                });
-
-                document.querySelectorAll('.softSkillDesc').forEach(function(skillDesc, i) {
-                    if (i === 0) {
-
-                        const isActive = skillDesc.classList.contains('active');
-
-                        if (!isActive) {
-                            skillDesc.classList.add('active');
-                            skillDesc.style.maxHeight = skillDesc.scrollHeight + 'px';
-                        }
-
-                        const icon = document.querySelectorAll('.softSkillTitle i').forEach(
-                            function(icon,
-                                index) {
-
-                                if (index === i) {
-
-                                    const rotateIcon = icon.classList.contains('active');
-
-                                    if (!rotateIcon) {
-                                        icon.classList.add('active');
-                                    }
-                                } else {
-                                    icon.classList.remove('active');
-                                }
-                            });
-                    } else {
-                        skillDesc.classList.remove('active')
-                        skillDesc.style.maxHeight = null;
-                    }
-                });
-            })
-        })
-
-
-        const exprcs = document.getElementById('experience');
-        const workExpr = document.querySelector('.workExperiences');
-        const prjctShwCase = document.querySelector('.projectShowcase');
-        const btnWorkExpr = document.querySelector('.btnWorkExperiences');
-        const btnPrjctShwCase = document.querySelector('.btnProjectShowcase');
-        // Work Experience
-        document.querySelectorAll('.workExperiencesMenu').forEach((event) => {
-            event.addEventListener('click', () => {
-                scrollWithOffset(exprcs);
-
-                workExpr.style.display = 'block';
-                prjctShwCase.style.display = 'none';
-
-                btnWorkExpr.classList.add('active')
-                btnPrjctShwCase.classList.remove('active')
-            })
-        });
-
-        // Project Showcase
-        document.querySelectorAll('.projectShowcaseMenu').forEach((event) => {
-            event.addEventListener('click', () => {
-                scrollWithOffset(exprcs);
-
-                workExpr.style.display = 'none';
-                prjctShwCase.style.display = 'block';
-
-                btnPrjctShwCase.classList.add('active')
-                btnWorkExpr.classList.remove('active')
-            })
-        });
-
-        // Loading
-        window.onload = function() {
-
-            const loadingContainer = document.querySelector('.loadingContainer');
-            const contentLoaded = document.querySelector('.contentLoaded');
-
-            loadingContainer.style.display = 'none';
-            contentLoaded.style.display = 'block';
-        }
+        window.routes = {
+            baseUrl: "{{ url('/') }}"
+        };
+
+        window.assets = {
+            logo: "{{ asset('staticImages/logo.png') }}",
+            wlogo: "{{ asset('staticImages/wlogo.png') }}",
+            avatarLeft: "{{ asset('staticImages/fotoDaniel2.png') }}",
+            avatarCenter: "{{ asset('staticImages/fotoDaniel.png') }}",
+            avatarRight: "{{ asset('staticImages/danielFull.png') }}",
+        };
     </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Menu Click
+            const wrapperMenu = document.querySelector('.wrapperMenu')
+            const hireMeMenu = document.querySelector('.hireMeMenu')
+            const containerIconMenu = document.querySelector('.containerIconMenu')
+            const containerMenu = document.querySelector('.containerMenu')
+
+            const containerListMenu = document.querySelector('.containerListMenu')
+            const secFirst = document.querySelector('.containerListMenu ul:first-child')
+            const secLast = document.querySelector('.containerListMenu ul:last-child')
+            const isMobile = window.innerWidth <= 600;
+
+            let sts = false
+
+            wrapperMenu.addEventListener('click', function() {
+                const active = containerMenu.querySelector('.text-menu.active');
+                const next = containerMenu.querySelector('.text-menu.next');
+
+                if (sts === false) {
+                    containerIconMenu.classList.add('active')
+                    containerListMenu.classList.add('active')
+                    secFirst.classList.add('active')
+                    secLast.classList.add('active')
+                    hireMeMenu.classList.add('active')
+                    document.body.classList.add('active')
+
+                    if (isMobile) document.body.classList.add('blur-bg');
+
+                    sts = true
+                } else {
+                    containerIconMenu.classList.remove('active')
+                    containerListMenu.classList.remove('active')
+                    secFirst.classList.remove('active')
+                    secLast.classList.remove('active')
+                    hireMeMenu.classList.remove('active')
+                    document.body.classList.remove('active')
+                    if (isMobile) document.body.classList.remove('blur-bg');
+
+                    sts = false
+                }
+
+                active.classList.toggle('active');
+                active.classList.toggle('next');
+                next.classList.toggle('next');
+                next.classList.toggle('active');
+            })
+
+
+            const scrollEffect = document.querySelectorAll('.scrollEffect');
+
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("active");
+                        } else {
+                            entry.target.classList.remove("active");
+                        }
+                    });
+                }, {
+                    threshold: 0.3
+                }
+            )
+
+            scrollEffect.forEach(el => observer.observe(el))
+        });
+    </script>
+
 
 
     @if (Session::has('sentEmailSucess'))

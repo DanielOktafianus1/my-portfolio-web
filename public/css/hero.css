@@ -1,0 +1,225 @@
+.heroContainer {
+    width: 90%;
+    margin: 20px auto;
+}
+
+.heroWrapper {
+    width: 100%;
+    background: linear-gradient(135deg, #0f2027, #203a43, #3a5a6f);
+    height: 330px;
+    padding: 0;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    position: relative;
+    cursor: default;
+}
+
+.plus {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+}
+
+.plus div {
+    font-size: 25px;
+    font-weight: 300;
+    margin: 0;
+}
+
+.heroWellcome {
+    position: absolute;
+    top: -190px;
+    left: 50%;
+    opacity: 0;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    width: 450px;
+    transition: all 0.6s ease;
+    -webkit-transition: all 0.6s ease;
+    -moz-transition: all 0.6s ease;
+    -ms-transition: all 0.6s ease;
+    -o-transition: all 0.6s ease;
+}
+
+.heroWellcome.active {
+    top: -140px;
+    opacity: 1;
+}
+
+.heroWellcome h1 {
+    font-size: 45px;
+    font-weight: 300;
+}
+
+.continueScrollText {
+    position: absolute;
+    bottom: -80px;
+    right: 0;
+    opacity: 0;
+    width: 200px;
+    transition: all 1s ease;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    -o-transition: all 1s ease;
+}
+
+.continueScrollText.active {
+    opacity: 1;
+}
+
+.continueScrollText h5 {
+    font-weight: 300;
+    margin: 0;
+    text-align: end;
+}
+
+.heroContent {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+/* .heroImgContainer{
+    height: 100px;
+    width: 100px;
+    background-color: white;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    padding: 20px;
+    border: 3px solid black;
+    margin: auto 0;
+} */
+
+/* .heroImgContainer img{
+    height: 100%;
+    width: 100%;
+    object-fit: fill;
+    object-position: center;
+} */
+
+.heroNameContainer {
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+    height: 100%;
+    width: calc(100% - 40px);
+}
+
+.heroNameContainer span {
+    position: absolute;
+    font-weight: bold;
+    font-size: 80px;
+    width: 95px;
+    height: 95px;
+    background: linear-gradient(145deg, #e6f7ff, #b8e3ff);
+    user-select: none;
+    color: #0b1f2a;
+    cursor: default;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    will-change: transform;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.137);
+    transition: transform 0.15s ease-out;
+    -webkit-transition: transform 0.15s ease-out;
+    -moz-transition: transform 0.15s ease-out;
+    -ms-transition: transform 0.15s ease-out;
+    -o-transition: transform 0.15s ease-out;
+    bottom: 0;
+    left: 0;
+    touch-action: none;
+}
+
+@media screen and (max-width: 1200px) {
+    .heroWellcome {
+        position: absolute;
+        top: -110px;
+        left: 50%;
+        transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        width: 320px;
+    }
+
+    .heroWellcome h1 {
+        font-size: 35px;
+        font-weight: 300;
+    }
+
+    .heroWrapper {
+        height: 400px;
+    }
+
+    /* .heroNameContainer span{
+        width: 80px;
+        height: 80px;
+        font-size: 50px;
+    } */
+}
+
+@media screen and (max-width: 900px) {
+    .heroContainer {
+        margin-top: 70px;
+    }
+
+    .heroWrapper {
+        height: 500px;
+    }
+
+    .heroWellcome {
+        position: absolute;
+        top: -120px;
+        left: 0;
+        transform: translateX(0%);
+        -webkit-transform: translateX(0%);
+        -moz-transform: translateX(0%);
+        -ms-transform: translateX(0%);
+        -o-transform: translateX(0%);
+        width: 360px;
+    }
+
+    .heroWellcome h1 {
+        font-size: 35px;
+        font-weight: 300;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .heroNameContainer span {
+        width: 90px;
+        height: 90px;
+        font-size: 70px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .heroWrapper {
+        height: 650px;
+    }
+
+    .heroWellcome {
+        width: 100%;
+    }
+    /* .heroWellcome h1{
+        font-size: 32px;
+        margin: 0;
+        font-weight: 300;
+    } */
+}

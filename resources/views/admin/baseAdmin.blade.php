@@ -33,6 +33,7 @@
 
     {{-- Admin CSS --}}
     <link rel="stylesheet" href="{{ asset('adminCss/user.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminCss/skills.css') }}">
 
 </head>
 
@@ -108,8 +109,11 @@
                         <span class="menu-title">Dashboard</span>
                     </a>
                 </li>
-                <li class="nav-item menu-items">
-                    <a class="nav-link" href="pages/tables/basic-table.html">
+                <li
+                    class="nav-item menu-items 
+                @if (Request::is('cdjshfuv7sf4rtghf/skills/create')) active @else @endif 
+                ">
+                    <a class="nav-link" href="{{ route('skills.index') }}">
                         <span class="menu-icon">
                             <i class="mdi mdi-puzzle"></i>
                         </span>
