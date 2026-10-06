@@ -224,31 +224,134 @@ canvas {
     gap: 30px;
 }
 
-.skillsContainerContent{
-    display: none;
-    position:absolute;
-    width: 100%;
-    height: 100vh;
-    left: 0;
-}
-
-.SoftSkillContent{
+.ListSkillContent{
     width: 50vw;
     height: 100vh;
-    padding: 150px 100px;
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    grid-template-columns:1fr 1fr ;
+    display: flex;
+    flex-direction: column;
 }
 
-.SoftSkillContent h2{
-     font-family: "Inter", sans-serif !important;
-  font-optical-sizing: auto;
-  font-weight: bolder;
-  font-style: normal;
-  font-size: 100px;
+.skillIcons{
+    height: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.containerSkillIcon{
+    position: relative;
+}
+
+
+
+.skillIcons h1{
+    font-size: 60px;
+    text-align: center;
+    font-family: "Michroma", sans-serif;
+    font-weight: bolder;
+    font-style: normal;
+}
+
+.containerDescSkills{
+    height: 35%;
+    position:relative
+}
+
+.decsSkills {
+    position: relative;
+    height: 100%;
+    padding: 20px;
+    margin: 0px 50px;
+    color: white;
+    background: transparent;
+    border-top: 5px solid #887fa0;
+    border-left: 5px solid rgba(6, 0, 90, 0);
+       clip-path: polygon(
+        35px 0,
+        100% 0,
+        100% 100%,
+        0 100%,
+        0 35px
+    );
+}
+
+/* Potong border kiri atas */
+.decsSkills::before {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: -27px;
+    left: -27px;
+    background: transparent;
+    border-right: 5px solid #887fa0;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+}
+
+.skillsContainerContent{
+    display:none;
+    position: absolute;
+    top:0;
+    left: 0;
+    width:100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 10;
+    perspective: 1000px;
+    overflow: hidden;
+}
+
+.sk-card-track{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transform-style: preserve-3d;
+}
+
+.sk-revolving-card{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 320px;
+    height: 380px;
+    margin-top: -190px;
+    margin-left: -160px;
+    background: rgba(15, 23, 42, 0.75);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border-radius:20px ;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 30px;
+    box-shadow: 0 20px 50px rgba(204, 75, 75, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    padding: 30px;
+    box-sizing: border-box;
+    will-change: transform, opacity;
+    pointer-events:auto;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    opacity: 0;
+}
+
+.sk-revolving-card h3 {
+    font-family: "Michroma", sans-serif;
+    font-size: 24px;
+    color: #379dfc;
+    margin-bottom: 15px;
+}
+
+.sk-revolving-card p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #e2e8f0;
+}
+
 
 @media screen and (max-width: 700px) {
     .OWskills h1 {
