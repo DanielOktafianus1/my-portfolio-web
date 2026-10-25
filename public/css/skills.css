@@ -1,6 +1,10 @@
+/* =========================================
+   1. SKILLS CONTAINER
+========================================= */
+
 .skillsContainer {
     width: 100%;
-    margin: 0;
+    margin: 0 auto;
     min-height: 750px;
     height: 600vh;
     overflow-x: hidden;
@@ -11,6 +15,10 @@
     background: linear-gradient(to bottom, #f0f4fc, #b8e3ff) !important;
 }
 
+/* =========================================
+   2. OVERVIEW SKILLS
+========================================= */
+
 .OWskills {
     position: relative;
     width: 100%;
@@ -19,7 +27,7 @@
 }
 
 .OWskills h1 {
-    font-size: 90px;
+    font-size: 100px;
     font-weight: 300;
     text-align: center;
     z-index: 1;
@@ -71,18 +79,44 @@
     opacity: 1;
 }
 
+/* =========================================
+   3. SKILLS WRAPPER / BRAIN CONTAINER
+========================================= */
+
 .skillsWrapper {
     width: 100%;
     height: 100vh;
+    max-width: 1500px;
     min-height: 400px;
+    margin: 0 auto;
     /* z-index: 10; */
-    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     /* overflow: visible !important; */
     position: relative;
+    overflow: visible;
 }
+
+#brainContainer {
+    /* position: sticky;
+    top: 0;
+    width: 100%;
+    max-width: 1500px; 
+    height: 100vh;
+    margin: 0 auto; */
+    /* isolation: isolate; */
+}
+
+#brainContainer > canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+}
+
+/* =========================================
+   4. SKILLS LINE SVG
+========================================= */
 
 .lineSkills {
     position: absolute;
@@ -109,6 +143,10 @@
 .lineSkills.removeLine {
     display: none;
 }
+
+/* =========================================
+   5. SKILLS WRAPPER TEXT
+========================================= */
 
 .skillsWrapper p {
     position: absolute;
@@ -140,23 +178,30 @@
     display: none;
 }
 
+/* =========================================
+   6. SKILLS WRAPPER ACTIVE
+========================================= */
+
 .skillsWrapper.active {
     position: fixed !important;
     top: 0;
-    left: 0;
-    /* background: linear-gradient(to right, rgb(3, 0, 54), rgb(0, 0, 0)); */
+    left: 50% !important; /* Kunci ke tengah layar */
+    transform: translateX(-50%) !important; /* Geser persis ke tengah */
+    width: 100% !important;
+    max-width: 1500px !important; /* Batasi pas 1500px */
     background-color: rgb(0, 0, 0);
     color: white;
-    transition: all 0.6s ease-in-out;
+    z-index: 100; /* Pastikan di atas layer lain */
+    /* transition: all 0.6s ease-in-out; */
 
     .skillsWrapper.active::before {
-        /* Kita gunakan animasi sederhana atau langsung set opacity 1 */
         animation: fadeInGradient 1.5s forwards;
     }
-    -webkit-transition: all 0.6s ease-in-out;
+
+    /* -webkit-transition: all 0.6s ease-in-out;
     -moz-transition: all 0.6s ease-in-out;
     -ms-transition: all 0.6s ease-in-out;
-    -o-transition: all 0.6s ease-in-out;
+    -o-transition: all 0.6s ease-in-out; */
 }
 
 .skillsWrapper.active::before {
@@ -181,10 +226,15 @@
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
 }
+
+/* =========================================
+   7. SKILLS WRAPPER END
+========================================= */
 
 .skillsWrapper.end {
     position: absolute;
@@ -200,23 +250,179 @@
     -o-transition: all 0.3s ease-in-out;
 }
 
-.logoNameActiveSkill {
-    color: white;
+/* =========================================
+   8. SKILLS CONTENT CONTAINER
+========================================= */
+
+.skillsContainerContent {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 10;
+    perspective: 1000px;
+    /* overflow: visible; */
+    max-width: 1500px;
+    z-index: auto;
+    /* perspective: none; */
+    overflow: hidden;
 }
+
+/* =========================================
+   9. HARD SKILLS TITLE
+========================================= */
+
+.skillscategory {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* font-size: 500px; */
+    /* font-weight: bolder; */
+    /* white-space: nowrap; */
+    display: flex;
+    flex-direction: column;
+    line-height: 400px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.textHard,
+.textSkill {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 500px;
+}
+
+.textHard {
+    position: relative;
+    transform: translateX(-100px);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.textSkill {
+    position: relative;
+    transform: translateX(200px);
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+.textHard.active,
+.textSkill.active {
+    transform: translateX(0);
+    opacity: 1 !important;
+}
+
+/* =========================================
+   10. HARD SKILLS
+========================================= */
+
+.hardskill {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    /* transform-style: preserve-3d; */
+    /* isolation: isolate; */
+}
+
+/* =========================================
+   11. HARD SKILLS CARD TRACK
+========================================= */
+
+.sk-card-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transform-style: preserve-3d;
+}
+
+/* =========================================
+   12. REVOLVING CARD
+========================================= */
+
+.sk-revolving-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 320px;
+    height: 380px;
+    margin-top: -190px;
+    margin-left: -160px;
+    background: rgba(15, 23, 42, 0.75);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 30px;
+    box-shadow:
+        0 20px 50px rgba(204, 75, 75, 0.5),
+        inset 0 0 20px rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    padding: 30px;
+    box-sizing: border-box;
+    will-change: transform, opacity;
+    pointer-events: auto;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    opacity: 0;
+    z-index: 2;
+}
+
+.sk-revolving-card h3 {
+    font-family: "Michroma", sans-serif;
+    font-size: 24px;
+    color: #379dfc;
+    margin-bottom: 15px;
+}
+
+.sk-revolving-card p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #e2e8f0;
+}
+
+/* =========================================
+   13. SOFT SKILLS
+========================================= */
+
+.softskill {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transform-style: preserve-3d;
+}
+
+/* =========================================
+   14. OTHER SKILLS ELEMENTS
+========================================= */
 
 canvas {
     display: block;
-    width: 100vw;
-    height: 100vh;
+    width: 100% !important;
+    height: 100% !important;
     pointer-events: none;
+    margin: 0 auto;
     z-index: 0;
 }
 
-.skillContent{
+.skillContent {
     width: 50vw;
     height: 100vh;
     display: grid;
-    grid-template-columns: repeat(2 ,1fr);
+    grid-template-columns: repeat(2, 1fr);
     position: absolute;
     top: 0;
     left: 0;
@@ -224,27 +430,25 @@ canvas {
     gap: 30px;
 }
 
-.ListSkillContent{
+.ListSkillContent {
     width: 50vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-.skillIcons{
+.skillIcons {
     height: 65%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.containerSkillIcon{
+.containerSkillIcon {
     position: relative;
 }
 
-
-
-.skillIcons h1{
+.skillIcons h1 {
     font-size: 60px;
     text-align: center;
     font-family: "Michroma", sans-serif;
@@ -252,9 +456,9 @@ canvas {
     font-style: normal;
 }
 
-.containerDescSkills{
+.containerDescSkills {
     height: 35%;
-    position:relative
+    position: relative;
 }
 
 .decsSkills {
@@ -266,13 +470,7 @@ canvas {
     background: transparent;
     border-top: 5px solid #887fa0;
     border-left: 5px solid rgba(6, 0, 90, 0);
-       clip-path: polygon(
-        35px 0,
-        100% 0,
-        100% 100%,
-        0 100%,
-        0 35px
-    );
+    clip-path: polygon(35px 0, 100% 0, 100% 100%, 0 100%, 0 35px);
 }
 
 /* Potong border kiri atas */
@@ -292,66 +490,13 @@ canvas {
     -o-transform: rotate(45deg);
 }
 
-.skillsContainerContent{
-    display:none;
-    position: absolute;
-    top:0;
-    left: 0;
-    width:100%;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 10;
-    perspective: 1000px;
-    overflow: hidden;
+.logoNameActiveSkill {
+    color: white;
 }
 
-.sk-card-track{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    transform-style: preserve-3d;
-}
-
-.sk-revolving-card{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 320px;
-    height: 380px;
-    margin-top: -190px;
-    margin-left: -160px;
-    background: rgba(15, 23, 42, 0.75);
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
-    border-radius:20px ;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 30px;
-    box-shadow: 0 20px 50px rgba(204, 75, 75, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.05);
-    color: #ffffff;
-    padding: 30px;
-    box-sizing: border-box;
-    will-change: transform, opacity;
-    pointer-events:auto;
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-    opacity: 0;
-}
-
-.sk-revolving-card h3 {
-    font-family: "Michroma", sans-serif;
-    font-size: 24px;
-    color: #379dfc;
-    margin-bottom: 15px;
-}
-
-.sk-revolving-card p {
-    font-size: 15px;
-    line-height: 1.6;
-    color: #e2e8f0;
-}
-
+/* =========================================
+   15. RESPONSIVE
+========================================= */
 
 @media screen and (max-width: 700px) {
     .OWskills h1 {

@@ -40,11 +40,18 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap"
+        rel="stylesheet">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
 
     {{-- Remix Icon CDN --}}
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
+        rel="stylesheet" />
 
     {{-- Bootstrap 5.3 Folder Address --}}
     <link rel="stylesheet" href="{{ asset('bootstrap-5.3.5-dist/css/bootstrap.min.css') }}">
@@ -62,6 +69,9 @@
     <link rel="icon" type="image/png" href="{{ asset('staticImages/logo.png') }}">
     <title>Creative Web Portfolio | Daniel Oktafianus</title>
 
+    {{-- VITE (Auto Refresh Page) --}}
+    @vite([])
+
 </head>
 
 
@@ -76,7 +86,8 @@
                 <a href="" style="display: flex; gap:0px">
                     <div style="width:40px; height:40px; overflow:hidden">
                         <img src="{{ request()->routeIs('aboutMe') ? asset('staticImages/wlogo.png') : asset('staticImages/logo.png') }}"
-                            alt="" style="height: 100%; width:100%; object-fit:fill;" id="logoImg">
+                            alt="" style="height: 100%; width:100%; object-fit:fill;"
+                            id="logoImg">
                     </div>
                     <h3 class="{{ request()->is('about-me*') ? 'text-white' : '' }} ">
                         Daniel Oktafianus
@@ -137,6 +148,8 @@
     {{-- CDN Tree.js --}}
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+
+
     <script type="module" src="{{ asset('js/aboutMe.js') }}"></script>
     <script type="module" src="{{ asset('js/skills.js') }}"></script>
     <script src="{{ asset('js/hero.js') }}"></script>

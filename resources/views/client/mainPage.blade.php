@@ -58,39 +58,42 @@
             <svg class="lineAboutMe" viewBox="0 0 1000 1000" preserveAspectRatio="none">
 
                 <defs>
-                    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%"
+                        y2="100%">
                         <stop offset="0%" stop-color="#b8e3ff" />
                         <stop offset="100%" stop-color="#379dfc" />
                     </linearGradient>
 
                     <filter id="softShadow" x="-30%" y="-30%" width="180%" height="180%">
-                        <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#8ccfff"
-                            flood-opacity="0.6" />
+                        <feDropShadow dx="0" dy="8" stdDeviation="12"
+                            flood-color="#8ccfff" flood-opacity="0.6" />
                     </filter>
                 </defs>
 
                 <!-- DESKTOP PATH -->
                 <path class="scrollLine desktopLine"
                     d="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  M 0 40
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  C 360 140, 430 500, 340 800
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  C 260 1040, 110 820, 160 520
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  C 220 240, 450 360, 500 600
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  C 560 860, 750 240, 1050 650
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                "
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  M 0 40
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  C 360 140, 430 500, 340 800
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  C 260 1040, 110 820, 160 520
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  C 220 240, 450 360, 500 600
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  C 560 860, 750 240, 1050 650
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                "
                     stroke="url(#blueGradient)" stroke-width="40" fill="none" stroke-linecap="round"
-                    vector-effect="non-scaling-stroke" stroke-linejoin="round" filter="url(#softShadow)" />
+                    vector-effect="non-scaling-stroke" stroke-linejoin="round"
+                    filter="url(#softShadow)" />
 
                 <!-- MOBILE PATH (LEBIH PENDEK & SIMPLE) -->
                 <path class="scrollLine mobileLine"
                     d="
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  M 0 30
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  C 50 50, 650 100, 650 400
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  C 670 700, 240 700, 200 540
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  C 170 350, 650 70, 1500 1200
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                "
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  M 0 30
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  C 50 50, 650 100, 650 400
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  C 670 700, 240 700, 200 540
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  C 170 350, 650 70, 1500 1200
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                "
                     stroke="url(#blueGradient)" stroke-width="30" fill="none" stroke-linecap="round"
-                    vector-effect="non-scaling-stroke" stroke-linejoin="round" filter="url(#softShadow)" />
+                    vector-effect="non-scaling-stroke" stroke-linejoin="round"
+                    filter="url(#softShadow)" />
 
             </svg>
 
@@ -108,11 +111,15 @@
                 </div>
                 <div class="aboutMeContentRight scrollEffect">
                     <div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam magni at perspiciatis quidem.
-                            Repellendus, neque! Cumque velit sequi, sed obcaecati unde ratione labore iure, culpa
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam magni at
+                            perspiciatis quidem.
+                            Repellendus, neque! Cumque velit sequi, sed obcaecati unde ratione labore
+                            iure, culpa
                             expedita
-                            aliquam vero quam iusto! Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, ex
-                            consequatur. Delectus, fugit quae! Vel alias, quod placeat vero aspernatur dolores, veniam
+                            aliquam vero quam iusto! Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Earum, ex
+                            consequatur. Delectus, fugit quae! Vel alias, quod placeat vero aspernatur
+                            dolores, veniam
                             repellat
                             perspiciatis sit a voluptatem nisi dignissimos unde!</p>
 
@@ -143,80 +150,142 @@
 
                 <svg class="lineSkills" viewBox="0 0 1000 1000" preserveAspectRatio="none">
                     <defs>
-                        <linearGradient id="blueGradientSkill" x1="100%" y1="0%" x2="0%" y2="100%">
+                        <linearGradient id="blueGradientSkill" x1="100%" y1="0%"
+                            x2="0%" y2="100%">
                             <stop offset="0%" stop-color="#379dfc" />
                             <stop offset="100%" stop-color="#2563eb" />
                         </linearGradient>
 
                         <filter id="softShadow" x="-30%" y="-30%" width="180%" height="180%">
-                            <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#8ccfff"
-                                flood-opacity="0.6" />
+                            <feDropShadow dx="0" dy="8" stdDeviation="12"
+                                flood-color="#8ccfff" flood-opacity="0.6" />
                         </filter>
                     </defs>
 
 
                     <path class="scrollSkillLine desktopLineSkill"
                         d="M 1060,-10
-                                                                                                                                                                                                                                                                                                                                                                                                                                        C 900,50 800,200 960,600
-                                                                                                                                                                                                                                                                                                                                                                                                                                        S 550,1300 750,300
-                                                                                                                                                                                                                                                                                                                                                                                                                                        S 200,-200 500,200
-                                                                                                                                                                                                                                                                                                                                                                                                                                        S 300,1000 -100,100"
-                        stroke="url(#blueGradientSkill)" stroke-width="40" fill="none" stroke-linecap="round"
-                        vector-effect="non-scaling-stroke" stroke-linejoin="round" filter="url(#softShadow)" />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        C 900,50 800,200 960,600
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        S 550,1300 750,300
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        S 200,-200 500,200
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        S 300,1000 -100,100"
+                        stroke="url(#blueGradientSkill)" stroke-width="40" fill="none"
+                        stroke-linecap="round" vector-effect="non-scaling-stroke"
+                        stroke-linejoin="round" filter="url(#softShadow)" />
 
                     <path class="scrollSkillLine mobileLineSkill"
                         d="M 1100,50
-                                                                                                                                                                                                                                                                                                                                                                                                                                            C 700,100 400,300 600,450
-                                                                                                                                                                                                                                                                                                                                                                                                                                            S 900,600 600,750
-                                                                                                                                                                                                                                                                                                                                                                                                                                            S 300,1000 1100,1100"
-                        stroke="url(#blueGradientSkill)" stroke-width="30" fill="none" stroke-linecap="round"
-                        vector-effect="non-scaling-stroke" stroke-linejoin="round" filter="url(#softShadow)" />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            C 700,100 400,300 600,450
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            S 900,600 600,750
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            S 300,1000 1100,1100"
+                        stroke="url(#blueGradientSkill)" stroke-width="30" fill="none"
+                        stroke-linecap="round" vector-effect="non-scaling-stroke"
+                        stroke-linejoin="round" filter="url(#softShadow)" />
                 </svg>
 
                 <div>
-                    <p class="scrollEffect">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates, minima
-                        unde! Eos laboriosam libero nam repellat ea explicabo possimus. Ducimus placeat hic ullam
+                    <p class="scrollEffect">Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                        Voluptates, minima
+                        unde! Eos laboriosam libero nam repellat ea explicabo possimus. Ducimus placeat
+                        hic ullam
                         dignissimos astem temporibus doloribus dolorem iure lalal perspiciatis?</p>
                 </div>
 
-                <svg style="position: absolute; width: 0; height: 0; pointer-events: none; visibility: hidden;">
+                <svg
+                    style="position: absolute; width: 0; height: 0; pointer-events: none; visibility: hidden;">
                     <defs>
-                        <filter id="fluid-cloth-filter" x="-30%" y="-30%" width="160%" height="160%">
-                            <feTurbulence type="fractalNoise" baseFrequency="0.015 0.04" numOctaves="2"
-                                result="noise" />
-                            <feDisplacementMap id="cloth-disp" in="SourceGraphic" in2="noise" scale="0"
-                                xChannelSelector="R" yChannelSelector="G" />
+                        <filter id="fluid-cloth-filter" x="-30%" y="-30%" width="160%"
+                            height="160%">
+                            <feTurbulence type="fractalNoise" baseFrequency="0.015 0.04"
+                                numOctaves="2" result="noise" />
+                            <feDisplacementMap id="cloth-disp" in="SourceGraphic" in2="noise"
+                                scale="0" xChannelSelector="R" yChannelSelector="G" />
                         </filter>
                     </defs>
                 </svg>
 
                 <div class="skillsContainerContent">
-                    <div class="sk-card-track">
-                        <div class="sk-revolving-card">
-                            <h3>Web Development</h3>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta quae magnam excepturi,
-                                voluptates nihil vel odit vero quidem dolorum, expedita maiores! Culpa velit eos quam rerum
-                                exercitationem tempora ad dignissimos!
-                            </p>
-                        </div>
-                        <div class="sk-revolving-card">
-                            <h3>3D & Interactive</h3>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta quae magnam excepturi,
-                                voluptates nihil vel odit vero quidem dolorum, expedita maiores! Culpa velit eos quam rerum
-                                exercitationem tempora ad dignissimos!
-                            </p>
-                        </div>
-                        <div class="sk-revolving-card">
-                            <h3>Cyber Security</h3>
-                            <p>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta quae magnam excepturi,
-                                voluptates nihil vel odit vero quidem , expedita maiores! Culpa velit eos quam rerum
-                                exercitationem tempora ad dignissimos!
-                            </p>
+                    <div class="skillscategory">
+                        <div class="textHard">HARD</div>
+                        <div class="textSkill">SKILLS</div>
+                    </div>
+
+                    <div class="hardskill">
+                        <div class="sk-card-track">
+                            <div class="sk-revolving-card hardCategory">
+                                <h3>Web Development</h3>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta quae
+                                    magnam excepturi,
+                                    voluptates nihil vel odit vero quidem dolorum, expedita maiores!
+                                    Culpa
+                                    velit eos quam rerum
+                                    exercitationem tempora ad dignissimos!
+                                </p>
+                            </div>
+                            <div class="sk-revolving-card hardCategory">
+                                <h3>3D & Interactive</h3>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta quae
+                                    magnam excepturi,
+                                    voluptates nihil vel odit vero quidem dolorum, expedita maiores!
+                                    Culpa
+                                    velit eos quam rerum
+                                    exercitationem tempora ad dignissimos!
+                                </p>
+                            </div>
+                            <div class="sk-revolving-card hardCategory">
+                                <h3>Cyber Security</h3>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta quae
+                                    magnam excepturi,
+                                    voluptates nihil vel odit vero quidem , expedita maiores! Culpa
+                                    velit
+                                    eos quam rerum
+                                    exercitationem tempora ad dignissimos!
+                                </p>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="softskill" style="display: none">
+                        <div class="sk-card-track">
+                            <div class="sk-revolving-card softCategory">
+                                <h3>Web Development</h3>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta quae
+                                    magnam excepturi,
+                                    voluptates nihil vel odit vero quidem dolorum, expedita maiores!
+                                    Culpa
+                                    velit eos quam rerum
+                                    exercitationem tempora ad dignissimos!
+                                </p>
+                            </div>
+                            <div class="sk-revolving-card">
+                                <h3>3D & Interactive</h3>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta quae
+                                    magnam excepturi,
+                                    voluptates nihil vel odit vero quidem dolorum, expedita maiores!
+                                    Culpa
+                                    velit eos quam rerum
+                                    exercitationem tempora ad dignissimos!
+                                </p>
+                            </div>
+                            <div class="sk-revolving-card">
+                                <h3>Cyber Security</h3>
+                                <p>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta quae
+                                    magnam excepturi,
+                                    voluptates nihil vel odit vero quidem , expedita maiores! Culpa
+                                    velit
+                                    eos quam rerum
+                                    exercitationem tempora ad dignissimos!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
