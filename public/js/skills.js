@@ -66,7 +66,7 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
                     // 2. Awalnya atas 10% (0.1), setelah di-scroll full maksimal menjadi 80% (0.8)
                     // Bagian bawah tetap transparan (mendekati 0.2)
                     float minAlpha = 0.0; 
-                    float maxAlpha = mix(1.0, 9.0, uScrollProgress);
+                    float maxAlpha = mix(1.0, 5.0, uScrollProgress);
                     
                     float alpha = mix(minAlpha, maxAlpha, factor);
                     
@@ -113,7 +113,7 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
         }
 
         // Posisi di pojok kanan atas latar belakang
-        planetGroup.position.set(15.5, 3, -40);
+        planetGroup.position.set(0, 5, -30);
         planetGroup.rotation.z = 0.4;
 
         planetGroup.traverse((child) => {
