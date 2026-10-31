@@ -1,18 +1,135 @@
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.module.js";
+// import { Children } from "react";
 
 (function () {
-    // --- VARIABEL GLOBAL INTERNAL ---
-    let skBrainMainGroup, skRenderer, skScene, skCamera;
-    let skDefaultMaterial, skHologramMaterial;
-    let isHologramActive = true; // Hologram aktif secara default
+    // --- VARIABEL GLOBAL INTERNAL & CACHE DOM ---
+    let skBrainMainGroup, skRenderer, skScene, skCamera, skPlanet;
+    let skHologramMaterial;
+
+    // Cache elemen DOM agar tidak dipanggil terus-menerus di dalam requestAnimationFrame (Hemat RAM/CPU)
+    let skContainer,
+        skWrapper,
+        skLogoName,
+        skLogoImg,
+        skDescText,
+        skLine,
+        clothDisp,
+        skillsContainerContent,
+        allCards;
+
+    function cacheDomElements() {
+        skContainer = document.querySelector(".skillsContainer");
+        skWrapper = document.querySelector(".skillsWrapper");
+        skLogoName = document.querySelector(".logoContainer h3");
+        skLogoImg = document.querySelector(".logoContainer img");
+        skDescText = document.querySelector(".skillsWrapper p");
+        skLine = document.querySelector(".lineSkills");
+        clothDisp = document.getElementById("cloth-disp");
+        skillsContainerContent = document.querySelector(
+            ".skillsContainerContent",
+        );
+        allCards = document.querySelectorAll(".sk-revolving-card");
+    }
 
     // --- 1. PEMBUAT OTAK ---
+    function buildSkHologramPlanet() {
+        const planetGroup = new THREE.Group();
+        planetGroup.name = "skHologramPlanet";
+
+        const planetMaterial = new THREE.ShaderMaterial({
+            uniforms: {
+                uColor: { value: new THREE.Color("#5c3e9f") },
+                uEmissive: { value: new THREE.Color("#300983") },
+                uScrollProgress: { value: 0.0 },
+            },
+            vertexShader: `
+                varying vec3 vPosition;
+                varying float vPosY;
+
+                void main() {
+                    vPosition = position;
+                    vPosY = position.y;
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                }
+            `,
+            fragmentShader: `
+                uniform vec3 uColor;
+                uniform vec3 uEmissive;
+                uniform float uScrollProgress;
+                varying vec3 vPosition;
+                varying float vPosY;
+
+                void main() {
+                    // 1. Hitung gradasi vertikal dasar
+                    float factor = smoothstep(-5.2, 35.0, vPosY);
+
+                    // 2. Awalnya atas 10% (0.1), setelah di-scroll full maksimal menjadi 80% (0.8)
+                    // Bagian bawah tetap transparan (mendekati 0.2)
+                    float minAlpha = 0.0; 
+                    float maxAlpha = mix(1.0, 9.0, uScrollProgress);
+                    
+                    float alpha = mix(minAlpha, maxAlpha, factor);
+                    
+                    // Cek performa agar yang terlalu transparan tidak dirender
+                    if (alpha < 0.01) discard;
+
+                    vec3 finalColor = mix(uColor, uEmissive, 0.6);
+                    
+                    // 3. Render warna dengan alpha hasil gradasi
+                    gl_FragColor = vec4(finalColor, alpha);
+                }
+            `,
+            wireframe: true,
+            transparent: true,
+            depthWrite: false,
+            depthTest: true,
+            blending: THREE.NormalBlending,
+        });
+
+        // 1. Bola Planet Utama
+        const sphereGeo = new THREE.SphereGeometry(5.0, 32, 32);
+        const sphereMesh = new THREE.Mesh(sphereGeo, planetMaterial);
+        planetGroup.add(sphereMesh);
+
+        // 2. Membuat 4-5 Garis Cincin Melingkar yang Terpisah
+        const numRings = 5; // Jumlah garis cincin
+        const baseRadius = 7.0; // Jari-jari awal cincin terluar/terdekat dari bola
+        const ringSpacing = 3; // Jarak antar garis cincin
+
+        for (let i = 0; i < numRings; i++) {
+            const currentRadius = baseRadius + i * ringSpacing;
+
+            // Menggunakan ketebalan yang tipis agar tampak seperti garis melingkar
+            const ringGeo = new THREE.TorusGeometry(
+                currentRadius,
+                0.05,
+                1.6,
+                100,
+            );
+            ringGeo.rotateX(Math.PI / 2 + 0.55); // Kemiringan cincin
+
+            const ringMesh = new THREE.Mesh(ringGeo, planetMaterial);
+            planetGroup.add(ringMesh);
+        }
+
+        // Posisi di pojok kanan atas latar belakang
+        planetGroup.position.set(15.5, 3, -40);
+        planetGroup.rotation.z = 0.4;
+
+        planetGroup.traverse((child) => {
+            if (child.isMesh) {
+                child.renderOrder = -9999;
+            }
+        });
+
+        planetGroup.visible = false;
+
+        return planetGroup;
+    }
+
     function buildSkProceduralBrain() {
         const skGroup = new THREE.Group();
 
-        // 1. Inisialisasi Material Hologram
-        // Catatan: Nilai warna heksadesimal dengan 8 digit (misal: "#30098358")
-        // menggunakan format 0xRRGGBBAA. Pastikan format ini didukung oleh renderer Anda.
         skHologramMaterial = new THREE.MeshStandardMaterial({
             color: "#30098358",
             emissive: "#30098358",
@@ -27,27 +144,18 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
 
         const skMaterial = skHologramMaterial;
 
-        /**
-         * Helper internal untuk membuat satu belahan otak besar (hemisphere).
-         * Menggunakan manipulasi vertex berbasis fungsi sinus/kosinus untuk efek lekukan organik.
-         *
-         * @param {number} xOffset - Posisi offset pada sumbu X untuk memisahkan hemisfer kiri dan kanan.
-         * @returns {THREE.Mesh} Mesh hemisfer otak.
-         */
         function buildSkHemisphere(xOffset) {
-            // Menggunakan geometri bola dengan subdivisi tinggi untuk detail vertex yang halus
-            const geo = new THREE.SphereGeometry(1, 128, 128);
+            // Dioptimalkan: Subdivisi diturunkan dari 128 ke 64 (Hemat vertex GPU)
+            const geo = new THREE.SphereGeometry(1, 100, 100);
             const pos = geo.attributes.position;
             const vec = new THREE.Vector3();
 
-            // Deformasi bentuk bola dasar menjadi bentuk lonjong menyerupai struktur otak
             for (let i = 0; i < pos.count; i++) {
                 vec.fromBufferAttribute(pos, i);
                 vec.z *= 1.35;
                 vec.x *= 0.9;
                 if (vec.y < 0) vec.y *= 0.65;
 
-                // Kalkulasi gelombang noise prosedural untuk tekstur gyri/sulci (lipatan otak)
                 const f1 = 7.0;
                 const f2 = 14.0;
                 const noise =
@@ -73,12 +181,10 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
             return mesh;
         }
 
-        // Menambahkan Hemisfer Kiri (-0.48) dan Kanan (0.48) ke dalam Grup Utama
         skGroup.add(buildSkHemisphere(-0.48), buildSkHemisphere(0.48));
 
         // --- 2. OTAK BELAKANG (Cerebellum) ---
-        // Membuat geometri dasar cerebellum dengan detail gelombang folia (garis-garis horizontal khas)
-        const skCerebellumGeo = new THREE.SphereGeometry(0.5, 64, 64);
+        const skCerebellumGeo = new THREE.SphereGeometry(0.5, 64, 64); // Dioptimalkan ke 32
         const cPos = skCerebellumGeo.attributes.position;
         const cVec = new THREE.Vector3();
 
@@ -100,9 +206,8 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
         skGroup.add(skCerebellum);
 
         // --- 3. BATANG OTAK (Brain Stem) ---
-        // Membuat struktur silinder untuk batang otak yang menghubungkan otak besar ke sumsum tulang belakang
         const skStem = new THREE.Mesh(
-            new THREE.CylinderGeometry(0.2, 0.12, 1.2, 16),
+            new THREE.CylinderGeometry(0.2, 0.12, 1.2, 12), // Dioptimalkan ke 12 segmen
             skMaterial,
         );
         skStem.position.set(0, -1.1, -0.5);
@@ -113,59 +218,122 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
         const skPlatformGroup = new THREE.Group();
         skPlatformGroup.name = "skPlatform";
 
-        // A. Panggung bertingkat di bawah batang otak
-        const stageGeo1 = new THREE.CylinderGeometry(2, 2, 0.5, 100);
+        const stageGeo1 = new THREE.CylinderGeometry(2, 2, 0.5, 40); // Dioptimalkan ke 32 segmen
         const stageMesh1 = new THREE.Mesh(
             stageGeo1,
             new THREE.MeshStandardMaterial({
-                color: 0x8a75b8,
-                wireframe: true, 
-                transparent: true,
+                transparent: false,
+                color: "#486ad8",
+                wireframe: true,
+                // transparent: true,
                 opacity: 0.8,
             }),
         );
         stageMesh1.position.set(0, -2.6, -0.3);
 
-        const stageGeo2 = new THREE.CylinderGeometry(3, 3, 0.5, 200);
+        const stageGeo2 = new THREE.CylinderGeometry(3, 3, 0.5, 80); // Dioptimalkan ke 48 segmen
         const stageMesh2 = new THREE.Mesh(
             stageGeo2,
             new THREE.MeshStandardMaterial({
-                color: 0x8a75b8,
-                wireframe: true, 
-                transparent: true,
-                opacity: 0.8,
+                transparent: false,
+                color: "#415aad",
+                wireframe: true,
+                // transparent: true,
+                opacity: 0.9,
             }),
         );
         stageMesh2.position.set(0, -3.2, -0.3);
 
         skPlatformGroup.add(stageMesh1, stageMesh2);
 
-        const gridSize = 200;
-        const gridDivisions = 200;
-        const gridHelper = new THREE.GridHelper(
+        const gridSize = 370;
+        // Dioptimalkan: Subdivisi diturunkan dari 128 ke 64
+        const gridGeometry = new THREE.PlaneGeometry(
             gridSize,
-            gridDivisions,
-            0x300983,
-            0x300983,
+            gridSize,
+            250,
+            250,
         );
-        gridHelper.position.set(0, -1.75, 0);
+
+        gridGeometry.rotateX(-Math.PI / 2);
 
         const gridMaterial = new THREE.ShaderMaterial({
             transparent: true,
-            blending: THREE.AdditiveBlending,
+            wireframe: true,
             uniforms: {
                 uColor: {
-                    value: new THREE.Color("#afa1cd"),
+                    value: new THREE.Color("#7085c7"),
                 },
                 uMaxDistance: {
-                    value: gridSize * 0.5,
+                    value: gridSize * 0.27,
                 },
             },
             vertexShader: `
             varying vec3 vPosition;
+
+            float random(vec2 st){
+                return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * 43758.5453123);
+            }
+
+            float noise(vec2 st){
+                vec2 i = floor(st);
+                vec2 f = fract(st);
+                vec2 u = f * f * (3.0 - 2.0 * f);
+
+                float a = random(i);
+                float b = random(i + vec2(1.0, 0.0));
+                float c = random(i + vec2(0.0, 1.0));
+                float d = random(i + vec2(1.0, 1.0));
+
+                return mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
+            }
+
+            float moonCraters(vec2 st) {
+                float value = 0.0;
+                float amplitude = 0.5;
+                float frequency = 0.8;
+                
+                for (int i = 0; i < 3; i++) {
+                    float n = 1.0 - abs(noise(st * frequency) * 2.0 - 1.0);
+                    n = pow(n, 2.5);
+                    value += n * amplitude;
+                    
+                    amplitude *= 0.06;
+                    frequency *= 29.0;
+                }
+                return value;
+            }
+
             void main() {
-                vPosition = position;
-                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                vec3 pos = position;
+
+                // --- 1. TERRAIN DASAR ---
+                vec2 stretchedCoord = vec2(pos.x * 0.001, pos.z * 0.001);
+                float baseTerrain = (noise(stretchedCoord * 1.5) - 0.5) * 20.0;
+                
+                vec2 warp = vec2(noise(pos.xz * 1.005), noise(pos.xz * 1.005)) * 1.0;
+                float craters = moonCraters((pos.xz + warp) * 0.003) * 70.0;
+
+                // --- 2. CINCIN GUNDUKAN TEPAT DI KELILING OTAK ---
+                float dist = length(pos.xz + 1.0);
+                
+                // Jarak cincin gundukan diatur pas di tepi panggung (radius 12 hingga 18)
+                float ringCenter = 35.0; 
+                float ringWidth = 6.0;
+                
+                float ringFactor = exp(-pow((dist - ringCenter) / ringWidth, 2.0));
+                
+                // Tinggi gundukan melingkar
+                float smallHills = ringFactor * noise(pos.xz * 0.05) * 7.0;
+                
+                // Area tepat di bawah panggung (radius < 10) dikosongkan/dibersihkan agar datar
+                float centerClearing = smoothstep(6.0, 10.0, dist);
+
+                // Terapkan ke posisi Y
+                pos.y += baseTerrain + craters + (smallHills * centerClearing);
+            
+                vPosition = pos;
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);      
             }
         `,
             fragmentShader: `
@@ -174,21 +342,17 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
             varying vec3 vPosition;
             void main() {
                 float dist = length(vPosition.xz);
-                float alpha = 1.0 - smoothstep(0.0, uMaxDistance, dist);
-                gl_FragColor = vec4(uColor, alpha * 0.5);
+                float alpha = 0.8 - smoothstep(0.0, uMaxDistance, dist);
+                gl_FragColor = vec4(uColor, alpha);
             }
         `,
         });
 
-        // // Sesuaikan material/opacity dari grid agar senada dengan efek hologram
-        // gridHelper.material.transparent = true;
-        // gridHelper.material.opacity = 0.4;
-        // gridHelper.material.blending = THREE.AdditiveBlending;
-        gridHelper.material = gridMaterial;
+        const terrainMesh = new THREE.Mesh(gridGeometry, gridMaterial);
+        terrainMesh.position.set(0, 5.75, 0);
 
-        skPlatformGroup.add(gridHelper);
-
-        // Sembunyikan platform secara default di awal halaman
+        terrainMesh.renderOrder = 1;
+        skPlatformGroup.add(terrainMesh);
         skPlatformGroup.visible = false;
 
         skGroup.add(skPlatformGroup);
@@ -196,27 +360,22 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
         return skGroup;
     }
 
-    /**
-     * --- 2. INITIALIZATION ---
-     * Menjalankan inisialisasi utama aplikasi Three.js saat dokumen HTML selesai dimuat.
-     * Menyiapkan Scene, Camera, WebGLRenderer, pencahayaan, objek otak, serta memulai loop animasi.
-     */
+    // --- 2. INITIALIZATION ---
     document.addEventListener("DOMContentLoaded", () => {
-        // Mengambil elemen kontainer DOM tempat canvas Three.js akan disematkan
         const skCanvasHolder = document.getElementById("brainContainer");
         if (!skCanvasHolder) return;
 
-        // 1. Inisialisasi Scene dan Kamera Perspektif
+        cacheDomElements(); // Panggil cache DOM sekali di awal
+
         skScene = new THREE.Scene();
         skCamera = new THREE.PerspectiveCamera(
-            35, // Field of View (FOV) dalam derajat
-            skCanvasHolder.clientWidth / skCanvasHolder.clientHeight, // Aspect Ratio berdasarkan kontainer
-            0.1, // Near clipping plane
-            100, // Far clipping plane
+            35,
+            skCanvasHolder.clientWidth / skCanvasHolder.clientHeight,
+            0.1,
+            100,
         );
         skCamera.position.z = 10;
 
-        // 2. Inisialisasi WebGL Renderer
         skRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         skRenderer.setSize(
             skCanvasHolder.clientWidth,
@@ -225,22 +384,21 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
         skRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         skCanvasHolder.appendChild(skRenderer.domElement);
 
-        // 3. Konfigurasi Pencahayaan (Lighting)
         const skLight = new THREE.DirectionalLight(0xffffff, 2);
         skLight.position.set(5, 5, 5);
 
         const skAmbientLight = new THREE.AmbientLight(0xffffff, 0.8);
         skScene.add(skLight, skAmbientLight);
 
-        // 4. Membangun dan Menambahkan Model Otak ke dalam Scene
+        skPlanet = buildSkHologramPlanet();
+        skScene.add(skPlanet);
+
         skBrainMainGroup = buildSkProceduralBrain();
         skScene.add(skBrainMainGroup);
 
-        // 5. Event Listener untuk Resize Browser / Kontainer
         window.addEventListener("resize", () => {
             if (!skCanvasHolder) return;
 
-            // Perbarui aspek rasio kamera dan ukuran renderer mengikuti kontainer/jendela
             skCamera.aspect =
                 skCanvasHolder.clientWidth / skCanvasHolder.clientHeight;
             skCamera.updateProjectionMatrix();
@@ -252,11 +410,9 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
             skRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         });
 
-        // 6. Memulai Loop Animasi Utama
         skAnimate();
     });
 
-    // --- GLOBAL VARIABLES & CACHE ---
     let winW = window.innerWidth;
     let isSmallScreen = winW <= 700;
     let skSnapTimeout = null;
@@ -271,23 +427,23 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
         return Math.min(Math.max(val, min), max);
     }
 
+    let mouseX = 0;
+    let mouseY = 0;
+    let targetMouseX = 0;
+    let targetMouseY = 0;
+
+    window.addEventListener("mousemove", (e) => {
+        targetMouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        targetMouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+    });
+
     // --- 3. SCROLL & UI ANIMATION LOGIC ---
     function skAnimate() {
-        /**
-         * Melanjutkan loop animasi Three.js menggunakan requestAnimationFrame.
-         */
         requestAnimationFrame(skAnimate);
 
-        // Mengambil referensi elemen-elemen DOM yang berkaitan dengan section "Skills" dan UI pendukung
-        const skContainer = document.querySelector(".skillsContainer");
-        const skWrapper = document.querySelector(".skillsWrapper");
-        const skLogoName = document.querySelector(".logoContainer h3");
-        const skLogoImg = document.querySelector(".logoContainer img");
-        const skDescText = document.querySelector(".skillsWrapper p");
-        const skLine = document.querySelector(".lineSkills");
-        const clothDisp = document.getElementById("cloth-disp");
+        mouseX += (targetMouseX - mouseX) * 0.05;
+        mouseY += (targetMouseY - mouseY) * 0.05;
 
-        // Validasi awal: Keluar dari fungsi jika container tidak ditemukan atau model otak belum dimuat
         if (
             !skContainer ||
             typeof skBrainMainGroup === "undefined" ||
@@ -295,21 +451,20 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
         )
             return;
 
-        // Menghitung posisi dan dimensi elemen relatif terhadap viewport
         const skRect = skContainer.getBoundingClientRect();
         const winH = window.innerHeight;
-        const skOffset = 240; // Batas offset pixel untuk pemicu transisi sticky
+        const skOffset = 240;
         const isAboutMeActive = document.body.classList.contains("activeAM");
         const skPlatform = skBrainMainGroup.getObjectByName("skPlatform");
+        const skHologramPlanet =
+            skBrainMainGroup.getObjectByName("skHologramPlanet");
 
-        // --- A. LOGIKA STICKY / FIXED WRAPPER BERDASARKAN POSISI SCROLL ---
+        // --- A. LOGIKA STICKY / FIXED WRAPPER ---
         if (skRect.top <= -skOffset && skRect.bottom >= winH) {
-            // 1. Kondisi ketika section "Skills" sedang aktif di tengah layar (Sticky aktif)
             if (skWrapper) {
                 skWrapper.classList.add("active");
                 skWrapper.classList.remove("end");
             }
-            // Ubah logo menjadi versi putih/alternatif jika aset tersedia dan mode "About Me" tidak aktif
             if (!isAboutMeActive && skLogoImg && window.assets?.wlogo)
                 skLogoImg.src = window.assets.wlogo;
 
@@ -319,18 +474,15 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
 
             if (skPlatform) skPlatform.visible = true;
         } else if (skRect.bottom < winH) {
-            // 2. Kondisi ketika pengguna sudah melewati section "Skills" (Mencapai akhir section)
             if (skWrapper) {
                 skWrapper.classList.add("end");
                 skWrapper.classList.remove("active");
             }
-            // Kembalikan logo ke logo utama/standar
             if (!isAboutMeActive && skLogoImg && window.assets?.logo)
                 skLogoImg.src = window.assets.logo;
 
             if (skLogoName) skLogoName.classList.remove("logoNameActiveSkill");
         } else {
-            // 3. Kondisi ketika section "Skills" belum dicapai (Berada di atas section)
             if (skWrapper) skWrapper.classList.remove("active", "end");
 
             if (!isAboutMeActive && skLogoImg && window.assets?.logo)
@@ -342,7 +494,7 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
             if (skPlatform) skPlatform.visible = false;
         }
 
-        // --- B. ANIMASI 3D OTAK & CARD (EFEK KAIN AIR & MAX-WIDTH 1500PX) ---
+        // --- B. ANIMASI 3D OTAK & CARD ---
         const skScrollY = Math.max(0, Math.abs(skRect.top) - skOffset);
         const skBaseScale = isSmallScreen ? 0.65 : 1.0;
         const skTargetX = isSmallScreen ? 1.2 : 3.5;
@@ -350,24 +502,19 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
         const skPhase1 = skClamp(skScrollY / (2 * winH), 0, 1);
         const skPhase2 = skClamp((skScrollY - 2 * winH) / (2.5 * winH), 0, 1);
 
-        const skillsContainerContent = document.querySelector(
-            ".skillsContainerContent",
-        );
-
-        const allCards = document.querySelectorAll(".sk-revolving-card");
-
         if (skRect.top <= -skOffset) {
             if (skPhase1 < 1) {
                 let curentScale;
                 let moveProgress = 0;
 
                 const targetMinScale = 0;
-                const midScale = 0.35;
+                const midScale = 0.12;
 
                 if (skPhase1 <= 0.5) {
                     const p1 = skPhase1 / 0.5;
                     curentScale = skBaseScale * (1.0 - p1 * (1.0 - midScale));
                     moveProgress = 0;
+                    if (skPlanet) skPlanet.visible = false;
                 } else {
                     const p2 = (skPhase1 - 0.5) / 1.0;
                     curentScale =
@@ -375,13 +522,26 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
                         (midScale - p2 * (midScale - targetMinScale));
 
                     moveProgress = p2;
+                    // if (skPlanet) skPlanet.visible = true;
+
+                    if (skPlanet) {
+                        skPlanet.traverse((child) => {
+                            skPlanet.visible = true;
+                            if (
+                                child.isMesh &&
+                                child.material.uniforms &&
+                                child.material.uniforms.uScrollProgress
+                            ) {
+                                child.material.uniforms.uScrollProgress.value =
+                                    p2;
+                            }
+                        });
+                    }
                 }
 
                 const targetY = -4;
                 const targetZ = 2;
-                // const targetX = skTargetX || 1;
 
-                // skBrainMainGroup.position.x = moveProgress * targetX;
                 skBrainMainGroup.position.y = moveProgress * targetY;
                 skBrainMainGroup.position.z = moveProgress * targetZ;
 
@@ -396,187 +556,31 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
 
                 if (skillsContainerContent)
                     skillsContainerContent.style.display = "none";
+            } else {
+                // --- FASE 2: KONTROL MOUSE DENGAN SUDUT DEFAULT TETAP ---
+                const defaultRotationY = 0.12;
+                const defaultRotationX = 0.2; // Kemiringan sudut dari atas (sesuai gambar)
+
+                // Hitung rotasi target hanya berdasarkan pergerakan horizontal (mouseX)
+                let targetRotY = defaultRotationY - mouseX * 0.8;
+
+                // Batasi maksimal sudut putar kanan-kiri
+                const maxRotationLimit = 0.2;
+
+                let clampedTargetY = skClamp(
+                    targetRotY,
+                    -maxRotationLimit,
+                    maxRotationLimit,
+                );
+
+                skBrainMainGroup.rotation.y +=
+                    (clampedTargetY - skBrainMainGroup.rotation.y) * 0.05;
+
+                // Pertahankan sudut X agar bentuk dan sudut pandangnya tetap dari atas
+                skBrainMainGroup.rotation.x = defaultRotationX;
             }
-            // else {
-            //     // FASE 2: Otak Berada di Kanan & Animasi Kartu
-            //     skBrainMainGroup.position.x = skTargetX;
-            //     // const curentScale = ;
-
-            //     skBrainMainGroup.scale.set(
-            //         2 * skBaseScale,
-            //         2 * skBaseScale * 1.1,
-            //         2 * skBaseScale,
-            //     );
-
-            //     // skBrainMainGroup.rotation.y = -(skPhase2 * Math.PI * 0.4);
-            //     // skBrainMainGroup.rotation.x = 0;
-
-            //     if (skillsContainerContent) {
-            //         if (skPhase2 > 0) {
-            //             setTimeout(() => {
-            //                 let skillCategorys = document.querySelectorAll(
-            //                     ".textHard,.textSkill",
-            //                 );
-
-            //                 skillCategorys.forEach((sklStgry) => {
-            //                     sklStgry.classList.add("active");
-            //                 });
-            //             }, 200);
-
-            //             skillsContainerContent.style.display = "block";
-
-            //             // Batasi basis lebar maksimal container card menjadi 1500px
-            //             const effectiveW = Math.min(winW, 1500);
-            //             const brainCenterX = effectiveW * -0.04;
-            //             const targetLeftX = -(effectiveW * 0.22);
-            //             const totalCards = allCards.length || 1;
-            //             const slotWindow = 1 / totalCards;
-
-            //             const maxRotationY = -(totalCards * 0.3);
-
-            //             skBrainMainGroup.rotation.y = skPhase2 * maxRotationY;
-            //             skBrainMainGroup.rotation.x = 0;
-            //             window.idxActive = {};
-            //             setTimeout(() => {
-            //                 Object.values(allCards).forEach((card, idx) => {
-            //                     window.idxActive = idx;
-            //                     if (card.classList.contains("softCategory")) {
-            //                         card.style.display = "none";
-            //                         return;
-            //                     } else if (
-            //                         card.classList.contains("hardCategory") &&
-            //                         window.idxActive > card.length - 1
-            //                     ) {
-            //                         card.style.display = "none";
-            //                         return;
-            //                     }
-
-            //                     const cardStart = idx * slotWindow;
-
-            //                     const localProgress = skClamp(
-            //                         (skPhase2 - cardStart) / slotWindow,
-            //                         0,
-            //                         1,
-            //                     );
-
-            //                     let currentX = 0;
-            //                     let currentY = 0;
-            //                     let currentZ = 0;
-            //                     let opacity = 0;
-            //                     let scaleX = 1;
-            //                     let scaleY = 1;
-            //                     let skewX = 0;
-            //                     let waveDistort = 0;
-            //                     let cardZIndex = 20 + idx;
-
-            //                     if (localProgress <= 0) {
-            //                         opacity = 0;
-            //                         card.style.display = "none";
-            //                     } else if (localProgress < 0.25) {
-            //                         // 1. KELUAR DARI BELAKANG OTAK KECIL -> MEMBESAR KE KIRI
-            //                         card.style.display = "block";
-
-            //                         card.classList.add("countIdx"); // Menambahkan class
-
-            //                         const rawProgress = localProgress / 0.25;
-
-            //                         const enterProgress =
-            //                             1 - Math.pow(1 - rawProgress, 3);
-
-            //                         currentX =
-            //                             brainCenterX +
-            //                             (targetLeftX - brainCenterX) *
-            //                                 enterProgress;
-            //                         currentZ = -300 + (1 - enterProgress);
-
-            //                         scaleX = 0.3 + enterProgress * 0.7;
-            //                         scaleY = 0.3 + enterProgress * 0.7;
-
-            //                         const speedFactor = Math.sin(
-            //                             enterProgress * Math.PI,
-            //                         );
-            //                         waveDistort = speedFactor * 30;
-            //                         skewX = speedFactor * 10;
-
-            //                         opacity = skClamp(
-            //                             enterProgress / 0.15,
-            //                             0,
-            //                             1,
-            //                         );
-            //                         cardZIndex = 2 + idx;
-            //                         card.style.transformOrigin = "right center";
-            //                     } else if (localProgress <= 0.75) {
-            //                         // 2. BERHENTI DENGAN STABIL & MEMBENTANG SEMPURNA DI KIRI
-            //                         card.style.display = "block";
-            //                         currentX = targetLeftX;
-            //                         currentZ = 0;
-            //                         opacity = 1;
-            //                         scaleX = 1;
-            //                         scaleY = 1;
-            //                         skewX = 0;
-            //                         waveDistort = 0;
-            //                         cardZIndex = 20 + idx;
-            //                         card.style.transformOrigin =
-            //                             "center center";
-            //                     } else {
-            //                         // 3. HILANG BERGELOMBANG KE KANAN
-            //                         card.style.display = "block";
-
-            //                         const rawExit =
-            //                             (localProgress - 0.75) / 0.25;
-            //                         const exitProgress = Math.pow(rawExit, 2);
-
-            //                         currentX =
-            //                             targetLeftX +
-            //                             effectiveW * 0.7 * exitProgress;
-            //                         currentZ = -exitProgress * 50;
-
-            //                         const exitSpeed = Math.sin(
-            //                             exitProgress * Math.PI,
-            //                         );
-            //                         skewX = exitSpeed * -15;
-            //                         waveDistort = exitSpeed * 25;
-
-            //                         const exitScale = 1 + exitProgress * 0.3;
-            //                         scaleX = exitScale;
-            //                         scaleY = exitScale;
-
-            //                         opacity = 1 - rawExit;
-            //                         cardZIndex = 25 + idx;
-            //                         card.style.transformOrigin = "left center";
-            //                     }
-
-            //                     // Efek Distorsi SVG Filter Kain Air
-            //                     if (clothDisp && waveDistort > 0) {
-            //                         clothDisp.setAttribute(
-            //                             "scale",
-            //                             waveDistort,
-            //                         );
-            //                     }
-
-            //                     card.style.filter =
-            //                         waveDistort > 1
-            //                             ? "url(#fluid-cloth-filter)"
-            //                             : "none";
-            //                     card.style.transform = `translate3d(${currentX}px, ${currentY}px, ${currentZ}px) skewX(${skewX}deg) scale(${scaleX}, ${scaleY})`;
-            //                     card.style.opacity = opacity;
-            //                     card.style.zIndex = cardZIndex;
-
-            //                     // console.log(cards.length);
-
-            //                     // if (window.idxActive > cards.length - 1) {
-            //                     //     alert("Abis cardnya cuy");
-            //                     // }
-            //                 });
-            //             }, 500);
-            //         } else {
-            //             skillsContainerContent.style.display = "none";
-            //         }
-            //     }
-            // }
         } else {
             skBrainMainGroup.position.x = 0;
-            // Dikembalikan murni menggunakan skBaseScale agar sinkron di awal
             skBrainMainGroup.scale.setScalar(skBaseScale);
             skBrainMainGroup.rotation.y = 1.2;
             skBrainMainGroup.rotation.x = 0.3;
@@ -587,46 +591,6 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
 
         skRenderer.render(skScene, skCamera);
     }
-
-    // --- 4. SNAP SCROLL LOGIC 50% ---
-    // window.addEventListener("scroll", () => {
-    //     const skContainer = document.querySelector(".skillsContainer");
-    //     if (!skContainer) return;
-
-    //     const winH = window.innerHeight;
-    //     const skOffset = 240;
-    //     const skRect = skContainer.getBoundingClientRect();
-    //     const skScrollY = Math.max(0, Math.abs(skRect.top) - skOffset);
-
-    //     const skPhase1 = skClamp(skScrollY / (2 * winH), 0, 1);
-    //     const skPhase2 = skClamp((skScrollY - 2 * winH) / (2.5 * winH), 0, 1);
-
-    //     if (skRect.top <= -skOffset && skPhase1 >= 1 && skPhase2 > 0 && skPhase2 < 0.65 && !skIsSnapping) {
-    //         clearTimeout(skSnapTimeout);
-
-    //         skSnapTimeout = setTimeout(() => {
-    //             skIsSnapping = true;
-
-    //             const phase2StartScroll = skContainer.offsetTop + skOffset + (2 * winH);
-    //             let targetScroll = 0;
-
-    //             if (skPhase2 < 0.4) {
-    //                 // Di bawah 50% -> Tarik kembali sembunyi ke dalam otak
-    //                 targetScroll = phase2StartScroll;
-    //             } else {
-    //                 // Di atas 50% -> Kunci otomatis membentang di kiri
-    //                 targetScroll = phase2StartScroll + (1.2 * winH);
-    //             }
-
-    //             window.scrollTo({
-    //                 top: targetScroll,
-    //                 behavior: "smooth"
-    //             });
-
-    //             setTimeout(() => { skIsSnapping = false; }, 600);
-    //         }, 250);
-    //     }
-    // });
 })();
 
 // --- 5. LOGIKA SVG LINE SCROLL ---
