@@ -31,6 +31,29 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
         allCards = document.querySelectorAll(".sk-revolving-card");
     }
 
+    // --- HELPER UI & LOGO ---
+    const assetsKey = (isAM, wlogo) =>
+        !isAM && window.assets
+            ? wlogo
+                ? window.assets.wlogo
+                : window.assets.logo
+            : null;
+
+    function updateUIState(isActive, isEnd, isAboutMeActive) {
+        if (skWrapper) {
+            skWrapper.classList.toggle("active", isActive);
+            skWrapper.classList.toggle("end", isEnd);
+        }
+
+        const logoSrc = assetsKey(isAboutMeActive, isActive);
+        if (skLogoImg && logoSrc) skLogoImg.src = logoSrc;
+
+        if (skLogoName)
+            skLogoName.classList.toggle("logoNameActiveSkill", isActive);
+        if (skDescText) skDescText.classList.toggle("removeText", isActive);
+        if (skLine) skLine.classList.toggle("removeLine", isActive);
+    }
+
     // --- 1. PEMBUAT OTAK ---
     function buildSkHologramPlanet() {
         const planetGroup = new THREE.Group();
@@ -60,22 +83,14 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
                 varying float vPosY;
 
                 void main() {
-                    // 1. Hitung gradasi vertikal dasar
                     float factor = smoothstep(-5.2, 35.0, vPosY);
-
-                    // 2. Awalnya atas 10% (0.1), setelah di-scroll full maksimal menjadi 80% (0.8)
-                    // Bagian bawah tetap transparan (mendekati 0.2)
                     float minAlpha = 0.0; 
                     float maxAlpha = mix(1.0, 5.0, uScrollProgress);
                     
                     float alpha = mix(minAlpha, maxAlpha, factor);
-                    
-                    // Cek performa agar yang terlalu transparan tidak dirender
                     if (alpha < 0.01) discard;
 
                     vec3 finalColor = mix(uColor, uEmissive, 0.6);
-                    
-                    // 3. Render warna dengan alpha hasil gradasi
                     gl_FragColor = vec4(finalColor, alpha);
                 }
             `,
@@ -86,44 +101,36 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
             blending: THREE.NormalBlending,
         });
 
-        // 1. Bola Planet Utama
         const sphereGeo = new THREE.SphereGeometry(5.0, 32, 32);
         const sphereMesh = new THREE.Mesh(sphereGeo, planetMaterial);
         planetGroup.add(sphereMesh);
 
-        // 2. Membuat 4-5 Garis Cincin Melingkar yang Terpisah
-        const numRings = 5; // Jumlah garis cincin
-        const baseRadius = 7.0; // Jari-jari awal cincin terluar/terdekat dari bola
-        const ringSpacing = 3; // Jarak antar garis cincin
+        const numRings = 5;
+        const baseRadius = 7.0;
+        const ringSpacing = 3;
 
         for (let i = 0; i < numRings; i++) {
             const currentRadius = baseRadius + i * ringSpacing;
-
-            // Menggunakan ketebalan yang tipis agar tampak seperti garis melingkar
             const ringGeo = new THREE.TorusGeometry(
                 currentRadius,
                 0.05,
                 1.6,
                 100,
             );
-            ringGeo.rotateX(Math.PI / 2 + 0.55); // Kemiringan cincin
+            ringGeo.rotateX(Math.PI / 2 + 0.55);
 
             const ringMesh = new THREE.Mesh(ringGeo, planetMaterial);
             planetGroup.add(ringMesh);
         }
 
-        // Posisi di pojok kanan atas latar belakang
         planetGroup.position.set(0, 5, -30);
         planetGroup.rotation.z = 0.4;
 
         planetGroup.traverse((child) => {
-            if (child.isMesh) {
-                child.renderOrder = -9999;
-            }
+            if (child.isMesh) child.renderOrder = -9999;
         });
 
         planetGroup.visible = false;
-
         return planetGroup;
     }
 
@@ -145,7 +152,6 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
         const skMaterial = skHologramMaterial;
 
         function buildSkHemisphere(xOffset) {
-            // Dioptimalkan: Subdivisi diturunkan dari 128 ke 64 (Hemat vertex GPU)
             const geo = new THREE.SphereGeometry(1, 100, 100);
             const pos = geo.attributes.position;
             const vec = new THREE.Vector3();
@@ -184,7 +190,7 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
         skGroup.add(buildSkHemisphere(-0.48), buildSkHemisphere(0.48));
 
         // --- 2. OTAK BELAKANG (Cerebellum) ---
-        const skCerebellumGeo = new THREE.SphereGeometry(0.5, 64, 64); // Dioptimalkan ke 32
+        const skCerebellumGeo = new THREE.SphereGeometry(0.5, 64, 64);
         const cPos = skCerebellumGeo.attributes.position;
         const cVec = new THREE.Vector3();
 
@@ -207,7 +213,7 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
 
         // --- 3. BATANG OTAK (Brain Stem) ---
         const skStem = new THREE.Mesh(
-            new THREE.CylinderGeometry(0.2, 0.12, 1.2, 12), // Dioptimalkan ke 12 segmen
+            new THREE.CylinderGeometry(0.2, 0.12, 1.2, 12),
             skMaterial,
         );
         skStem.position.set(0, -1.1, -0.5);
@@ -218,27 +224,23 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
         const skPlatformGroup = new THREE.Group();
         skPlatformGroup.name = "skPlatform";
 
-        const stageGeo1 = new THREE.CylinderGeometry(2, 2, 0.5, 40); // Dioptimalkan ke 32 segmen
         const stageMesh1 = new THREE.Mesh(
-            stageGeo1,
+            new THREE.CylinderGeometry(2, 2, 0.5, 40),
             new THREE.MeshStandardMaterial({
                 transparent: false,
                 color: "#486ad8",
                 wireframe: true,
-                // transparent: true,
                 opacity: 0.8,
             }),
         );
         stageMesh1.position.set(0, -2.6, -0.3);
 
-        const stageGeo2 = new THREE.CylinderGeometry(3, 3, 0.5, 80); // Dioptimalkan ke 48 segmen
         const stageMesh2 = new THREE.Mesh(
-            stageGeo2,
+            new THREE.CylinderGeometry(3, 3, 0.5, 80),
             new THREE.MeshStandardMaterial({
                 transparent: false,
                 color: "#415aad",
                 wireframe: true,
-                // transparent: true,
                 opacity: 0.9,
             }),
         );
@@ -247,26 +249,20 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
         skPlatformGroup.add(stageMesh1, stageMesh2);
 
         const gridSize = 370;
-        // Dioptimalkan: Subdivisi diturunkan dari 128 ke 64
         const gridGeometry = new THREE.PlaneGeometry(
             gridSize,
             gridSize,
             250,
             250,
         );
-
         gridGeometry.rotateX(-Math.PI / 2);
 
         const gridMaterial = new THREE.ShaderMaterial({
             transparent: true,
             wireframe: true,
             uniforms: {
-                uColor: {
-                    value: new THREE.Color("#7085c7"),
-                },
-                uMaxDistance: {
-                    value: gridSize * 0.27,
-                },
+                uColor: { value: new THREE.Color("#7085c7") },
+                uMaxDistance: { value: gridSize * 0.27 },
             },
             vertexShader: `
             varying vec3 vPosition;
@@ -307,29 +303,20 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
             void main() {
                 vec3 pos = position;
 
-                // --- 1. TERRAIN DASAR ---
                 vec2 stretchedCoord = vec2(pos.x * 0.001, pos.z * 0.001);
                 float baseTerrain = (noise(stretchedCoord * 1.5) - 0.5) * 20.0;
                 
                 vec2 warp = vec2(noise(pos.xz * 1.005), noise(pos.xz * 1.005)) * 1.0;
                 float craters = moonCraters((pos.xz + warp) * 0.003) * 70.0;
 
-                // --- 2. CINCIN GUNDUKAN TEPAT DI KELILING OTAK ---
                 float dist = length(pos.xz + 1.0);
-                
-                // Jarak cincin gundukan diatur pas di tepi panggung (radius 12 hingga 18)
                 float ringCenter = 35.0; 
                 float ringWidth = 6.0;
                 
                 float ringFactor = exp(-pow((dist - ringCenter) / ringWidth, 2.0));
-                
-                // Tinggi gundukan melingkar
                 float smallHills = ringFactor * noise(pos.xz * 0.05) * 7.0;
-                
-                // Area tepat di bawah panggung (radius < 10) dikosongkan/dibersihkan agar datar
                 float centerClearing = smoothstep(6.0, 10.0, dist);
 
-                // Terapkan ke posisi Y
                 pos.y += baseTerrain + craters + (smallHills * centerClearing);
             
                 vPosition = pos;
@@ -350,13 +337,11 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
 
         const terrainMesh = new THREE.Mesh(gridGeometry, gridMaterial);
         terrainMesh.position.set(0, 5.75, 0);
-
         terrainMesh.renderOrder = 1;
         skPlatformGroup.add(terrainMesh);
         skPlatformGroup.visible = false;
 
         skGroup.add(skPlatformGroup);
-
         return skGroup;
     }
 
@@ -365,7 +350,7 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
         const skCanvasHolder = document.getElementById("brainContainer");
         if (!skCanvasHolder) return;
 
-        cacheDomElements(); // Panggil cache DOM sekali di awal
+        cacheDomElements();
 
         skScene = new THREE.Scene();
         skCamera = new THREE.PerspectiveCamera(
@@ -398,11 +383,9 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
 
         window.addEventListener("resize", () => {
             if (!skCanvasHolder) return;
-
             skCamera.aspect =
                 skCanvasHolder.clientWidth / skCanvasHolder.clientHeight;
             skCamera.updateProjectionMatrix();
-
             skRenderer.setSize(
                 skCanvasHolder.clientWidth,
                 skCanvasHolder.clientHeight,
@@ -415,8 +398,6 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
 
     let winW = window.innerWidth;
     let isSmallScreen = winW <= 700;
-    let skSnapTimeout = null;
-    let skIsSnapping = false;
 
     window.addEventListener("resize", () => {
         winW = window.innerWidth;
@@ -456,51 +437,27 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
         const skOffset = 240;
         const isAboutMeActive = document.body.classList.contains("activeAM");
         const skPlatform = skBrainMainGroup.getObjectByName("skPlatform");
-        const skHologramPlanet =
-            skBrainMainGroup.getObjectByName("skHologramPlanet");
 
         // --- A. LOGIKA STICKY / FIXED WRAPPER ---
-        if (skRect.top <= -skOffset && skRect.bottom >= winH) {
-            if (skWrapper) {
-                skWrapper.classList.add("active");
-                skWrapper.classList.remove("end");
-            }
-            if (!isAboutMeActive && skLogoImg && window.assets?.wlogo)
-                skLogoImg.src = window.assets.wlogo;
+        const isStickyActive = skRect.top <= -skOffset && skRect.bottom >= winH;
+        const isStickyEnd = skRect.bottom < winH;
 
-            if (skLogoName) skLogoName.classList.add("logoNameActiveSkill");
-            if (skDescText) skDescText.classList.add("removeText");
-            if (skLine) skLine.classList.add("removeLine");
-
+        if (isStickyActive) {
+            updateUIState(true, false, isAboutMeActive);
             if (skPlatform) skPlatform.visible = true;
-        } else if (skRect.bottom < winH) {
-            if (skWrapper) {
-                skWrapper.classList.add("end");
-                skWrapper.classList.remove("active");
-            }
-            if (!isAboutMeActive && skLogoImg && window.assets?.logo)
-                skLogoImg.src = window.assets.logo;
-
-            if (skLogoName) skLogoName.classList.remove("logoNameActiveSkill");
+        } else if (isStickyEnd) {
+            updateUIState(false, true, isAboutMeActive);
+            if (skPlatform) skPlatform.visible = false;
         } else {
-            if (skWrapper) skWrapper.classList.remove("active", "end");
-
-            if (!isAboutMeActive && skLogoImg && window.assets?.logo)
-                skLogoImg.src = window.assets.logo;
-
-            if (skLogoName) skLogoName.classList.remove("logoNameActiveSkill");
-            if (skDescText) skDescText.classList.remove("removeText");
-            if (skLine) skLine.classList.remove("removeLine");
+            updateUIState(false, false, isAboutMeActive);
             if (skPlatform) skPlatform.visible = false;
         }
 
         // --- B. ANIMASI 3D OTAK & CARD ---
         const skScrollY = Math.max(0, Math.abs(skRect.top) - skOffset);
         const skBaseScale = isSmallScreen ? 0.65 : 1.0;
-        const skTargetX = isSmallScreen ? 1.2 : 3.5;
 
         const skPhase1 = skClamp(skScrollY / (2 * winH), 0, 1);
-        const skPhase2 = skClamp((skScrollY - 2 * winH) / (2.5 * winH), 0, 1);
 
         if (skRect.top <= -skOffset) {
             if (skPhase1 < 1) {
@@ -509,6 +466,7 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
 
                 const targetMinScale = 0;
                 const midScale = 0.12;
+                skPlanet.visible = false;
 
                 if (skPhase1 <= 0.5) {
                     const p1 = skPhase1 / 0.5;
@@ -522,7 +480,6 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
                         (midScale - p2 * (midScale - targetMinScale));
 
                     moveProgress = p2;
-                    // if (skPlanet) skPlanet.visible = true;
 
                     if (skPlanet) {
                         skPlanet.traverse((child) => {
@@ -539,11 +496,8 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
                     }
                 }
 
-                const targetY = -4;
-                const targetZ = 2;
-
-                skBrainMainGroup.position.y = moveProgress * targetY;
-                skBrainMainGroup.position.z = moveProgress * targetZ;
+                skBrainMainGroup.position.y = moveProgress * -4;
+                skBrainMainGroup.position.z = moveProgress * 2;
 
                 skBrainMainGroup.scale.set(
                     curentScale,
@@ -559,24 +513,13 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
             } else {
                 // --- FASE 2: KONTROL MOUSE DENGAN SUDUT DEFAULT TETAP ---
                 const defaultRotationY = 0.12;
-                const defaultRotationX = 0.2; // Kemiringan sudut dari atas (sesuai gambar)
+                const defaultRotationX = 0.2;
 
-                // Hitung rotasi target hanya berdasarkan pergerakan horizontal (mouseX)
                 let targetRotY = defaultRotationY - mouseX * 0.8;
-
-                // Batasi maksimal sudut putar kanan-kiri
-                const maxRotationLimit = 0.2;
-
-                let clampedTargetY = skClamp(
-                    targetRotY,
-                    -maxRotationLimit,
-                    maxRotationLimit,
-                );
+                let clampedTargetY = skClamp(targetRotY, -0.2, 0.2);
 
                 skBrainMainGroup.rotation.y +=
                     (clampedTargetY - skBrainMainGroup.rotation.y) * 0.05;
-
-                // Pertahankan sudut X agar bentuk dan sudut pandangnya tetap dari atas
                 skBrainMainGroup.rotation.x = defaultRotationX;
             }
         } else {
