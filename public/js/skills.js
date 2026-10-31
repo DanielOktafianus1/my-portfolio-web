@@ -54,7 +54,7 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
         if (skLine) skLine.classList.toggle("removeLine", isActive);
     }
 
-    // --- 1. PEMBUAT OTAK ---
+    // --- 1. PEMBUAT OTAK DAN PLANET---
     function buildSkHologramPlanet() {
         const planetGroup = new THREE.Group();
         planetGroup.name = "skHologramPlanet";
@@ -413,6 +413,8 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
     let targetMouseX = 0;
     let targetMouseY = 0;
 
+    let planetCurrentX = 0;
+
     window.addEventListener("mousemove", (e) => {
         targetMouseX = (e.clientX / window.innerWidth) * 2 - 1;
         targetMouseY = -(e.clientY / window.innerHeight) * 2 + 1;
@@ -421,6 +423,8 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
     // --- 3. SCROLL & UI ANIMATION LOGIC ---
     function skAnimate() {
         requestAnimationFrame(skAnimate);
+
+        cacheDomElements();
 
         mouseX += (targetMouseX - mouseX) * 0.05;
         mouseY += (targetMouseY - mouseY) * 0.05;
@@ -444,7 +448,9 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
 
         if (isStickyActive) {
             updateUIState(true, false, isAboutMeActive);
-            if (skPlatform) skPlatform.visible = true;
+            setTimeout(() => {
+                if (skPlatform) skPlatform.visible = true;
+            }, 500);
         } else if (isStickyEnd) {
             updateUIState(false, true, isAboutMeActive);
             if (skPlatform) skPlatform.visible = false;
@@ -457,7 +463,11 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
         const skScrollY = Math.max(0, Math.abs(skRect.top) - skOffset);
         const skBaseScale = isSmallScreen ? 0.65 : 1.0;
 
-        const skPhase1 = skClamp(skScrollY / (2 * winH), 0, 1);
+        const skPhase1 = skClamp(skScrollY / (3 * winH), 0, 1);
+
+        if (skillsContainerContent) {
+            skillsContainerContent.classList.remove("active");
+        }
 
         if (skRect.top <= -skOffset) {
             if (skPhase1 < 1) {
@@ -508,10 +518,9 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
                 skBrainMainGroup.rotation.y = 1.2 * (1.0 - moveProgress);
                 skBrainMainGroup.rotation.x = 0.32 * (1.0 - moveProgress);
 
-                if (skillsContainerContent)
-                    skillsContainerContent.style.display = "none";
+                // if (skillsContainerContent)
+                //     skillsContainerContent.style.display = "none";
             } else {
-                // --- FASE 2: KONTROL MOUSE DENGAN SUDUT DEFAULT TETAP ---
                 const defaultRotationY = 0.12;
                 const defaultRotationX = 0.2;
 
@@ -521,17 +530,28 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
                 skBrainMainGroup.rotation.y +=
                     (clampedTargetY - skBrainMainGroup.rotation.y) * 0.05;
                 skBrainMainGroup.rotation.x = defaultRotationX;
+
+                if (skPlanet) {
+                    const planetTargetX = mouseX * -0.5;
+                    planetCurrentX += (planetTargetX - planetCurrentX) * 0.1;
+
+                    skPlanet.position.x = planetCurrentX;
+                }
+
+                if (skillsContainerContent) {
+                    skillsContainerContent.classList.add("active");
+                }
             }
         } else {
-            skBrainMainGroup.position.x = 0;
             skBrainMainGroup.scale.setScalar(skBaseScale);
             skBrainMainGroup.rotation.y = 1.2;
             skBrainMainGroup.rotation.x = 0.3;
 
-            if (skillsContainerContent)
-                skillsContainerContent.style.display = "none";
+            if (skPlanet) {
+                skPlanet.position.x = 0;
+                planetCurrentX = 0;
+            }
         }
-
         skRenderer.render(skScene, skCamera);
     }
 })();

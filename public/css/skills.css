@@ -260,7 +260,7 @@
 
 .skillsContainerContent {
     display: none;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 50%;
     transform: translate(-50%);
@@ -271,147 +271,131 @@
     perspective: 1000px;
     /* overflow: visible; */
     max-width: 1500px;
-    z-index: auto;
+    z-index: 100;
     /* perspective: none; */
     overflow: hidden;
+    color: white;
+}
+.skillsContainerContent.active {
+    display: block;
+    transition: all 2s ease-in-out;
 }
 
-/* =========================================
-   9. HARD SKILLS TITLE
-========================================= */
-
-.skillscategory {
+.plus1,
+.plus2,
+.plus3,
+.plus4,
+.plus5,
+.plus6 {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    font-size: 50px;
+    font-weight: 100;
+    z-index: 20;
+}
 
-    /* font-size: 500px; */
-    /* font-weight: bolder; */
-    /* white-space: nowrap; */
+.plus1 {
+    top: 10px;
+    left: 10px;
+}
+
+.plus2 {
+    bottom: 10px;
+    left: 10px;
+}
+
+.plus3 {
+    top: 10px;
+    left: 50%;
+    transform: translate(50deg);
+}
+
+.plus4 {
+    bottom: 10px;
+    left: 50%;
+    transform: translate(50deg);
+}
+
+.plus5 {
+    top: 10px;
+    right: 10px;
+}
+
+.plus6 {
+    bottom: 10px;
+    right: 10px;
+}
+
+.wrapperSkills {
+    /* font-family: "Space Mono", monospace;
+    font-weight: 400;
+    font-style: normal; */
+    padding: 50px;
+}
+
+.titAndCatSkills {
+    height: 65vh;
+    display: flex;
+}
+
+.categorySkills,
+.tittleSkills {
+    width: 50%;
+    padding: 20px 0;
+}
+
+.tittleSkills {
     display: flex;
     flex-direction: column;
-    line-height: 400px;
-    z-index: 0;
-    pointer-events: none;
+    /* align-items: end; */
+    font-weight: 100;
+    line-height: 17vh;
 }
-
-.textHard,
-.textSkill {
-    font-family: "Ubuntu", sans-serif;
-    font-weight: 700;
+.titCatSkills {
+    font-size: 17vh;
+    color: red;
+    font-family: "Turret Road", sans-serif;
+    font-weight: 900;
     font-style: normal;
-    font-size: 500px;
 }
 
-.textHard {
-    position: relative;
-    transform: translateX(-100px);
-    opacity: 0;
-    transition: all 0.5s ease;
-}
-
-.textSkill {
-    position: relative;
-    transform: translateX(200px);
-    opacity: 0;
-    transition: all 1s ease;
-}
-
-.textHard.active,
-.textSkill.active {
-    transform: translateX(0);
-    opacity: 1 !important;
-}
-
-/* =========================================
-   10. HARD SKILLS
-========================================= */
-
-.hardskill {
-    position: relative;
+.exampleCodeContainer {
     width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    /* transform-style: preserve-3d; */
-    /* isolation: isolate; */
+    height: auto;
+    padding: 10px;
+    /* background-color: rgba(0, 0, 0, 0.757); */
 }
 
-/* =========================================
-   11. HARD SKILLS CARD TRACK
-========================================= */
-
-.sk-card-track {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    transform-style: preserve-3d;
+/* .exampleCodeContainer pre {
+    margin: 0;
+    padding: 0;
 }
 
-/* =========================================
-   12. REVOLVING CARD
-========================================= */
+.exampleCodeContainer code {
+    margin-left: 0;
+    padding-left: 0;
+    display: block;
+    font-family: "Space Mono", monospace;
+    font-weight: 300;
+    font-style: normal;
+} */
+/* {
+    width: 50%;
+} */
 
-.sk-revolving-card {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 320px;
-    height: 380px;
-    margin-top: -190px;
-    margin-left: -160px;
-    background: rgba(15, 23, 42, 0.75);
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 30px;
-    box-shadow:
-        0 20px 50px rgba(204, 75, 75, 0.5),
-        inset 0 0 20px rgba(255, 255, 255, 0.05);
-    color: #ffffff;
-    padding: 30px;
-    box-sizing: border-box;
-    will-change: transform, opacity;
-    pointer-events: auto;
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-    opacity: 0;
-    z-index: 2;
+.titTitSkills {
+    font-size: 10vh;
+    /* color: rgb(8, 0, 255); */
+    font-family: "Turret Road", sans-serif;
+    font-weight: 100;
+    font-style: normal;
 }
 
-.sk-revolving-card h3 {
-    font-family: "Michroma", sans-serif;
-    font-size: 24px;
-    color: #379dfc;
-    margin-bottom: 15px;
+.descSkills {
+    font-family: "Space Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2.5vh;
 }
-
-.sk-revolving-card p {
-    font-size: 15px;
-    line-height: 1.6;
-    color: #e2e8f0;
-}
-
-/* =========================================
-   13. SOFT SKILLS
-========================================= */
-
-.softskill {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    transform-style: preserve-3d;
-}
-
-/* =========================================
-   14. OTHER SKILLS ELEMENTS
-========================================= */
 
 canvas {
     display: block;
