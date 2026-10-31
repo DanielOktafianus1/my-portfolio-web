@@ -55,6 +55,8 @@
         href="https://fonts.googleapis.com/css2?family=Turret+Road:wght@200;300;400;500;700;800&display=swap"
         rel="stylesheet">
 
+
+
     {{-- Remix Icon CDN --}}
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css"
         rel="stylesheet" />

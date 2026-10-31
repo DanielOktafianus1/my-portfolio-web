@@ -15,7 +15,8 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
         skLine,
         clothDisp,
         skillsContainerContent,
-        allCards;
+        allCards,
+        bars;
 
     function cacheDomElements() {
         skContainer = document.querySelector(".skillsContainer");
@@ -25,6 +26,7 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
         skDescText = document.querySelector(".skillsWrapper p");
         skLine = document.querySelector(".lineSkills");
         clothDisp = document.getElementById("cloth-disp");
+        bars = document.querySelectorAll(".bar");
         skillsContainerContent = document.querySelector(
             ".skillsContainerContent",
         );
@@ -445,6 +447,11 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.m
         // --- A. LOGIKA STICKY / FIXED WRAPPER ---
         const isStickyActive = skRect.top <= -skOffset && skRect.bottom >= winH;
         const isStickyEnd = skRect.bottom < winH;
+
+        bars.forEach((bar, idx) => {
+            let idxDef = idx + 1;
+            bar.style.height = idxDef * 1 + "vh";
+        });
 
         if (isStickyActive) {
             updateUIState(true, false, isAboutMeActive);
